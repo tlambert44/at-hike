@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geoff's Appalachian Trail Thru-Hike</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --brown: #7f5539;
+    --gold: #e9c46a;
+    --sky: #48cae4;
+    --text: #1b1b1b;
+    --text-muted: #555;
+    --bg: #f7f3ee;
+    --card-bg: #fff;
+    --border: #e0d8ce;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .hero {
+    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 50%, #40916c 100%);
+    color: #fff;
+    padding: 10px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner { position: relative; max-width: 1200px; margin: 0 auto; display: flex; align-items: baseline; justify-content: space-between; }
+  .hero h1 { font-size: 2.2rem; font-weight: normal; letter-spacing: 0.5px; }
+  .hero h1 span { color: var(--gold); }
+  .hero .subtitle { font-size: 0.95rem; opacity: 0.75; font-style: italic; text-align: right; white-space: nowrap; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.85rem;
+    margin-right: 8px;
+  }
+
+  /* ── Hero stats bar (unused, kept for reference) ── */
+
+  /* ── Progress Bar Card ── */
+  .progress-card {
+    margin-bottom: 16px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .progress-label strong { font-size: 1.05rem; color: var(--green); }
+  .progress-bar-wrap { position: relative; margin-bottom: 4px; }
+  .progress-bar-outer {
+    display: flex;
+    border-radius: 12px;
+    height: 22px;
+    overflow: hidden;
+  }
+  .pb-seg { height: 100%; transition: width 0.8s ease; }
+  .pb-hiked    { background: linear-gradient(90deg, #52b788, #74c69d); }
+  .pb-skipped  { background: #95d5b2; }
+  .pb-today    { background: #f4a261; min-width: 6px; }
+  .pb-remaining { background: rgba(255,255,255,0.35); flex: 1; }
+  .pb-boot {
+    position: absolute;
+    top: -7px;
+    transform: translateX(-50%);
+    font-size: 1.35rem;
+    pointer-events: none;
+  }
+  .progress-states {
+    position: relative;
+    height: 18px;
+    margin-top: 6px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+  .progress-states span {
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .pb-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .pb-legend-item { display: flex; align-items: center; gap: 5px; }
+  .pb-legend-swatch { width: 14px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ── Progress bar landmarks ── */
+  .pb-landmarks {
+    position: relative;
+    height: 34px;
+    margin-bottom: 3px;
+  }
+  .pb-mark {
+    position: absolute;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    line-height: 1.3;
+    pointer-events: none;
+  }
+  .pb-mark-tick {
+    width: 1px;
+    height: 8px;
+    background: currentColor;
+    margin-top: 2px;
+  }
+  .pb-mark-next {
+    color: #b5800a;
+    font-weight: bold;
+  }
+  .pace-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: #d8f3dc;
+    color: #1b4332;
+    border-radius: 12px;
+    padding: 1px 9px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 8px;
+    font-family: Georgia, serif;
+  }
+
+  /* ── Hero progress + stats-legend block ── */
+  .hero-progress {
+    background: #2d6a4f;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hp-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hp-bar-wrap {
+    padding: 12px 24px 8px;
+  }
+  .hero-progress .progress-label {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 10px;
+  }
+  .hero-progress .progress-label strong {
+    color: #e9c46a;
+    font-size: 1.2rem;
+  }
+  .hero-progress .progress-bar-outer {
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .hero-progress .progress-states {
+    color: rgba(255,255,255,0.5);
+  }
+  /* Stats-as-legend row */
+  .hp-legend-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hls-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 28px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .hls-item:last-child { border-right: none; }
+  .hls-swatch {
+    width: 6px;
+    height: 44px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .hls-val {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 4px;
+    font-family: Georgia, serif;
+  }
+  .hls-sub {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.55);
+  }
+  .hls-asterisk {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.38);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── Main layout ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+  /* ── Stat cards ── */
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.15s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .stat-card:hover { transform: translateY(-2px); }
+  .stat-card .value { font-size: 1.75rem; font-weight: bold; color: var(--green); line-height: 1; }
+  .stat-card .label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-card .stat-date { font-size: 0.85rem; color: var(--brown); font-style: italic; margin-bottom: 3px; font-weight: bold; }
+
+  /* ── Charts grid ── */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 768px) { .charts-grid { grid-template-columns: 1fr; } }
+
+  .chart-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+  .chart-card.wide { grid-column: 1 / -1; }
+  .chart-card h3 {
+    font-size: 1rem;
+    color: var(--green);
+    margin-bottom: 14px;
+    font-weight: normal;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  .chart-card h3 .note { font-size: 0.88rem; color: var(--text-muted); margin-left: 8px; }
+
+  /* ── Monthly summary table ── */
+  .monthly-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  .monthly-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--green-pale);
+    color: var(--green);
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .monthly-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  .monthly-table tr:last-child td { border-bottom: none; }
+  .monthly-table tr:hover td { background: #fafaf8; }
+  .bar-mini {
+    display: inline-block;
+    background: var(--green-light);
+    height: 10px;
+    border-radius: 5px;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Daily log table ── */
+  .log-section { margin-top: 8px; }
+  .log-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .log-controls input {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 160px;
+    outline: none;
+  }
+  .log-controls input:focus { border-color: var(--green-light); }
+  .log-controls select {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .log-table-wrapper { max-height: 420px; overflow-y: auto; border-radius: 10px; border: 1px solid var(--border); }
+  .log-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .log-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--green);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+  }
+  .log-table thead th:hover { background: #245a42; }
+  .log-table tbody tr:nth-child(even) td { background: #fafaf8; }
+  .log-table tbody tr:hover td { background: var(--green-pale) !important; }
+  .log-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .log-table td:first-child { white-space: nowrap; color: var(--text-muted); font-size: 0.8rem; }
+  .miles-cell { font-weight: bold; color: var(--green); }
+  .zero-row td { color: #aaa; background: #fdf7f0 !important; }
+  .today-row td { background: #fffbeb !important; border-left: 3px solid var(--gold); }
+  .future-row td { color: #888; font-style: italic; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    font-weight: bold;
+  }
+  .tag-shelter { background: #d8f3dc; color: #1b4332; }
+  .tag-camping { background: #fef3c7; color: #92400e; }
+  .tag-hotel { background: #dbeafe; color: #1e40af; }
+  .tag-hostel { background: #ede9fe; color: #5b21b6; }
+  .tag-home { background: #fce7f3; color: #9d174d; }
+  .tag-zero { background: #fee2e2; color: #991b1b; }
+  .tag-other { background: #f3f4f6; color: #374151; }
+
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.78rem; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* ── Map + stats row ── */
+  .map-chart-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) { .map-chart-row { grid-template-columns: 1fr; } }
+
+  /* Map card stretches and fills height */
+  .map-chart-row > .chart-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Stats col fills full height with cards distributed evenly */
+  .stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+  }
+  .stats-col .stat-card { flex: 1; }
+
+  /* ── Static map card ── */
+  .map-wrap {
+    flex: 1;
+    position: relative;
+    min-height: 380px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  #trail-map {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .map-legend {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  }
+  .map-legend .mc-item { display: flex; align-items: center; gap: 6px; }
+  .mc-line { width: 22px; height: 4px; border-radius: 2px; flex-shrink: 0; }
+  .mc-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── Today popup on map ── */
+  .today-popup .leaflet-popup-content-wrapper {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.22);
+    border: 1px solid var(--border);
+    min-width: 190px;
+  }
+  .today-popup .leaflet-popup-content { margin: 0; }
+  .today-popup .leaflet-popup-tip    { background: #fff; }
+  .today-popup .leaflet-popup-close-button {
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 18px !important;
+    top: 5px !important;
+    right: 7px !important;
+  }
+  .today-popup .leaflet-popup-close-button:hover { color: #fff !important; }
+  .tt-header {
+    background: #1b4332;
+    color: #e9c46a;
+    padding: 9px 28px 9px 12px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    line-height: 1.3;
+  }
+  .tt-body {
+    padding: 9px 12px 11px;
+    font-size: 0.76rem;
+    font-family: Georgia, serif;
+    color: var(--text);
+  }
+  .tt-row { margin: 3px 0; }
+  .tt-row strong { color: var(--green); }
+  .tt-divider { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>🏔️ Geoff's Appalachian Trail &nbsp;<span>Thru-Hike</span></h1>
+    <div class="subtitle">Georgia → Maine &nbsp;·&nbsp; 2,197.9 miles &nbsp;·&nbsp; Started March 12, 2026</div>
+  </div>
+</div>
+
+<!-- HERO PROGRESS + STATS-LEGEND BLOCK -->
+<div class="hero-progress">
+<div class="hp-inner">
+  <!-- Bar section -->
+  <div class="hp-bar-wrap">
+    <div class="progress-label">
+      <span>🌿 Springer Mtn, GA</span>
+      <strong id="progress-label">May 27, 2026 · Hiking Day 45 · Mile 1,037.8</strong>
+      <span>🏔️ Katahdin, ME</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-outer">
+        <div class="pb-seg pb-hiked"   style="width:21.5%"></div>
+        <div class="pb-seg pb-skipped" style="width:14.4%"></div>
+        <div class="pb-seg pb-hiked"   style="width:11.4%"></div>
+        <div class="pb-seg pb-remaining"></div>
+      </div>
+      <div class="pb-boot" style="left:47.3%">🥾</div>
+    </div>
+    <div class="progress-states">
+      <span style="left:0%;transform:none">GA</span>
+      <span style="left:5.5%">NC/TN</span>
+      <span style="left:20.7%">VA</span>
+      <span style="left:46.0%">WV</span>
+      <span style="left:47.8%">MD</span>
+      <span style="left:53.0%">PA</span>
+      <span style="left:58.4%">NJ/NY</span>
+      <span style="left:65.1%">CT</span>
+      <span style="left:68.1%">MA</span>
+      <span style="left:72.7%">VT</span>
+      <span style="left:79.9%">NH</span>
+      <span style="left:86.5%">ME</span>
+      <span style="left:100%;transform:translateX(-100%)">🏁</span>
+    </div>
+  </div>
+  <!-- Stats-as-legend row -->
+  <div class="hp-legend-stats">
+    <div class="hls-item">
+      <div class="hls-swatch" style="background:linear-gradient(180deg,#52b788,#74c69d)"></div>
+      <div class="hls-content">
+        <div class="hls-val" style="color:#fff">721.4</div>
+        <div class="hls-sub">Miles Hiked</div>
+        <div class="hls-asterisk">*316.4 mi skipped section</div>
+      </div>
+    </div>
+    <div class="hls-item">
+      <div class="hls-swatch" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.25)"></div>
+      <div class="hls-content">
+        <div class="hls-val" style="color:#fff">1,160.1</div>
+        <div class="hls-sub">Miles to Katahdin</div>
+      </div>
+    </div>
+    <div class="hls-item">
+      <div class="hls-swatch" style="background:#e9c46a"></div>
+      <div class="hls-content">
+        <div class="hls-val" style="color:#e9c46a">33%</div>
+        <div class="hls-sub">Complete</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /hp-inner -->
+</div><!-- /hero-progress -->
+
+<div class="main">
+
+  <!-- MAP + STATS ROW -->
+  <div class="map-chart-row">
+
+    <!-- Trail map card -->
+    <div class="chart-card">
+      <h3 style="color:var(--text)">📍 Today's Destination <span class="note" style="color:#b5800a; font-size:1.05rem; font-weight:bold">Crampton Gap Shelter, MD · Mile 1,037.8</span></h3>
+      <div class="map-wrap">
+        <div id="trail-map"></div>
+        <div class="map-legend">
+          <div class="mc-item"><div class="mc-line" style="background:#2d6a4f"></div> Hiked (721.4 mi)</div>
+          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#2d6a4f 0,#2d6a4f 5px,transparent 5px,transparent 9px)"></div> Skipped section</div>
+          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#3a86ff 0,#3a86ff 5px,transparent 5px,transparent 9px)"></div> Ahead (1,160.1 mi)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat cards column -->
+    <div class="stats-col">
+      <div class="stat-card">
+        <div class="value">45</div>
+        <div class="label">Hiking Days</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">16.2</div>
+        <div class="label">Avg Miles / Hiking Day</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">6</div>
+        <div class="label">States Hiked</div>
+        <div style="font-size:0.68rem;color:var(--text-muted);margin-top:6px;letter-spacing:0.3px">GA · NC · TN · VA · WV · MD</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">10</div>
+        <div class="label">Days 20+ Miles</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-date">May 24</div>
+        <div class="value">23.6</div>
+        <div class="label">Most Miles in a Day</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DAILY MILES CHART -->
+  <div class="chart-card" style="margin-bottom:24px">
+    <h3>🏕️ Daily Miles <span class="note">— hiking days only</span></h3>
+    <canvas id="dailyMilesChart" height="100"></canvas>
+  </div>
+
+  <!-- MONTHLY SUMMARY -->
+  <div class="chart-card" style="margin-bottom:24px">
+    <h3>📆 Monthly Summary</h3>
+    <table class="monthly-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Miles Hiked</th>
+          <th>Hiking Days</th>
+          <th>Zero Days</th>
+          <th>Avg Miles/Day</th>
+          <th>Visual</th>
+        </tr>
+      </thead>
+      <tbody id="monthly-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- DAILY LOG -->
+  <div class="chart-card">
+    <h3>📓 Daily Trail Log</h3>
+    <div class="log-section">
+      <div class="log-controls">
+        <input type="text" id="search-input" placeholder="🔍  Search destination, stay, comments…" oninput="filterLog()">
+        <select id="month-filter" onchange="filterLog()">
+          <option value="">All months</option>
+          <option>March</option><option>April</option><option>May</option>
+          <option>June</option><option>July</option><option>August</option>
+        </select>
+        <select id="type-filter" onchange="filterLog()">
+          <option value="">All days</option>
+          <option value="hiking">Hiking days</option>
+          <option value="zero">Zero days</option>
+        </select>
+      </div>
+      <div class="log-table-wrapper">
+        <table class="log-table">
+          <thead>
+            <tr>
+              <th onclick="sortLog('date')">Date ↕</th>
+              <th onclick="sortLog('day')">Day #</th>
+              <th onclick="sortLog('miles')">Miles ↕</th>
+              <th onclick="sortLog('milepoint')">AT Mile</th>
+              <th>Destination</th>
+              <th>Stay / Notes</th>
+            </tr>
+          </thead>
+          <tbody id="log-tbody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px; font-size:0.78rem; color:var(--text-muted);">
+        <span style="background:#fffbeb; border-left:3px solid #e9c46a; padding:1px 6px;">Today</span> &nbsp;
+        <span style="color:#888; font-style:italic;">Italic = planned</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+// ════════════════════════════════════════════
+//  DATA
+// ════════════════════════════════════════════
+const RAW = [{"date":"Thursday, March 12, 2026","day":1,"miles":2.8,"milepoint":2.8,"start":"Amicalola Falls State Park","dest":"Stover Creek Shelter","stay":"shelter","comments":"plus 8.8 mile Approach Trail."},{"date":"Friday, March 13, 2026","day":2,"miles":12.9,"milepoint":15.7,"start":"Stover Creek Shelter","dest":"Gooch Mtn Shelter","stay":"shelter","comments":""},{"date":"Saturday, March 14, 2026","day":3,"miles":18.5,"milepoint":34.2,"start":"Gooch Mtn Shelter","dest":"past Neels Gap","stay":"dispersed camping-tent","comments":""},{"date":"Sunday, March 15, 2026","day":4,"miles":18.5,"milepoint":52.7,"start":"","dest":"Unicoi Gap","stay":"Hiawasse Holiday Inn","comments":"slack pack"},{"date":"Monday, March 16, 2026","day":5,"miles":0.0,"milepoint":52.7,"start":"","dest":"","stay":"Hiawasse Holiday Inn","comments":"Zero Day (cold and snow)"},{"date":"Tuesday, March 17, 2026","day":6,"miles":16.7,"milepoint":69.4,"start":"Unicoi Gap","dest":"Dicks Creek Gap","stay":"Hiawasse Holiday Inn","comments":"slack pack"},{"date":"Wednesday, March 18, 2026","day":7,"miles":21.1,"milepoint":90.5,"start":"Dicks Creek Gap","dest":"Beech Gap","stay":"dispersed camping-tent","comments":""},{"date":"Thursday, March 19, 2026","day":8,"miles":19.9,"milepoint":110.4,"start":"Beech Gap","dest":"Winding Stair Gap","stay":"dispersed camping-tent","comments":""},{"date":"Friday, March 20, 2026","day":9,"miles":15.0,"milepoint":125.4,"start":"Winding Stair Gap","dest":"Cold Spring Shelter","stay":"shelter","comments":""},{"date":"Saturday, March 21, 2026","day":10,"miles":11.7,"milepoint":137.1,"start":"Cold Spring Shelter","dest":"NOC","stay":"hostel","comments":""},{"date":"Sunday, March 22, 2026","day":11,"miles":13.6,"milepoint":150.7,"start":"NOC","dest":"Stecoah Gap","stay":"Turkey Creek campground","comments":""},{"date":"Monday, March 23, 2026","day":12,"miles":15.9,"milepoint":166.6,"start":"Stecoah Gap","dest":"Fontana Village","stay":"Fontana Village Lodge","comments":"slack pack"},{"date":"Tuesday, March 24, 2026","day":13,"miles":17.4,"milepoint":184.0,"start":"Fontana Village","dest":"Spence Field Shelter","stay":"shelter","comments":""},{"date":"Wednesday, March 25, 2026","day":14,"miles":19.1,"milepoint":203.1,"start":"Spence Field Shelter","dest":"Mt. Collins Shelter","stay":"shelter","comments":""},{"date":"Thursday, March 26, 2026","day":15,"miles":20.6,"milepoint":223.7,"start":"Mt. Collins Shelter","dest":"Tricorner Knob Shelter","stay":"shelter","comments":""},{"date":"Friday, March 27, 2026","day":16,"miles":17.6,"milepoint":241.3,"start":"Tricorner Knob Shelter","dest":"I-40 road crossing","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Saturday, March 28, 2026","day":17,"miles":19.5,"milepoint":260.8,"start":"1-40 crossing","dest":"Lemon Gap","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Sunday, March 29, 2026","day":18,"miles":14.4,"milepoint":275.2,"start":"Lemon Gap","dest":"Hot Springs, NC","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Monday, March 30, 2026","day":19,"miles":5.9,"milepoint":281.1,"start":"Hot Springs, NC","dest":"Tanyard Gap","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Tuesday, March 31, 2026","day":20,"miles":21.0,"milepoint":302.1,"start":"Tanyard Gap","dest":"Jerrys Cabin Shelter","stay":"shelter","comments":""},{"date":"Wednesday, April 1, 2026","day":21,"miles":9.2,"milepoint":311.3,"start":"Jerrys Cabin Shelter","dest":"Devils Fork Gap","stay":"Marshall Old Jail hotel","comments":""},{"date":"Thursday, April 2, 2026","day":22,"miles":0.0,"milepoint":311.3,"start":"","dest":"","stay":"Marshall Old Jail hotel","comments":"Zero Day (injury rest)"},{"date":"Friday, April 3, 2026","day":23,"miles":0.0,"milepoint":311.3,"start":"","dest":"","stay":"Marshall Old Jail hotel","comments":"Zero Day (injury rest)"},{"date":"Saturday, April 4, 2026","day":24,"miles":15.7,"milepoint":327.0,"start":"Devils Fork Gap","dest":"Old Bald Road","stay":"NC Welcome Center rt. 26","comments":"slack pack"},{"date":"Sunday, April 5, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"Baymont Asheville hotel","comments":""},{"date":"Monday, April 6, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"VA rest area","comments":"travel"},{"date":"Tuesday, April 7, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":"travel"},{"date":"Wednesday, April 8, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Thursday, April 9, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Friday, April 10, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Saturday, April 11, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Sunday, April 12, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Monday, April 13, 2026","day":25,"miles":7.7,"milepoint":327.7,"start":"Sam's Gap","dest":"Big Bald Mtn Shelter","stay":"shelter","comments":"start from Sam's Gap - redo day 21"},{"date":"Tuesday, April 14, 2026","day":26,"miles":16.8,"milepoint":344.5,"start":"Big Bald Mtn Shelter","dest":"Erwin, TN","stay":"Mountain Inn hotel","comments":""},{"date":"Wednesday, April 15, 2026","day":27,"miles":21.0,"milepoint":365.5,"start":"Erwin, TN","dest":"Campsite on detour","stay":"dispersed camping-tent","comments":"included 6 mile road walk detour (23 miles total?)"},{"date":"Thursday, April 16, 2026","day":28,"miles":23.2,"milepoint":388.7,"start":"Campsite on detour","dest":"Bradley Gap","stay":"dispersed camping-tent","comments":""},{"date":"Friday, April 17, 2026","day":29,"miles":17.3,"milepoint":406.0,"start":"Bradley Gap","dest":"Walnut Mountain","stay":"Black Bear hostel","comments":"Strava: 18 miles"},{"date":"Saturday, April 18, 2026","day":30,"miles":22.9,"milepoint":428.9,"start":"Walnut Mountain Gap","dest":"Rte. 321 road crossing","stay":"Braemar Castle Hostel","comments":""},{"date":"Sunday, April 19, 2026","day":31,"miles":4.4,"milepoint":433.3,"start":"Rte. 321","dest":"Wilbur Dam","stay":"Braemar Castle Hostel","comments":""},{"date":"Monday, April 20, 2026","day":32,"miles":16.2,"milepoint":449.5,"start":"Wilbur Dam","dest":"Rte. 91 road crossing","stay":"dispersed camping-tent","comments":"stay??"},{"date":"Tuesday, April 21, 2026","day":33,"miles":0.0,"milepoint":449.5,"start":"","dest":"Damascas, VA","stay":"Virgina Creeper hotel","comments":"zero day"},{"date":"Wednesday, April 22, 2026","day":34,"miles":22.0,"milepoint":471.5,"start":"Damascas, VA","dest":"Rte. 91 road crossing","stay":"Virgina Creeper hotel","comments":"slack-pack hiked section backwards"},{"date":"Sunday, May 10, 2026","day":null,"miles":0.0,"milepoint":865.3,"start":"","dest":"Rockfish Gap","stay":"Loft Mountain campground Shenandoah NP","comments":""},{"date":"Monday, May 11, 2026","day":35,"miles":14.3,"milepoint":851.0,"start":"Rockfish Gap","dest":"Dripping Rock parking area Blue Ridge Pkwy","stay":"Devils Backbone brewery campground","comments":"SOBO - slackpack"},{"date":"Tuesday, May 12, 2026","day":36,"miles":15.5,"milepoint":835.5,"start":"Dripping Rock parking area Blue Ridge Pkwy","dest":"VA-56/Tye River Bridge","stay":"Devils Backbone brewery campground","comments":"SOBO - slackpack"},{"date":"Wednesday, May 13, 2026","day":37,"miles":16.9,"milepoint":818.6,"start":"Salt Log Gap","dest":"VA-56/Tye River Bridge","stay":"Oronoco Campground-NFS free campground","comments":"NOBO - slackpack"},{"date":"Thursday, May 14, 2026","day":38,"miles":19.6,"milepoint":799.0,"start":"Salt Log Gap","dest":"VA 607/Punch Bowl Mtn. Overlook/BRP","stay":"Glen Maury campground Buena Vista, VA","comments":"SOBO - slackpack"},{"date":"Friday, May 15, 2026","day":39,"miles":11.1,"milepoint":787.9,"start":"VA 607/Punch Bowl Mtn. Overlook/BRP","dest":"Applachian Trail Parking at James River Footbridge","stay":"Best Western hotel","comments":"SOBO - slackpack"},{"date":"Saturday, May 16, 2026","day":40,"miles":0.0,"milepoint":865.3,"start":"","dest":"Waynesboro, VA","stay":"Cracker Barrel Waynesboro, VA","comments":"zero day (meet up with P&E)"},{"date":"Sunday, May 17, 2026","day":41,"miles":21.8,"milepoint":887.1,"start":"Rockfish Gap","dest":"Blackrock parking area","stay":"Loft Mountain campground-Shenandoah NP","comments":"slackpack w/Peter"},{"date":"Monday, May 18, 2026","day":42,"miles":17.5,"milepoint":904.6,"start":"Blackrock parking area","dest":"Powell Gap","stay":"Loft Mountain campground-Shenandoah NP","comments":"slackpack w/Peter"},{"date":"Tuesday, May 19, 2026","day":43,"miles":14.4,"milepoint":919.0,"start":"Powell Gap","dest":"Lewis Mountain campground","stay":"Lewis Mountain campground","comments":"w/Peter"},{"date":"Wednesday, May 20, 2026","day":44,"miles":23.2,"milepoint":942.2,"start":"Lewis Mountain campground","dest":"Byrd's Nest hut","stay":"shelter","comments":"w/Peter"},{"date":"Thursday, May 21, 2026","day":45,"miles":17.5,"milepoint":959.7,"start":"Byrd's Nest","dest":"Gravel Springs shelter","stay":"shelter","comments":"w/Peter"},{"date":"Friday, May 22, 2026","day":46,"miles":13.4,"milepoint":973.1,"start":"Gravel Springs shelter","dest":"Front Royal","stay":"Baymont Inn hotel","comments":"w/Peter"},{"date":"Saturday, May 23, 2026","day":47,"miles":0.0,"milepoint":973.1,"start":"","dest":"Front Royal","stay":"Baymont Inn hotel","comments":"zero day (rain)"},{"date":"Sunday, May 24, 2026","day":48,"miles":23.6,"milepoint":996.7,"start":"Front Royal","dest":"Rod Hollow shelter","stay":"shelter","comments":"w/Peter"},{"date":"Monday, May 25, 2026","day":49,"miles":17.9,"milepoint":1014.6,"start":"Rod Hollow shelter","dest":"Blackburn shelter","stay":"shelter","comments":"w/Peter"},{"date":"Tuesday, May 26, 2026","day":50,"miles":12.8,"milepoint":1027.4,"start":"Blackburn shelter","dest":"Harpers Ferry WV","stay":"Quality Inn hotel","comments":"w/Peter"},{"date":"Wednesday, May 27, 2026","day":51,"miles":10.4,"milepoint":1037.8,"start":"Harpers Ferry","dest":"Crampton Gap Shelter","stay":"shelter","comments":""},{"date":"Thursday, May 28, 2026","day":52,"miles":20.7,"milepoint":1058.5,"start":"","dest":"Ensign Cowall Shelter","stay":"","comments":""},{"date":"Friday, May 29, 2026","day":53,"miles":27.7,"milepoint":1086.2,"start":"","dest":"Fayetteville PA","stay":"","comments":""},{"date":"Saturday, May 30, 2026","day":54,"miles":19.9,"milepoint":1106.1,"start":"","dest":"Ironmaster's Hostel","stay":"","comments":""},{"date":"Sunday, May 31, 2026","day":55,"miles":0.0,"milepoint":1106.1,"start":"","dest":"Ironmaster's Hostel","stay":"zero/nero?","comments":""},{"date":"Monday, June 1, 2026","day":56,"miles":19.2,"milepoint":1125.3,"start":"","dest":"Boiling Springs, PA","stay":"","comments":""},{"date":"Tuesday, June 2, 2026","day":57,"miles":25.6,"milepoint":1150.9,"start":"","dest":"Duncannon, PA","stay":"","comments":""},{"date":"Wednesday, June 3, 2026","day":58,"miles":24.4,"milepoint":1175.3,"start":"","dest":"Camping","stay":"","comments":""},{"date":"Thursday, June 4, 2026","day":59,"miles":22.1,"milepoint":1197.4,"start":"","dest":"501 Shelter","stay":"","comments":""},{"date":"Friday, June 5, 2026","day":60,"miles":23.7,"milepoint":1221.1,"start":"","dest":"Port Clinton, PA","stay":"","comments":""},{"date":"Saturday, June 6, 2026","day":61,"miles":24.4,"milepoint":1245.5,"start":"","dest":"Allentown HC Shelter","stay":"","comments":""},{"date":"Sunday, June 7, 2026","day":62,"miles":16.6,"milepoint":1262.1,"start":"","dest":"Palmerton, PA","stay":"","comments":""},{"date":"Monday, June 8, 2026","day":63,"miles":20.5,"milepoint":1282.6,"start":"","dest":"Wind Gap, PA","stay":"","comments":""},{"date":"Tuesday, June 9, 2026","day":64,"miles":15.5,"milepoint":1298.1,"start":"","dest":"Delaware Water Gap","stay":"","comments":""},{"date":"Wednesday, June 10, 2026","day":65,"miles":0.0,"milepoint":1298.1,"start":"","dest":"Delaware Water Gap","stay":"zero/nero?","comments":""},{"date":"Thursday, June 11, 2026","day":66,"miles":24.9,"milepoint":1323.0,"start":"","dest":"Brink Road Shelter","stay":"","comments":""},{"date":"Friday, June 12, 2026","day":67,"miles":15.1,"milepoint":1338.1,"start":"","dest":"Rutherford Shelter","stay":"","comments":""},{"date":"Saturday, June 13, 2026","day":68,"miles":23.5,"milepoint":1361.6,"start":"","dest":"Vernon, NJ","stay":"","comments":""},{"date":"Sunday, June 14, 2026","day":69,"miles":17.2,"milepoint":1378.8,"start":"","dest":"Wildcat Shelter","stay":"","comments":""},{"date":"Monday, June 15, 2026","day":70,"miles":14.5,"milepoint":1393.3,"start":"","dest":"Fingerboard Shelter","stay":"","comments":""},{"date":"Tuesday, June 16, 2026","day":71,"miles":16.5,"milepoint":1409.8,"start":"","dest":"Fort Montgomery, NY","stay":"","comments":""},{"date":"Wednesday, June 17, 2026","day":72,"miles":25.4,"milepoint":1435.2,"start":"","dest":"RPH Shelter","stay":"","comments":""},{"date":"Thursday, June 18, 2026","day":73,"miles":16.8,"milepoint":1452.0,"start":"","dest":"Telephone Pioneers Shelter","stay":"","comments":""},{"date":"Friday, June 19, 2026","day":74,"miles":21.6,"milepoint":1473.6,"start":"","dest":"Mt. Algo Lean-to Kent, CT","stay":"","comments":""},{"date":"Saturday, June 20, 2026","day":75,"miles":17.5,"milepoint":1491.1,"start":"","dest":"Pine Swamp Br Shelter","stay":"","comments":""},{"date":"Sunday, June 21, 2026","day":76,"miles":17.2,"milepoint":1508.3,"start":"","dest":"Salisbury, CT","stay":"","comments":""},{"date":"Monday, June 22, 2026","day":77,"miles":0.0,"milepoint":1508.3,"start":"","dest":"Salisbury, CT","stay":"zero/nero?","comments":""},{"date":"Tuesday, June 23, 2026","day":78,"miles":12.5,"milepoint":1520.8,"start":"","dest":"Glen Brook Lean-to","stay":"","comments":""},{"date":"Wednesday, June 24, 2026","day":79,"miles":19.7,"milepoint":1540.5,"start":"","dest":"Mt. Wilcox S. Lean-to","stay":"","comments":""},{"date":"Thursday, June 25, 2026","day":80,"miles":15.9,"milepoint":1556.4,"start":"","dest":"Upper Goose Pond","stay":"","comments":""},{"date":"Friday, June 26, 2026","day":81,"miles":20.6,"milepoint":1577.0,"start":"","dest":"Dalton, MA","stay":"","comments":""},{"date":"Saturday, June 27, 2026","day":82,"miles":13.7,"milepoint":1590.7,"start":"","dest":"Mark Noepel Lean-to","stay":"","comments":""},{"date":"Sunday, June 28, 2026","day":83,"miles":18.9,"milepoint":1609.6,"start":"","dest":"Seth Warner Shelter","stay":"","comments":""},{"date":"Monday, June 29, 2026","day":84,"miles":19.2,"milepoint":1628.8,"start":"","dest":"Goddard Shelter","stay":"","comments":""},{"date":"Tuesday, June 30, 2026","day":85,"miles":19.3,"milepoint":1648.1,"start":"","dest":"Stratton Pond Shelter","stay":"","comments":""},{"date":"Wednesday, July 1, 2026","day":86,"miles":10.7,"milepoint":1658.8,"start":"","dest":"Manchester Center, VT","stay":"","comments":""},{"date":"Thursday, July 2, 2026","day":87,"miles":0.0,"milepoint":1658.8,"start":"","dest":"Manchester Center, VT","stay":"zero/nero?","comments":""},{"date":"Friday, July 3, 2026","day":88,"miles":16.5,"milepoint":1675.3,"start":"","dest":"Big Branch Shelter","stay":"","comments":""},{"date":"Saturday, July 4, 2026","day":89,"miles":16.9,"milepoint":1692.2,"start":"","dest":"Clarendon Shelter","stay":"","comments":""},{"date":"Sunday, July 5, 2026","day":90,"miles":16.7,"milepoint":1708.9,"start":"","dest":"Rutland, VT","stay":"","comments":""},{"date":"Monday, July 6, 2026","day":91,"miles":19.9,"milepoint":1728.8,"start":"","dest":"Winturri Shelter","stay":"","comments":""},{"date":"Tuesday, July 7, 2026","day":92,"miles":21.1,"milepoint":1749.9,"start":"","dest":"Happy Hill Shelter","stay":"","comments":""},{"date":"Wednesday, July 8, 2026","day":93,"miles":5.8,"milepoint":1755.7,"start":"","dest":"Hanover, NH","stay":"","comments":""},{"date":"Thursday, July 9, 2026","day":94,"miles":23.4,"milepoint":1779.1,"start":"","dest":"Fire Wardens Cabin","stay":"","comments":""},{"date":"Friday, July 10, 2026","day":95,"miles":19.9,"milepoint":1799.0,"start":"","dest":"Glencliff, NH or Jeffers Brook Shelter","stay":"","comments":""},{"date":"Saturday, July 11, 2026","day":96,"miles":17.0,"milepoint":1816.0,"start":"","dest":"Eliza Brook Shelter","stay":"","comments":""},{"date":"Sunday, July 12, 2026","day":97,"miles":8.8,"milepoint":1824.8,"start":"","dest":"North Woodstock, NH","stay":"","comments":""},{"date":"Monday, July 13, 2026","day":98,"miles":0.0,"milepoint":1824.8,"start":"","dest":"North Woodstock, NH","stay":"zero/nero?","comments":""},{"date":"Tuesday, July 14, 2026","day":99,"miles":10.3,"milepoint":1835.1,"start":"","dest":"Garfield Campsite","stay":"","comments":""},{"date":"Wednesday, July 15, 2026","day":100,"miles":14.5,"milepoint":1849.6,"start":"","dest":"Ethan Pond Campsite","stay":"","comments":""},{"date":"Thursday, July 16, 2026","day":101,"miles":14.0,"milepoint":1863.6,"start":"","dest":"Lake of Clouds Hut","stay":"","comments":""},{"date":"Friday, July 17, 2026","day":102,"miles":14.9,"milepoint":1878.5,"start":"","dest":"Gorham, NH","stay":"","comments":""},{"date":"Saturday, July 18, 2026","day":103,"miles":2.7,"milepoint":1881.2,"start":"","dest":"Gorham, NH","stay":"","comments":""},{"date":"Sunday, July 19, 2026","day":104,"miles":30.2,"milepoint":1911.4,"start":"","dest":"Gentian Pond Shelter","stay":"","comments":""},{"date":"Monday, July 20, 2026","day":105,"miles":14.7,"milepoint":1926.1,"start":"","dest":"Speck Pond Camp","stay":"","comments":""},{"date":"Tuesday, July 21, 2026","day":106,"miles":25.0,"milepoint":1951.1,"start":"","dest":"Andover, ME","stay":"","comments":""},{"date":"Wednesday, July 22, 2026","day":107,"miles":8.7,"milepoint":1959.8,"start":"","dest":"Bemis Mtn Lean-to","stay":"","comments":""},{"date":"Thursday, July 23, 2026","day":108,"miles":17.7,"milepoint":1977.5,"start":"","dest":"Rangeley, ME","stay":"","comments":""},{"date":"Friday, July 24, 2026","day":109,"miles":0.0,"milepoint":1977.5,"start":"","dest":"Rangeley, ME","stay":"zero/nero?","comments":""},{"date":"Saturday, July 25, 2026","day":110,"miles":18.7,"milepoint":1996.2,"start":"","dest":"Spaulding Mtn Lean-to","stay":"","comments":""},{"date":"Sunday, July 26, 2026","day":111,"miles":13.5,"milepoint":2009.7,"start":"","dest":"Stratton, ME","stay":"","comments":""},{"date":"Monday, July 27, 2026","day":112,"miles":15.3,"milepoint":2025.0,"start":"","dest":"Little Bigelow Lean-to","stay":"","comments":""},{"date":"Tuesday, July 28, 2026","day":113,"miles":17.7,"milepoint":2042.7,"start":"","dest":"Pierce Pond Lean-to","stay":"","comments":""},{"date":"Wednesday, July 29, 2026","day":114,"miles":22.8,"milepoint":2065.5,"start":"","dest":"Moxie Bald Lean-to","stay":"","comments":""},{"date":"Thursday, July 30, 2026","day":115,"miles":17.9,"milepoint":2083.4,"start":"","dest":"Monson, ME","stay":"","comments":""},{"date":"Friday, July 31, 2026","day":116,"miles":15.1,"milepoint":2098.5,"start":"","dest":"Long Pond Stream Lean-to","stay":"","comments":""},{"date":"Saturday, August 1, 2026","day":117,"miles":21.0,"milepoint":2119.5,"start":"","dest":"Carl Newhall Lean-to","stay":"","comments":""},{"date":"Sunday, August 2, 2026","day":118,"miles":18.9,"milepoint":2138.4,"start":"","dest":"Cooper Brook Falls Lean-to","stay":"","comments":""},{"date":"Monday, August 3, 2026","day":119,"miles":15.9,"milepoint":2154.3,"start":"","dest":"Nahmakanta Str Campsite","stay":"","comments":""},{"date":"Tuesday, August 4, 2026","day":120,"miles":13.7,"milepoint":2168.0,"start":"","dest":"Rainbow Stream Campground","stay":"","comments":""},{"date":"Wednesday, August 5, 2026","day":121,"miles":15.9,"milepoint":2183.9,"start":"","dest":"The Birches Lean-to / Abol Bridge","stay":"","comments":""},{"date":"Thursday, August 6, 2026","day":122,"miles":14.2,"milepoint":2197.9,"start":"","dest":"Katahdin 🏔️","stay":"","comments":""}];
+
+const TODAY_DATE = "Wednesday, May 27, 2026";
+const TOTAL_AT = 2197.9;
+
+function parseDate(str) {
+  if (!str || str.includes('/')) return null;
+  try {
+    const parts = str.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), /, '');
+    return new Date(parts);
+  } catch { return null; }
+}
+
+function categorizeStay(stay) {
+  const s = (stay || '').toLowerCase();
+  if (s.includes('shelter') || s.includes('lean-to') || s.includes('hut') || s.includes('cabin')) return 'Shelter';
+  if (s.includes('tent') || s.includes('camping') || s.includes('campground') || s.includes('camp')) return 'Camping';
+  if (s.includes('hostel')) return 'Hostel';
+  if (s.includes('hotel') || s.includes('inn') || s.includes('airbnb') || s.includes('best western') ||
+      s.includes('quality') || s.includes('baymont') ||
+      s.includes('mountain inn') || s.includes('lodge') || s.includes('motel')) return 'Hotel/Lodging';
+  if (s.includes('zero') || s.includes('nero')) return 'Zero/Nero Day';
+  if (s.includes('home')) return 'Home';
+  if (stay === '') return '';
+  return 'Other';
+}
+
+function stayTag(stay) {
+  const cat = categorizeStay(stay);
+  const map = {
+    'Shelter': ['tag-shelter', '🏕️'],
+    'Camping': ['tag-camping', '⛺'],
+    'Hotel/Lodging': ['tag-hotel', '🏨'],
+    'Hostel': ['tag-hostel', '🛏️'],
+    'Home': ['tag-home', '🏠'],
+    'Zero/Nero Day': ['tag-zero', '😴'],
+    'Other': ['tag-other', '📍'],
+  };
+  if (!map[cat]) return stay ? `<span class="tag tag-other">${stay.substring(0,20)}</span>` : '';
+  const [cls, emoji] = map[cat];
+  const label = stay.length > 22 ? stay.substring(0,22)+'…' : stay;
+  return `<span class="tag ${cls}">${emoji} ${label || cat}</span>`;
+}
+
+// ── MONTHLY DATA ──
+function getMonthlyData() {
+  const months = ['March','April','May','June','July','August'];
+  const data = {};
+  const today = new Date("May 27, 2026");
+  months.forEach(m => data[m] = { miles: 0, hikingDays: 0, zeroDays: 0 });
+  RAW.forEach(d => {
+    const dt = parseDate(d.date);
+    if (!dt || dt > today) return;
+    const parts = d.date.split(', ');
+    if (parts.length < 2) return;
+    const month = parts[1].split(' ')[0];
+    if (!data[month]) return;
+    if (d.miles > 0) { data[month].miles += d.miles; data[month].hikingDays++; }
+    else { data[month].zeroDays++; }
+  });
+  return months.map(m => ({ month: m, ...data[m], avg: data[m].hikingDays ? data[m].miles / data[m].hikingDays : 0 }));
+}
+
+// ── RENDER MONTHLY TABLE ──
+function renderMonthlyTable() {
+  const monthly = getMonthlyData();
+  const maxMiles = Math.max(...monthly.map(m => m.miles));
+  const tbody = document.getElementById('monthly-tbody');
+  tbody.innerHTML = monthly.filter(m => m.miles > 0 || m.zeroDays > 0).map(m => `
+    <tr>
+      <td><strong>${m.month}</strong></td>
+      <td><strong>${m.miles.toFixed(1)}</strong></td>
+      <td>${m.hikingDays}</td>
+      <td>${m.zeroDays}</td>
+      <td>${m.avg.toFixed(1)}</td>
+      <td><span class="bar-mini" style="width:${Math.round((m.miles/maxMiles)*180)}px"></span></td>
+    </tr>
+  `).join('');
+}
+
+
+// ── DAILY MILES CHART ──
+function renderDailyMilesChart() {
+  const hikingDays = RAW.filter(d => d.miles > 0 && parseDate(d.date));
+  const labels = hikingDays.map(
