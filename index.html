@@ -394,6 +394,59 @@
     margin-top: 20px;
   }
 
+  /* ── Mobile (iPhone) ── */
+  @media (max-width: 480px) {
+    /* Header */
+    .hero { padding: 10px 16px; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .hero h1 { font-size: 1.3rem; }
+    .hero .subtitle { font-size: 0.78rem; text-align: left; white-space: normal; }
+
+    /* Progress bar block */
+    .hp-bar-wrap { padding: 10px 14px 6px; }
+    .hero-progress .progress-label { font-size: 0.72rem; }
+    .hero-progress .progress-label strong { font-size: 0.9rem; }
+    .progress-states { font-size: 0.58rem; }
+    /* Hide less important state labels on mobile */
+    .progress-states span:nth-child(n+4):not(:last-child) { display: none; }
+
+    /* Stats legend — stack vertically */
+    .hp-legend-stats { flex-direction: column; }
+    .hls-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; }
+    .hls-item:last-child { border-bottom: none; }
+    .hls-val { font-size: 1.25rem; }
+
+    /* Main layout */
+    .main { padding: 14px 12px; }
+
+    /* Map + stats: already stacks at 900px */
+    .map-wrap { min-height: 260px; }
+
+    /* Stats cards: horizontal scroll row on mobile */
+    .stats-col {
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: auto;
+    }
+    .stats-col .stat-card {
+      flex: 1 1 calc(50% - 5px);
+      min-width: 120px;
+    }
+
+    /* Chart card padding */
+    .chart-card { padding: 14px 12px; }
+
+    /* Daily log table — allow horizontal scroll */
+    .log-table-wrapper { overflow-x: auto; }
+    .log-table { font-size: 0.78rem; min-width: 500px; }
+    .log-controls { flex-direction: column; }
+    .log-controls input, .log-controls select { width: 100%; }
+
+    /* Today's destination heading */
+    .chart-card h3 { font-size: 0.85rem; }
+    .chart-card h3 .note { display: block; margin-left: 0; margin-top: 3px; }
+  }
+
   /* ── Map + stats row ── */
   .map-chart-row {
     display: grid;
