@@ -944,11 +944,12 @@ function sortLog(key) {
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
-  renderMonthlyTable();
-  renderDailyMilesChart();
-  renderLog(logData);
+  try { renderMonthlyTable(); } catch(e) { console.warn('Monthly table error:', e); }
+  try { renderDailyMilesChart(); } catch(e) { console.warn('Chart error:', e); }
+  try { renderLog(logData); } catch(e) { console.warn('Log error:', e); }
 
   // ── STATIC TRAIL MAP ──
+  try {
   const trailMap = L.map('trail-map', {
     zoomControl: false,
     dragging: false,
@@ -1047,6 +1048,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="tt-row">To Katahdin: &nbsp;<strong>1,160.1 mi</strong></div>
       </div>
     `, { className: 'today-popup', offset: [0, -7] }).openPopup();
+  } catch(e) { console.warn('Map error:', e); }
 });
 </script>
 </body>
