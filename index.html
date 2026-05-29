@@ -63,12 +63,8 @@
     margin-right: 8px;
   }
 
-  /* ── Hero stats bar (unused, kept for reference) ── */
-
   /* ── Progress Bar Card ── */
-  .progress-card {
-    margin-bottom: 16px;
-  }
+  .progress-card { margin-bottom: 16px; }
   .progress-label {
     display: flex;
     justify-content: space-between;
@@ -126,11 +122,7 @@
   .pb-legend-swatch { width: 14px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 
   /* ── Progress bar landmarks ── */
-  .pb-landmarks {
-    position: relative;
-    height: 34px;
-    margin-bottom: 3px;
-  }
+  .pb-landmarks { position: relative; height: 34px; margin-bottom: 3px; }
   .pb-mark {
     position: absolute;
     transform: translateX(-50%);
@@ -143,16 +135,8 @@
     line-height: 1.3;
     pointer-events: none;
   }
-  .pb-mark-tick {
-    width: 1px;
-    height: 8px;
-    background: currentColor;
-    margin-top: 2px;
-  }
-  .pb-mark-next {
-    color: #b5800a;
-    font-weight: bold;
-  }
+  .pb-mark-tick { width: 1px; height: 8px; background: currentColor; margin-top: 2px; }
+  .pb-mark-next { color: #b5800a; font-weight: bold; }
   .pace-badge {
     display: inline-flex;
     align-items: center;
@@ -173,27 +157,12 @@
     background: #2d6a4f;
     border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .hp-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .hp-bar-wrap {
-    padding: 12px 24px 8px;
-  }
-  .hero-progress .progress-label {
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 10px;
-  }
-  .hero-progress .progress-label strong {
-    color: #e9c46a;
-    font-size: 1.2rem;
-  }
-  .hero-progress .progress-bar-outer {
-    border: 1px solid rgba(255,255,255,0.12);
-  }
-  .hero-progress .progress-states {
-    color: rgba(255,255,255,0.5);
-  }
+  .hp-inner { max-width: 1200px; margin: 0 auto; }
+  .hp-bar-wrap { padding: 12px 24px 8px; }
+  .hero-progress .progress-label { color: rgba(255,255,255,0.75); margin-bottom: 10px; }
+  .hero-progress .progress-label strong { color: #e9c46a; font-size: 1.2rem; }
+  .hero-progress .progress-bar-outer { border: 1px solid rgba(255,255,255,0.12); }
+  .hero-progress .progress-states { color: rgba(255,255,255,0.5); }
   /* Stats-as-legend row */
   .hp-legend-stats {
     display: flex;
@@ -210,12 +179,7 @@
     border-right: 1px solid rgba(255,255,255,0.1);
   }
   .hls-item:last-child { border-right: none; }
-  .hls-swatch {
-    width: 6px;
-    height: 44px;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
+  .hls-swatch { width: 6px; height: 44px; border-radius: 3px; flex-shrink: 0; }
   .hls-val {
     font-size: 1.5rem;
     font-weight: bold;
@@ -412,54 +376,29 @@
 
   /* ── Mobile (iPhone) ── */
   @media (max-width: 480px) {
-    /* Header */
     .hero { padding: 10px 16px; }
     .hero-inner { flex-direction: column; align-items: flex-start; gap: 2px; }
     .hero h1 { font-size: 1.3rem; }
     .hero .subtitle { font-size: 0.78rem; text-align: left; white-space: normal; }
-
-    /* Progress bar block */
     .hp-bar-wrap { padding: 10px 14px 6px; }
     .hero-progress .progress-label { font-size: 0.72rem; }
     .hero-progress .progress-label strong { font-size: 0.9rem; }
     .progress-states { font-size: 0.58rem; }
-    /* Hide less important state labels on mobile */
     .progress-states span:nth-child(n+4):not(:last-child) { display: none; }
-
-    /* Stats legend — stack vertically */
     .hp-legend-stats { flex-direction: column; }
     .hls-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; }
     .hls-item:last-child { border-bottom: none; }
     .hls-val { font-size: 1.25rem; }
-
-    /* Main layout */
     .main { padding: 14px 12px; }
-
-    /* Map + stats: already stacks at 900px */
     .map-wrap { min-height: 260px; }
-
-    /* Stats cards: horizontal scroll row on mobile */
-    .stats-col {
-      flex-direction: row;
-      flex-wrap: wrap;
-      height: auto;
-    }
-    .stats-col .stat-card {
-      flex: 1 1 calc(50% - 5px);
-      min-width: 120px;
-    }
-
-    /* Chart card padding */
+    .stats-col { flex-direction: row; flex-wrap: wrap; height: auto; }
+    .stats-col .stat-card { flex: 1 1 calc(50% - 5px); min-width: 120px; }
     .chart-card { padding: 14px 12px; }
-
-    /* Calendar — tighter cells on mobile */
     .cal-cell { min-height: 58px; padding: 4px 4px; }
     .cal-miles { font-size: 0.95rem; }
     .cal-dest { display: none; }
     .cal-tab { padding: 4px 10px; font-size: 0.76rem; }
     #day-modal { padding: 22px 18px 18px; }
-
-    /* Today's destination heading */
     .chart-card h3 { font-size: 0.85rem; }
     .chart-card h3 .note { display: block; margin-left: 0; margin-top: 3px; }
   }
@@ -474,53 +413,22 @@
   }
   @media (max-width: 900px) { .map-chart-row { grid-template-columns: 1fr; } }
 
-  /* Map card stretches and fills height */
-  .map-chart-row > .chart-card {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Stats col fills full height with cards distributed evenly */
-  .stats-col {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    height: 100%;
-  }
+  .map-chart-row > .chart-card { display: flex; flex-direction: column; }
+  .stats-col { display: flex; flex-direction: column; gap: 10px; height: 100%; }
   .stats-col .stat-card { flex: 1; }
 
   /* ── Static map card ── */
-  .map-wrap {
-    flex: 1;
-    position: relative;
-    min-height: 380px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  .map-wrap { flex: 1; position: relative; min-height: 380px; border-radius: 8px; overflow: hidden; }
   #trail-map {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+    width: 100%; height: 100%; border-radius: 8px; overflow: hidden;
+    position: absolute; inset: 0; z-index: 0;
   }
   .map-legend {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 999;
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(4px);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 7px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 0.72rem;
-    color: var(--text-muted);
+    position: absolute; bottom: 10px; right: 10px; z-index: 999;
+    background: rgba(255,255,255,0.88); backdrop-filter: blur(4px);
+    border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px;
+    display: flex; flex-direction: column; gap: 5px;
+    font-size: 0.72rem; color: var(--text-muted);
     box-shadow: 0 1px 6px rgba(0,0,0,0.12);
   }
   .map-legend .mc-item { display: flex; align-items: center; gap: 6px; }
@@ -529,38 +437,21 @@
 
   /* ── Today popup on map ── */
   .today-popup .leaflet-popup-content-wrapper {
-    background: #fff;
-    border-radius: 10px;
-    padding: 0;
-    overflow: hidden;
-    box-shadow: 0 3px 14px rgba(0,0,0,0.22);
-    border: 1px solid var(--border);
-    min-width: 190px;
+    background: #fff; border-radius: 10px; padding: 0; overflow: hidden;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.22); border: 1px solid var(--border); min-width: 190px;
   }
   .today-popup .leaflet-popup-content { margin: 0; }
   .today-popup .leaflet-popup-tip    { background: #fff; }
   .today-popup .leaflet-popup-close-button {
-    color: rgba(255,255,255,0.8) !important;
-    font-size: 18px !important;
-    top: 5px !important;
-    right: 7px !important;
+    color: rgba(255,255,255,0.8) !important; font-size: 18px !important;
+    top: 5px !important; right: 7px !important;
   }
   .today-popup .leaflet-popup-close-button:hover { color: #fff !important; }
   .tt-header {
-    background: #1b4332;
-    color: #e9c46a;
-    padding: 9px 28px 9px 12px;
-    font-size: 0.82rem;
-    font-weight: bold;
-    font-family: Georgia, serif;
-    line-height: 1.3;
+    background: #1b4332; color: #e9c46a; padding: 9px 28px 9px 12px;
+    font-size: 0.82rem; font-weight: bold; font-family: Georgia, serif; line-height: 1.3;
   }
-  .tt-body {
-    padding: 9px 12px 11px;
-    font-size: 0.76rem;
-    font-family: Georgia, serif;
-    color: var(--text);
-  }
+  .tt-body { padding: 9px 12px 11px; font-size: 0.76rem; font-family: Georgia, serif; color: var(--text); }
   .tt-row { margin: 3px 0; }
   .tt-row strong { color: var(--green); }
   .tt-divider { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
@@ -582,17 +473,17 @@
   <div class="hp-bar-wrap">
     <div class="progress-label">
       <span>🌿 Springer Mtn, GA</span>
-      <strong id="progress-label">May 28, 2026 · Hiking Day 46 · Mile 1,058.5</strong>
+      <strong id="progress-label">Loading…</strong>
       <span>🏔️ Katahdin, ME</span>
     </div>
     <div class="progress-bar-wrap">
       <div class="progress-bar-outer">
-        <div class="pb-seg pb-hiked"   style="width:21.5%"></div>
-        <div class="pb-seg pb-skipped" style="width:14.4%"></div>
-        <div class="pb-seg pb-hiked"   style="width:12.3%"></div>
+        <div id="pb-seg-1"    class="pb-seg pb-hiked"   style="width:0%"></div>
+        <div id="pb-seg-skip" class="pb-seg pb-skipped" style="width:14.4%"></div>
+        <div id="pb-seg-2"    class="pb-seg pb-hiked"   style="width:0%"></div>
         <div class="pb-seg pb-remaining"></div>
       </div>
-      <div class="pb-boot" style="left:48.2%">🥾</div>
+      <div id="pb-boot" class="pb-boot" style="left:14%">🥾</div>
     </div>
     <div class="progress-states">
       <span style="left:0%;transform:none">GA</span>
@@ -615,22 +506,22 @@
     <div class="hls-item">
       <div class="hls-swatch" style="background:linear-gradient(180deg,#52b788,#74c69d)"></div>
       <div class="hls-content">
-        <div class="hls-val" style="color:#fff">742.1</div>
+        <div class="hls-val" style="color:#fff" id="stat-miles-hiked">—</div>
         <div class="hls-sub">Miles Hiked</div>
-        <div class="hls-asterisk">*316.4 mi skipped section</div>
+        <div class="hls-asterisk" id="stat-skip-note">*316.4 mi skipped section</div>
       </div>
     </div>
     <div class="hls-item">
       <div class="hls-swatch" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.25)"></div>
       <div class="hls-content">
-        <div class="hls-val" style="color:#fff">1,139.4</div>
+        <div class="hls-val" style="color:#fff" id="stat-miles-to-k">—</div>
         <div class="hls-sub">Miles to Katahdin</div>
       </div>
     </div>
     <div class="hls-item">
       <div class="hls-swatch" style="background:#e9c46a"></div>
       <div class="hls-content">
-        <div class="hls-val" style="color:#e9c46a">34%</div>
+        <div class="hls-val" style="color:#e9c46a" id="stat-pct-complete">—</div>
         <div class="hls-sub">Complete</div>
       </div>
     </div>
@@ -640,18 +531,21 @@
 
 <div class="main">
 
+  <div id="loading-msg" style="text-align:center;padding:32px 0;color:var(--text-muted);font-style:italic;display:none">⏳ Loading trail data…</div>
+  <div id="error-msg" style="text-align:center;padding:24px;background:#fff0f0;border:1px solid #fca5a5;border-radius:10px;color:#991b1b;margin-bottom:20px;display:none"></div>
+
   <!-- MAP + STATS ROW -->
   <div class="map-chart-row">
 
     <!-- Trail map card -->
     <div class="chart-card">
-      <h3 style="color:var(--text)">📍 Today's Destination <span class="note" style="color:#b5800a; font-size:1.05rem; font-weight:bold">Ensign Cowall Shelter, PA · Mile 1,058.5</span></h3>
+      <h3 style="color:var(--text)">📍 Today's Destination <span id="map-heading" class="note" style="color:#b5800a; font-size:1.05rem; font-weight:bold">—</span></h3>
       <div class="map-wrap">
         <div id="trail-map"></div>
         <div class="map-legend">
-          <div class="mc-item"><div class="mc-line" style="background:#2d6a4f"></div> Hiked (742.1 mi)</div>
+          <div class="mc-item"><div class="mc-line" style="background:#2d6a4f"></div> <span id="map-leg-hiked">Hiked</span></div>
           <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#2d6a4f 0,#2d6a4f 5px,transparent 5px,transparent 9px)"></div> Skipped section</div>
-          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#3a86ff 0,#3a86ff 5px,transparent 5px,transparent 9px)"></div> Ahead (1,139.4 mi)</div>
+          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#3a86ff 0,#3a86ff 5px,transparent 5px,transparent 9px)"></div> <span id="map-leg-ahead">Ahead</span></div>
         </div>
       </div>
     </div>
@@ -659,25 +553,25 @@
     <!-- Stat cards column -->
     <div class="stats-col">
       <div class="stat-card">
-        <div class="value">46</div>
+        <div class="value" id="stat-hiking-days">—</div>
         <div class="label">Hiking Days</div>
       </div>
       <div class="stat-card">
-        <div class="value">16.3</div>
+        <div class="value" id="stat-avg-miles">—</div>
         <div class="label">Avg Miles / Hiking Day</div>
       </div>
       <div class="stat-card">
-        <div class="value">7</div>
+        <div class="value" id="stat-states-count">—</div>
         <div class="label">States Hiked</div>
-        <div style="font-size:0.68rem;color:var(--text-muted);margin-top:6px;letter-spacing:0.3px">GA · NC · TN · VA · WV · MD · PA</div>
+        <div id="stat-states-list" style="font-size:0.68rem;color:var(--text-muted);margin-top:6px;letter-spacing:0.3px">—</div>
       </div>
       <div class="stat-card">
-        <div class="value">11</div>
+        <div class="value" id="stat-days-20">—</div>
         <div class="label">Days 20+ Miles</div>
       </div>
       <div class="stat-card">
-        <div class="stat-date">May 24</div>
-        <div class="value">23.6</div>
+        <div class="stat-date" id="stat-best-date">—</div>
+        <div class="value" id="stat-best-miles">—</div>
         <div class="label">Most Miles in a Day</div>
       </div>
     </div>
@@ -733,21 +627,312 @@
 
 <script>
 // ════════════════════════════════════════════
-//  DATA
+//  CONSTANTS
 // ════════════════════════════════════════════
-const RAW = [{"date":"Thursday, March 12, 2026","day":1,"miles":2.8,"milepoint":2.8,"start":"Amicalola Falls State Park","dest":"Stover Creek Shelter","stay":"shelter","comments":"plus 8.8 mile Approach Trail."},{"date":"Friday, March 13, 2026","day":2,"miles":12.9,"milepoint":15.7,"start":"Stover Creek Shelter","dest":"Gooch Mtn Shelter","stay":"shelter","comments":""},{"date":"Saturday, March 14, 2026","day":3,"miles":18.5,"milepoint":34.2,"start":"Gooch Mtn Shelter","dest":"past Neels Gap","stay":"dispersed camping-tent","comments":""},{"date":"Sunday, March 15, 2026","day":4,"miles":18.5,"milepoint":52.7,"start":"","dest":"Unicoi Gap","stay":"Hiawasse Holiday Inn","comments":"slack pack"},{"date":"Monday, March 16, 2026","day":5,"miles":0.0,"milepoint":52.7,"start":"","dest":"","stay":"Hiawasse Holiday Inn","comments":"Zero Day (cold and snow)"},{"date":"Tuesday, March 17, 2026","day":6,"miles":16.7,"milepoint":69.4,"start":"Unicoi Gap","dest":"Dicks Creek Gap","stay":"Hiawasse Holiday Inn","comments":"slack pack"},{"date":"Wednesday, March 18, 2026","day":7,"miles":21.1,"milepoint":90.5,"start":"Dicks Creek Gap","dest":"Beech Gap","stay":"dispersed camping-tent","comments":""},{"date":"Thursday, March 19, 2026","day":8,"miles":19.9,"milepoint":110.4,"start":"Beech Gap","dest":"Winding Stair Gap","stay":"dispersed camping-tent","comments":""},{"date":"Friday, March 20, 2026","day":9,"miles":15.0,"milepoint":125.4,"start":"Winding Stair Gap","dest":"Cold Spring Shelter","stay":"shelter","comments":""},{"date":"Saturday, March 21, 2026","day":10,"miles":11.7,"milepoint":137.1,"start":"Cold Spring Shelter","dest":"NOC","stay":"hostel","comments":""},{"date":"Sunday, March 22, 2026","day":11,"miles":13.6,"milepoint":150.7,"start":"NOC","dest":"Stecoah Gap","stay":"Turkey Creek campground","comments":""},{"date":"Monday, March 23, 2026","day":12,"miles":15.9,"milepoint":166.6,"start":"Stecoah Gap","dest":"Fontana Village","stay":"Fontana Village Lodge","comments":"slack pack"},{"date":"Tuesday, March 24, 2026","day":13,"miles":17.4,"milepoint":184.0,"start":"Fontana Village","dest":"Spence Field Shelter","stay":"shelter","comments":""},{"date":"Wednesday, March 25, 2026","day":14,"miles":19.1,"milepoint":203.1,"start":"Spence Field Shelter","dest":"Mt. Collins Shelter","stay":"shelter","comments":""},{"date":"Thursday, March 26, 2026","day":15,"miles":20.6,"milepoint":223.7,"start":"Mt. Collins Shelter","dest":"Tricorner Knob Shelter","stay":"shelter","comments":""},{"date":"Friday, March 27, 2026","day":16,"miles":17.6,"milepoint":241.3,"start":"Tricorner Knob Shelter","dest":"I-40 road crossing","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Saturday, March 28, 2026","day":17,"miles":19.5,"milepoint":260.8,"start":"1-40 crossing","dest":"Lemon Gap","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Sunday, March 29, 2026","day":18,"miles":14.4,"milepoint":275.2,"start":"Lemon Gap","dest":"Hot Springs, NC","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Monday, March 30, 2026","day":19,"miles":5.9,"milepoint":281.1,"start":"Hot Springs, NC","dest":"Tanyard Gap","stay":"Hot Springs airbnb","comments":"slack pack"},{"date":"Tuesday, March 31, 2026","day":20,"miles":21.0,"milepoint":302.1,"start":"Tanyard Gap","dest":"Jerrys Cabin Shelter","stay":"shelter","comments":""},{"date":"Wednesday, April 1, 2026","day":21,"miles":9.2,"milepoint":311.3,"start":"Jerrys Cabin Shelter","dest":"Devils Fork Gap","stay":"Marshall Old Jail hotel","comments":""},{"date":"Thursday, April 2, 2026","day":22,"miles":0.0,"milepoint":311.3,"start":"","dest":"","stay":"Marshall Old Jail hotel","comments":"Zero Day (injury rest)"},{"date":"Friday, April 3, 2026","day":23,"miles":0.0,"milepoint":311.3,"start":"","dest":"","stay":"Marshall Old Jail hotel","comments":"Zero Day (injury rest)"},{"date":"Saturday, April 4, 2026","day":24,"miles":15.7,"milepoint":327.0,"start":"Devils Fork Gap","dest":"Old Bald Road","stay":"NC Welcome Center rt. 26","comments":"slack pack"},{"date":"Sunday, April 5, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"Baymont Asheville hotel","comments":""},{"date":"Monday, April 6, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"VA rest area","comments":"travel"},{"date":"Tuesday, April 7, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":"travel"},{"date":"Wednesday, April 8, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Thursday, April 9, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Friday, April 10, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Saturday, April 11, 2026","day":null,"miles":0.0,"milepoint":327.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Sunday, April 12, 2026","day":null,"miles":0.0,"milepoint":320.0,"start":"","dest":"","stay":"home","comments":""},{"date":"Monday, April 13, 2026","day":25,"miles":7.7,"milepoint":327.7,"start":"Sam's Gap","dest":"Big Bald Mtn Shelter","stay":"shelter","comments":"start from Sam's Gap - redo day 21"},{"date":"Tuesday, April 14, 2026","day":26,"miles":16.8,"milepoint":344.5,"start":"Big Bald Mtn Shelter","dest":"Erwin, TN","stay":"Mountain Inn hotel","comments":""},{"date":"Wednesday, April 15, 2026","day":27,"miles":21.0,"milepoint":365.5,"start":"Erwin, TN","dest":"Campsite on detour","stay":"dispersed camping-tent","comments":"included 6 mile road walk detour (23 miles total?)"},{"date":"Thursday, April 16, 2026","day":28,"miles":23.2,"milepoint":388.7,"start":"Campsite on detour","dest":"Bradley Gap","stay":"dispersed camping-tent","comments":""},{"date":"Friday, April 17, 2026","day":29,"miles":17.3,"milepoint":406.0,"start":"Bradley Gap","dest":"Walnut Mountain","stay":"Black Bear hostel","comments":"Strava: 18 miles"},{"date":"Saturday, April 18, 2026","day":30,"miles":22.9,"milepoint":428.9,"start":"Walnut Mountain Gap","dest":"Rte. 321 road crossing","stay":"Braemar Castle Hostel","comments":""},{"date":"Sunday, April 19, 2026","day":31,"miles":4.4,"milepoint":433.3,"start":"Rte. 321","dest":"Wilbur Dam","stay":"Braemar Castle Hostel","comments":""},{"date":"Monday, April 20, 2026","day":32,"miles":16.2,"milepoint":449.5,"start":"Wilbur Dam","dest":"Rte. 91 road crossing","stay":"dispersed camping-tent","comments":"stay??"},{"date":"Tuesday, April 21, 2026","day":33,"miles":0.0,"milepoint":449.5,"start":"","dest":"Damascas, VA","stay":"Virgina Creeper hotel","comments":"zero day"},{"date":"Wednesday, April 22, 2026","day":34,"miles":22.0,"milepoint":471.5,"start":"Damascas, VA","dest":"Rte. 91 road crossing","stay":"Virgina Creeper hotel","comments":"slack-pack hiked section backwards"},{"date":"Friday, May 1, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Saturday, May 2, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Sunday, May 3, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Monday, May 4, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Tuesday, May 5, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Wednesday, May 6, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Thursday, May 7, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Friday, May 8, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Saturday, May 9, 2026","day":null,"miles":0.0,"milepoint":471.5,"start":"","dest":"","stay":"home","comments":""},{"date":"Sunday, May 10, 2026","day":null,"miles":0.0,"milepoint":865.3,"start":"","dest":"Rockfish Gap","stay":"Loft Mountain campground Shenandoah NP","comments":""},{"date":"Monday, May 11, 2026","day":35,"miles":14.3,"milepoint":851.0,"start":"Rockfish Gap","dest":"Dripping Rock parking area Blue Ridge Pkwy","stay":"Devils Backbone brewery campground","comments":"SOBO - slackpack"},{"date":"Tuesday, May 12, 2026","day":36,"miles":15.5,"milepoint":835.5,"start":"Dripping Rock parking area Blue Ridge Pkwy","dest":"VA-56/Tye River Bridge","stay":"Devils Backbone brewery campground","comments":"SOBO - slackpack"},{"date":"Wednesday, May 13, 2026","day":37,"miles":16.9,"milepoint":818.6,"start":"Salt Log Gap","dest":"VA-56/Tye River Bridge","stay":"Oronoco Campground-NFS free campground","comments":"NOBO - slackpack"},{"date":"Thursday, May 14, 2026","day":38,"miles":19.6,"milepoint":799.0,"start":"Salt Log Gap","dest":"VA 607/Punch Bowl Mtn. Overlook/BRP","stay":"Glen Maury campground Buena Vista, VA","comments":"SOBO - slackpack"},{"date":"Friday, May 15, 2026","day":39,"miles":11.1,"milepoint":787.9,"start":"VA 607/Punch Bowl Mtn. Overlook/BRP","dest":"Applachian Trail Parking at James River Footbridge","stay":"Best Western hotel","comments":"SOBO - slackpack"},{"date":"Saturday, May 16, 2026","day":40,"miles":0.0,"milepoint":865.3,"start":"","dest":"Waynesboro, VA","stay":"Cracker Barrel Waynesboro, VA","comments":"zero day (meet up with P&E)"},{"date":"Sunday, May 17, 2026","day":41,"miles":21.8,"milepoint":887.1,"start":"Rockfish Gap","dest":"Blackrock parking area","stay":"Loft Mountain campground-Shenandoah NP","comments":"slackpack w/Peter"},{"date":"Monday, May 18, 2026","day":42,"miles":17.5,"milepoint":904.6,"start":"Blackrock parking area","dest":"Powell Gap","stay":"Loft Mountain campground-Shenandoah NP","comments":"slackpack w/Peter"},{"date":"Tuesday, May 19, 2026","day":43,"miles":14.4,"milepoint":919.0,"start":"Powell Gap","dest":"Lewis Mountain campground","stay":"Lewis Mountain campground","comments":"w/Peter"},{"date":"Wednesday, May 20, 2026","day":44,"miles":23.2,"milepoint":942.2,"start":"Lewis Mountain campground","dest":"Byrd's Nest hut","stay":"shelter","comments":"w/Peter"},{"date":"Thursday, May 21, 2026","day":45,"miles":17.5,"milepoint":959.7,"start":"Byrd's Nest","dest":"Gravel Springs shelter","stay":"shelter","comments":"w/Peter"},{"date":"Friday, May 22, 2026","day":46,"miles":13.4,"milepoint":973.1,"start":"Gravel Springs shelter","dest":"Front Royal","stay":"Baymont Inn hotel","comments":"w/Peter"},{"date":"Saturday, May 23, 2026","day":47,"miles":0.0,"milepoint":973.1,"start":"","dest":"Front Royal","stay":"Baymont Inn hotel","comments":"zero day (rain)"},{"date":"Sunday, May 24, 2026","day":48,"miles":23.6,"milepoint":996.7,"start":"Front Royal","dest":"Rod Hollow shelter","stay":"shelter","comments":"w/Peter"},{"date":"Monday, May 25, 2026","day":49,"miles":17.9,"milepoint":1014.6,"start":"Rod Hollow shelter","dest":"Blackburn shelter","stay":"shelter","comments":"w/Peter"},{"date":"Tuesday, May 26, 2026","day":50,"miles":12.8,"milepoint":1027.4,"start":"Blackburn shelter","dest":"Harpers Ferry WV","stay":"Quality Inn hotel","comments":"w/Peter"},{"date":"Wednesday, May 27, 2026","day":51,"miles":10.4,"milepoint":1037.8,"start":"Harpers Ferry","dest":"Crampton Gap Shelter","stay":"shelter","comments":"w/Peter"},{"date":"Thursday, May 28, 2026","day":52,"miles":20.7,"milepoint":1058.5,"start":"Crampton Gap Shelter","dest":"Ensign Cowall Shelter","stay":"shelter","comments":"w/Peter"},{"date":"Friday, May 29, 2026","day":53,"miles":18.1,"milepoint":1076.6,"start":"Ensign Cowall Shelter","dest":"Tumbling Run Shelter","stay":"shelter","comments":"w/Peter"},{"date":"Saturday, May 30, 2026","day":54,"miles":10.0,"milepoint":1086.6,"start":"Tumbling Run Shelter","dest":"Caledonia State Park","stay":"campground","comments":"w/Peter"},{"date":"Sunday, May 31, 2026","day":55,"miles":19.5,"milepoint":1106.1,"start":"Caledonia State Park","dest":"Pine Grove Furnace State Park","stay":"campground","comments":"w/Peter"},{"date":"Monday, June 1, 2026","day":56,"miles":19.2,"milepoint":1125.3,"start":"Pine Grove Furnace State Park","dest":"","stay":"zero/nero?","comments":"w/Peter"},{"date":"Tuesday, June 2, 2026","day":57,"miles":25.6,"milepoint":1150.9,"start":"","dest":"Duncannon, PA","stay":"","comments":""},{"date":"Wednesday, June 3, 2026","day":58,"miles":24.4,"milepoint":1175.3,"start":"","dest":"Camping","stay":"","comments":""},{"date":"Thursday, June 4, 2026","day":59,"miles":22.1,"milepoint":1197.4,"start":"","dest":"501 Shelter","stay":"","comments":""},{"date":"Friday, June 5, 2026","day":60,"miles":23.7,"milepoint":1221.1,"start":"","dest":"Port Clinton, PA","stay":"","comments":""},{"date":"Saturday, June 6, 2026","day":61,"miles":24.4,"milepoint":1245.5,"start":"","dest":"Allentown HC Shelter","stay":"","comments":""},{"date":"Sunday, June 7, 2026","day":62,"miles":16.6,"milepoint":1262.1,"start":"","dest":"Palmerton, PA","stay":"","comments":""},{"date":"Monday, June 8, 2026","day":63,"miles":20.5,"milepoint":1282.6,"start":"","dest":"Wind Gap, PA","stay":"","comments":""},{"date":"Tuesday, June 9, 2026","day":64,"miles":15.5,"milepoint":1298.1,"start":"","dest":"Delaware Water Gap","stay":"","comments":""},{"date":"Wednesday, June 10, 2026","day":65,"miles":0.0,"milepoint":1298.1,"start":"","dest":"Delaware Water Gap","stay":"zero/nero?","comments":""},{"date":"Thursday, June 11, 2026","day":66,"miles":24.9,"milepoint":1323.0,"start":"","dest":"Brink Road Shelter","stay":"","comments":""},{"date":"Friday, June 12, 2026","day":67,"miles":15.1,"milepoint":1338.1,"start":"","dest":"Rutherford Shelter","stay":"","comments":""},{"date":"Saturday, June 13, 2026","day":68,"miles":23.5,"milepoint":1361.6,"start":"","dest":"Vernon, NJ","stay":"","comments":""},{"date":"Sunday, June 14, 2026","day":69,"miles":17.2,"milepoint":1378.8,"start":"","dest":"Wildcat Shelter","stay":"","comments":""},{"date":"Monday, June 15, 2026","day":70,"miles":14.5,"milepoint":1393.3,"start":"","dest":"Fingerboard Shelter","stay":"","comments":""},{"date":"Tuesday, June 16, 2026","day":71,"miles":16.5,"milepoint":1409.8,"start":"","dest":"Fort Montgomery, NY","stay":"","comments":""},{"date":"Wednesday, June 17, 2026","day":72,"miles":25.4,"milepoint":1435.2,"start":"","dest":"RPH Shelter","stay":"","comments":""},{"date":"Thursday, June 18, 2026","day":73,"miles":16.8,"milepoint":1452.0,"start":"","dest":"Telephone Pioneers Shelter","stay":"","comments":""},{"date":"Friday, June 19, 2026","day":74,"miles":21.6,"milepoint":1473.6,"start":"","dest":"Mt. Algo Lean-to Kent, CT","stay":"","comments":""},{"date":"Saturday, June 20, 2026","day":75,"miles":17.5,"milepoint":1491.1,"start":"","dest":"Pine Swamp Br Shelter","stay":"","comments":""},{"date":"Sunday, June 21, 2026","day":76,"miles":17.2,"milepoint":1508.3,"start":"","dest":"Salisbury, CT","stay":"","comments":""},{"date":"Monday, June 22, 2026","day":77,"miles":0.0,"milepoint":1508.3,"start":"","dest":"Salisbury, CT","stay":"zero/nero?","comments":""},{"date":"Tuesday, June 23, 2026","day":78,"miles":12.5,"milepoint":1520.8,"start":"","dest":"Glen Brook Lean-to","stay":"","comments":""},{"date":"Wednesday, June 24, 2026","day":79,"miles":19.7,"milepoint":1540.5,"start":"","dest":"Mt. Wilcox S. Lean-to","stay":"","comments":""},{"date":"Thursday, June 25, 2026","day":80,"miles":15.9,"milepoint":1556.4,"start":"","dest":"Upper Goose Pond","stay":"","comments":""},{"date":"Friday, June 26, 2026","day":81,"miles":20.6,"milepoint":1577.0,"start":"","dest":"Dalton, MA","stay":"","comments":""},{"date":"Saturday, June 27, 2026","day":82,"miles":13.7,"milepoint":1590.7,"start":"","dest":"Mark Noepel Lean-to","stay":"","comments":""},{"date":"Sunday, June 28, 2026","day":83,"miles":18.9,"milepoint":1609.6,"start":"","dest":"Seth Warner Shelter","stay":"","comments":""},{"date":"Monday, June 29, 2026","day":84,"miles":19.2,"milepoint":1628.8,"start":"","dest":"Goddard Shelter","stay":"","comments":""},{"date":"Tuesday, June 30, 2026","day":85,"miles":19.3,"milepoint":1648.1,"start":"","dest":"Stratton Pond Shelter","stay":"","comments":""},{"date":"Wednesday, July 1, 2026","day":86,"miles":10.7,"milepoint":1658.8,"start":"","dest":"Manchester Center, VT","stay":"","comments":""},{"date":"Thursday, July 2, 2026","day":87,"miles":0.0,"milepoint":1658.8,"start":"","dest":"Manchester Center, VT","stay":"zero/nero?","comments":""},{"date":"Friday, July 3, 2026","day":88,"miles":16.5,"milepoint":1675.3,"start":"","dest":"Big Branch Shelter","stay":"","comments":""},{"date":"Saturday, July 4, 2026","day":89,"miles":16.9,"milepoint":1692.2,"start":"","dest":"Clarendon Shelter","stay":"","comments":""},{"date":"Sunday, July 5, 2026","day":90,"miles":16.7,"milepoint":1708.9,"start":"","dest":"Rutland, VT","stay":"","comments":""},{"date":"Monday, July 6, 2026","day":91,"miles":19.9,"milepoint":1728.8,"start":"","dest":"Winturri Shelter","stay":"","comments":""},{"date":"Tuesday, July 7, 2026","day":92,"miles":21.1,"milepoint":1749.9,"start":"","dest":"Happy Hill Shelter","stay":"","comments":""},{"date":"Wednesday, July 8, 2026","day":93,"miles":5.8,"milepoint":1755.7,"start":"","dest":"Hanover, NH","stay":"","comments":""},{"date":"Thursday, July 9, 2026","day":94,"miles":23.4,"milepoint":1779.1,"start":"","dest":"Fire Wardens Cabin","stay":"","comments":""},{"date":"Friday, July 10, 2026","day":95,"miles":19.9,"milepoint":1799.0,"start":"","dest":"Glencliff, NH or Jeffers Brook Shelter","stay":"","comments":""},{"date":"Saturday, July 11, 2026","day":96,"miles":17.0,"milepoint":1816.0,"start":"","dest":"Eliza Brook Shelter","stay":"","comments":""},{"date":"Sunday, July 12, 2026","day":97,"miles":8.8,"milepoint":1824.8,"start":"","dest":"North Woodstock, NH","stay":"","comments":""},{"date":"Monday, July 13, 2026","day":98,"miles":0.0,"milepoint":1824.8,"start":"","dest":"North Woodstock, NH","stay":"zero/nero?","comments":""},{"date":"Tuesday, July 14, 2026","day":99,"miles":10.3,"milepoint":1835.1,"start":"","dest":"Garfield Campsite","stay":"","comments":""},{"date":"Wednesday, July 15, 2026","day":100,"miles":14.5,"milepoint":1849.6,"start":"","dest":"Ethan Pond Campsite","stay":"","comments":""},{"date":"Thursday, July 16, 2026","day":101,"miles":14.0,"milepoint":1863.6,"start":"","dest":"Lake of Clouds Hut","stay":"","comments":""},{"date":"Friday, July 17, 2026","day":102,"miles":14.9,"milepoint":1878.5,"start":"","dest":"Gorham, NH","stay":"","comments":""},{"date":"Saturday, July 18, 2026","day":103,"miles":2.7,"milepoint":1881.2,"start":"","dest":"Gorham, NH","stay":"","comments":""},{"date":"Sunday, July 19, 2026","day":104,"miles":30.2,"milepoint":1911.4,"start":"","dest":"Gentian Pond Shelter","stay":"","comments":""},{"date":"Monday, July 20, 2026","day":105,"miles":14.7,"milepoint":1926.1,"start":"","dest":"Speck Pond Camp","stay":"","comments":""},{"date":"Tuesday, July 21, 2026","day":106,"miles":25.0,"milepoint":1951.1,"start":"","dest":"Andover, ME","stay":"","comments":""},{"date":"Wednesday, July 22, 2026","day":107,"miles":8.7,"milepoint":1959.8,"start":"","dest":"Bemis Mtn Lean-to","stay":"","comments":""},{"date":"Thursday, July 23, 2026","day":108,"miles":17.7,"milepoint":1977.5,"start":"","dest":"Rangeley, ME","stay":"","comments":""},{"date":"Friday, July 24, 2026","day":109,"miles":0.0,"milepoint":1977.5,"start":"","dest":"Rangeley, ME","stay":"zero/nero?","comments":""},{"date":"Saturday, July 25, 2026","day":110,"miles":18.7,"milepoint":1996.2,"start":"","dest":"Spaulding Mtn Lean-to","stay":"","comments":""},{"date":"Sunday, July 26, 2026","day":111,"miles":13.5,"milepoint":2009.7,"start":"","dest":"Stratton, ME","stay":"","comments":""},{"date":"Monday, July 27, 2026","day":112,"miles":15.3,"milepoint":2025.0,"start":"","dest":"Little Bigelow Lean-to","stay":"","comments":""},{"date":"Tuesday, July 28, 2026","day":113,"miles":17.7,"milepoint":2042.7,"start":"","dest":"Pierce Pond Lean-to","stay":"","comments":""},{"date":"Wednesday, July 29, 2026","day":114,"miles":22.8,"milepoint":2065.5,"start":"","dest":"Moxie Bald Lean-to","stay":"","comments":""},{"date":"Thursday, July 30, 2026","day":115,"miles":17.9,"milepoint":2083.4,"start":"","dest":"Monson, ME","stay":"","comments":""},{"date":"Friday, July 31, 2026","day":116,"miles":15.1,"milepoint":2098.5,"start":"","dest":"Long Pond Stream Lean-to","stay":"","comments":""},{"date":"Saturday, August 1, 2026","day":117,"miles":21.0,"milepoint":2119.5,"start":"","dest":"Carl Newhall Lean-to","stay":"","comments":""},{"date":"Sunday, August 2, 2026","day":118,"miles":18.9,"milepoint":2138.4,"start":"","dest":"Cooper Brook Falls Lean-to","stay":"","comments":""},{"date":"Monday, August 3, 2026","day":119,"miles":15.9,"milepoint":2154.3,"start":"","dest":"Nahmakanta Str Campsite","stay":"","comments":""},{"date":"Tuesday, August 4, 2026","day":120,"miles":13.7,"milepoint":2168.0,"start":"","dest":"Rainbow Stream Campground","stay":"","comments":""},{"date":"Wednesday, August 5, 2026","day":121,"miles":15.9,"milepoint":2183.9,"start":"","dest":"The Birches Lean-to / Abol Bridge","stay":"","comments":""},{"date":"Thursday, August 6, 2026","day":122,"miles":14.2,"milepoint":2197.9,"start":"","dest":"Katahdin 🏔️","stay":"","comments":""}];
+const TOTAL_AT      = 2197.9;
+const MP_SKIP_START = 471.5;
+const MP_SKIP_END   = 787.9;
 
-const TODAY_DATE = "Thursday, May 28, 2026";
-const TOTAL_AT = 2197.9;
+const STATE_BOUNDARIES = [
+  { state:'GA', mp:0      }, { state:'NC', mp:79.6   },
+  { state:'TN', mp:168    }, { state:'VA', mp:463    },
+  { state:'WV', mp:1023.2 }, { state:'MD', mp:1025.5 },
+  { state:'PA', mp:1044   }, { state:'NJ', mp:1284.4 },
+  { state:'NY', mp:1352.2 }, { state:'CT', mp:1447.3 },
+  { state:'MA', mp:1508.4 }, { state:'VT', mp:1598.2 },
+  { state:'NH', mp:1762.7 }, { state:'ME', mp:1908.6 },
+];
 
-function parseDate(str) {
-  if (!str || str.includes('/')) return null;
-  try {
-    const parts = str.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), /, '');
-    return new Date(parts);
-  } catch { return null; }
+// Sparse waypoints for milepoint→coordinate interpolation
+const MP_WAYPOINTS = [
+  [0,      34.627,-84.193], [76.4,   35.066,-83.490], [168,    35.773,-83.103],
+  [275,    36.167,-81.994], [312,    36.440,-81.965], [471.5,  36.631,-81.775],
+  [787.9,  37.681,-79.700], [865,    38.244,-78.601], [930,    38.918,-78.196],
+  [974,    39.060,-78.044], [1024,   39.259,-77.802], [1037.8, 39.411,-77.643],
+  [1058.5, 39.717,-77.508], [1076.6, 39.840,-77.455], [1086.6, 39.904,-77.481],
+  [1125,   40.034,-77.307], [1200,   40.382,-77.022], [1298,   40.847,-75.300],
+  [1400,   41.316,-74.660], [1447,   41.577,-73.807], [1508,   42.095,-73.215],
+  [1600,   43.000,-72.963], [1700,   43.997,-71.831], [1800,   44.750,-70.770],
+  [1908,   45.185,-69.999], [2000,   45.426,-69.562], [2197.9, 45.904,-68.921],
+];
+
+// Dense polyline for drawing the trail on the map
+const AT_COORDS = [
+  [34.627,-84.193],[34.721,-84.109],[34.741,-83.938],[34.741,-83.919],[34.836,-83.762],
+  [34.855,-83.683],[34.895,-83.616],[34.997,-83.525],[35.066,-83.490],[35.150,-83.532],
+  [35.196,-83.559],[35.328,-83.584],[35.447,-83.807],[35.563,-83.499],[35.613,-83.426],
+  [35.773,-83.103],[35.878,-82.966],[35.896,-82.832],[36.041,-82.618],[36.083,-82.468],
+  [36.105,-82.110],[36.127,-82.012],[36.167,-81.994],[36.349,-82.044],[36.440,-81.965],
+  [36.560,-81.813],[36.631,-81.775],
+  [36.650,-81.524],[36.790,-81.395],[37.010,-81.148],[37.260,-80.810],
+  [37.391,-80.098],[37.383,-79.971],[37.550,-79.696],[37.681,-79.700],
+  [37.790,-79.490],[37.820,-79.395],[37.975,-79.050],[38.069,-78.889],
+  [38.244,-78.601],[38.380,-78.487],[38.652,-78.312],[38.918,-78.196],
+  [39.060,-78.044],[39.175,-77.910],[39.259,-77.802],[39.322,-77.729],
+  [39.373,-77.667],[39.411,-77.643],[39.476,-77.534],[39.558,-77.468],
+  [39.717,-77.508],[39.840,-77.455],
+  [39.904,-77.481],[40.034,-77.307],[40.144,-77.126],[40.382,-77.022],
+  [40.414,-76.977],[40.579,-76.016],[40.775,-75.679],[40.847,-75.300],
+  [40.972,-75.134],[41.033,-75.053],[41.230,-74.775],[41.316,-74.660],
+  [41.291,-74.534],[41.190,-74.313],[41.291,-74.179],[41.301,-74.001],
+  [41.326,-73.971],[41.438,-73.889],[41.577,-73.807],[41.623,-73.698],
+  [41.730,-73.476],[41.851,-73.347],[41.985,-73.248],
+  [42.095,-73.215],[42.258,-73.137],[42.310,-73.124],[42.532,-73.100],
+  [42.638,-73.166],[42.724,-73.039],
+  [43.000,-72.963],[43.095,-72.963],[43.477,-72.797],[43.604,-72.820],
+  [43.703,-72.289],[43.840,-72.032],[43.997,-71.831],[44.160,-71.644],
+  [44.213,-71.403],[44.271,-71.303],[44.329,-71.280],[44.389,-71.171],
+  [44.521,-71.023],[44.597,-70.993],[44.614,-70.944],[44.750,-70.770],
+  [44.980,-70.330],[45.185,-69.999],[45.350,-69.735],[45.426,-69.562],
+  [45.600,-69.199],[45.720,-69.010],[45.904,-68.921]
+];
+
+// ════════════════════════════════════════════
+//  MODULE STATE (set during main())
+// ════════════════════════════════════════════
+let _realToday = new Date();
+_realToday.setHours(23,59,59,999);
+let _trailTodayEntry = null;
+let _dataByDate = {};    // "Weekday, Month D, YYYY" → entry
+
+// ════════════════════════════════════════════
+//  CSV PARSER
+// ════════════════════════════════════════════
+function parseCSVDate(str) {
+  if (!str) return null;
+  str = str.trim();
+  // M/D/YYYY or M/D/YY (Excel default US export)
+  const mdyMatch = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if (mdyMatch) {
+    const [,m,d,y] = mdyMatch;
+    const year = y.length <= 2 ? 2000 + +y : +y;
+    return new Date(year, +m - 1, +d);
+  }
+  // YYYY-MM-DD (ISO)
+  const isoMatch = str.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (isoMatch) {
+    return new Date(+isoMatch[1], +isoMatch[2] - 1, +isoMatch[3]);
+  }
+  // Long format: "Thursday, May 28, 2026" or "May 28, 2026"
+  const cleaned = str.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*/i, '');
+  const d = new Date(cleaned);
+  return isNaN(d) ? null : d;
 }
 
+function formatDateLong(dt) {
+  if (!dt) return null;
+  return dt.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+}
+
+function parseCSVText(text) {
+  // Robust state-machine CSV parser (handles quoted fields, embedded newlines/commas)
+  const rows = [];
+  let row = [], field = '', inQuote = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQuote) {
+      if (ch === '"') {
+        if (text[i+1] === '"') { field += '"'; i++; }   // escaped quote
+        else inQuote = false;
+      } else { field += ch; }
+    } else {
+      if      (ch === '"')  { inQuote = true; }
+      else if (ch === ',')  { row.push(field.trim()); field = ''; }
+      else if (ch === '\n') {
+        row.push(field.trim()); field = '';
+        if (row.some(c => c !== '')) rows.push(row);
+        row = [];
+      } else if (ch === '\r') { /* skip */ }
+      else { field += ch; }
+    }
+  }
+  // Flush last row
+  row.push(field.trim());
+  if (row.some(c => c !== '')) rows.push(row);
+
+  if (rows.length < 2) return [];
+
+  // Flexible header mapping
+  const headers = rows[0].map(h => h.toLowerCase().replace(/[^a-z]/g,''));
+  const colIdx = name => {
+    const aliases = {
+      date:       ['date'],
+      day:        ['day','hikingday','hikeday'],
+      miles:      ['miles','distance','mi'],
+      milepoint:  ['milepoint','milepoint','mp','atmill','atmile','atmp'],
+      start:      ['start','from','startlocation'],
+      dest:       ['dest','destination','to','end'],
+      stay:       ['stay','lodging','overnight'],
+      comments:   ['comments','notes','comment','note'],
+    };
+    for (const alt of (aliases[name] || [name])) {
+      const idx = headers.indexOf(alt);
+      if (idx >= 0) return idx;
+    }
+    return -1;
+  };
+  const c = {
+    date:      colIdx('date'),
+    day:       colIdx('day'),
+    miles:     colIdx('miles'),
+    milepoint: colIdx('milepoint'),
+    start:     colIdx('start'),
+    dest:      colIdx('dest'),
+    stay:      colIdx('stay'),
+    comments:  colIdx('comments'),
+  };
+
+  return rows.slice(1).map(r => {
+    const rawDate  = c.date >= 0 ? (r[c.date] || '') : '';
+    const parsedDt = parseCSVDate(rawDate);
+    const dayRaw   = c.day >= 0 ? r[c.day] : '';
+    const dayNum   = (dayRaw === '' || dayRaw == null || isNaN(+dayRaw)) ? null : +dayRaw;
+    return {
+      date:       formatDateLong(parsedDt) || rawDate,
+      parsedDate: parsedDt,
+      day:        dayNum,
+      miles:      +(c.miles     >= 0 ? r[c.miles]     : 0) || 0,
+      milepoint:  +(c.milepoint >= 0 ? r[c.milepoint] : 0) || 0,
+      start:      c.start    >= 0 ? (r[c.start]    || '') : '',
+      dest:       c.dest     >= 0 ? (r[c.dest]     || '') : '',
+      stay:       c.stay     >= 0 ? (r[c.stay]     || '') : '',
+      comments:   c.comments >= 0 ? (r[c.comments] || '') : '',
+    };
+  }).filter(d => d.parsedDate !== null);
+}
+
+// ════════════════════════════════════════════
+//  STATS COMPUTATION
+// ════════════════════════════════════════════
+function computeStats(raw) {
+  // Entries confirmed as actual trail days (day ≠ null, date ≤ real today)
+  const confirmed = raw.filter(d =>
+    d.parsedDate && d.parsedDate <= _realToday && d.day !== null
+  );
+
+  const hikedEntries = confirmed.filter(d => d.miles > 0);
+  const zeroEntries  = confirmed.filter(d => d.miles === 0);
+  const milesHiked   = hikedEntries.reduce((s, d) => s + d.miles, 0);
+
+  // Last confirmed entry determines current milepoint & "trail today"
+  const lastConfirmed = confirmed.length ? confirmed[confirmed.length - 1] : null;
+  _trailTodayEntry = lastConfirmed;
+  const currentMP = lastConfirmed ? lastConfirmed.milepoint : 0;
+
+  // States reached
+  const statesHiked = STATE_BOUNDARIES.filter(s => s.mp <= currentMP).map(s => s.state);
+
+  // Best single day
+  const bestEntry = hikedEntries.reduce((best, d) =>
+    d.miles > (best ? best.miles : 0) ? d : best, null
+  );
+
+  const milesAhead   = TOTAL_AT - currentMP;
+  const pctComplete  = Math.round(currentMP / TOTAL_AT * 100);
+  const avgMiles     = hikedEntries.length ? milesHiked / hikedEntries.length : 0;
+  const days20plus   = hikedEntries.filter(d => d.miles >= 20).length;
+
+  // Progress bar widths (as % of total trail)
+  const seg1Pct  = Math.min(currentMP, MP_SKIP_START) / TOTAL_AT * 100;
+  const skipPct  = (MP_SKIP_END - MP_SKIP_START) / TOTAL_AT * 100;
+  const seg2Pct  = currentMP > MP_SKIP_END
+    ? (currentMP - MP_SKIP_END) / TOTAL_AT * 100 : 0;
+  const bootPct  = currentMP / TOTAL_AT * 100;
+
+  // Progress bar label
+  let progressLabel = '';
+  if (lastConfirmed && lastConfirmed.parsedDate) {
+    const dateStr = lastConfirmed.parsedDate.toLocaleDateString('en-US',
+      { month:'long', day:'numeric', year:'numeric' });
+    progressLabel = `${dateStr} · Hiking Day ${lastConfirmed.day} · Mile ${fmtNum(currentMP)}`;
+  }
+
+  const bestDayDate = bestEntry && bestEntry.parsedDate
+    ? bestEntry.parsedDate.toLocaleDateString('en-US', { month:'short', day:'numeric' })
+    : '';
+
+  return {
+    milesHiked, hikingDays: hikedEntries.length,
+    zeroDays: zeroEntries.length,
+    currentMP, statesHiked, bestEntry, bestDayDate,
+    milesAhead, pctComplete, avgMiles, days20plus,
+    seg1Pct, skipPct, seg2Pct, bootPct, progressLabel,
+  };
+}
+
+// ════════════════════════════════════════════
+//  DOM HELPERS
+// ════════════════════════════════════════════
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = String(val);
+}
+function setStyle(id, prop, val) {
+  const el = document.getElementById(id);
+  if (el) el.style[prop] = val;
+}
+function fmtNum(n) {
+  return n.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// ════════════════════════════════════════════
+//  UPDATE DOM
+// ════════════════════════════════════════════
+function updateDOM(stats) {
+  // Progress bar + label
+  setText('progress-label', stats.progressLabel);
+  setStyle('pb-seg-1',    'width', stats.seg1Pct.toFixed(2) + '%');
+  setStyle('pb-seg-skip', 'width', stats.skipPct.toFixed(2) + '%');
+  setStyle('pb-seg-2',    'width', stats.seg2Pct.toFixed(2) + '%');
+  setStyle('pb-boot',     'left',  stats.bootPct.toFixed(2) + '%');
+
+  // Hero stats strip
+  setText('stat-miles-hiked',  fmtNum(stats.milesHiked));
+  setText('stat-skip-note',    '*' + fmtNum(MP_SKIP_END - MP_SKIP_START) + ' mi skipped section');
+  setText('stat-miles-to-k',   fmtNum(stats.milesAhead));
+  setText('stat-pct-complete', stats.pctComplete + '%');
+
+  // Map heading + legend
+  if (_trailTodayEntry) {
+    const dest = _trailTodayEntry.dest || 'Current Location';
+    setText('map-heading', dest + ' · Mile ' + fmtNum(stats.currentMP));
+  }
+  setText('map-leg-hiked',  'Hiked (' + fmtNum(stats.milesHiked) + ' mi)');
+  setText('map-leg-ahead',  'Ahead (' + fmtNum(stats.milesAhead) + ' mi)');
+
+  // Stat cards
+  setText('stat-hiking-days',  stats.hikingDays);
+  setText('stat-avg-miles',    stats.avgMiles.toFixed(1));
+  setText('stat-states-count', stats.statesHiked.length);
+  setText('stat-states-list',  stats.statesHiked.join(' · '));
+  setText('stat-days-20',      stats.days20plus);
+  if (stats.bestEntry) {
+    setText('stat-best-date',  stats.bestDayDate);
+    setText('stat-best-miles', stats.bestEntry.miles.toFixed(1));
+  }
+}
+
+// ════════════════════════════════════════════
+//  COORDINATE INTERPOLATION
+// ════════════════════════════════════════════
+function mpToCoord(mp) {
+  if (mp <= MP_WAYPOINTS[0][0]) return [MP_WAYPOINTS[0][1], MP_WAYPOINTS[0][2]];
+  const last = MP_WAYPOINTS[MP_WAYPOINTS.length - 1];
+  if (mp >= last[0]) return [last[1], last[2]];
+  for (let i = 1; i < MP_WAYPOINTS.length; i++) {
+    const [mp2, lat2, lon2] = MP_WAYPOINTS[i];
+    const [mp1, lat1, lon1] = MP_WAYPOINTS[i - 1];
+    if (mp <= mp2) {
+      const t = (mp - mp1) / (mp2 - mp1);
+      return [lat1 + t * (lat2 - lat1), lon1 + t * (lon2 - lon1)];
+    }
+  }
+  return [last[1], last[2]];
+}
+
+// ════════════════════════════════════════════
+//  UTILITY: stay categorization & tag
+// ════════════════════════════════════════════
 function categorizeStay(stay) {
   const s = (stay || '').toLowerCase();
   if (s.includes('shelter') || s.includes('lean-to') || s.includes('hut') || s.includes('cabin')) return 'Shelter';
@@ -765,44 +950,39 @@ function categorizeStay(stay) {
 function stayTag(stay) {
   const cat = categorizeStay(stay);
   const map = {
-    'Shelter': ['tag-shelter', '🏕️'],
-    'Camping': ['tag-camping', '⛺'],
-    'Hotel/Lodging': ['tag-hotel', '🏨'],
-    'Hostel': ['tag-hostel', '🛏️'],
-    'Home': ['tag-home', '🏠'],
-    'Zero/Nero Day': ['tag-zero', '😴'],
-    'Other': ['tag-other', '📍'],
+    'Shelter':       ['tag-shelter', '🏕️'],
+    'Camping':       ['tag-camping', '⛺'],
+    'Hotel/Lodging': ['tag-hotel',   '🏨'],
+    'Hostel':        ['tag-hostel',  '🛏️'],
+    'Home':          ['tag-home',    '🏠'],
+    'Zero/Nero Day': ['tag-zero',    '😴'],
+    'Other':         ['tag-other',   '📍'],
   };
-  if (!map[cat]) return stay ? `<span class="tag tag-other">${stay.substring(0,20)}</span>` : '';
+  if (!map[cat]) return stay ? '<span class="tag tag-other">' + stay.substring(0,20) + '</span>' : '';
   const [cls, emoji] = map[cat];
-  const label = stay.length > 22 ? stay.substring(0,22)+'…' : stay;
-  return `<span class="tag ${cls}">${emoji} ${label || cat}</span>`;
+  const label = stay.length > 22 ? stay.substring(0,22) + '…' : stay;
+  return '<span class="tag ' + cls + '">' + emoji + ' ' + (label || cat) + '</span>';
 }
 
-// ── MONTHLY DATA ──
-function getMonthlyData() {
-  const months = ['March','April','May','June','July','August'];
+// ════════════════════════════════════════════
+//  MONTHLY SUMMARY TABLE
+// ════════════════════════════════════════════
+function renderMonthlyTable(raw) {
+  const MONTHS = ['March','April','May','June','July','August'];
   const data = {};
-  const today = new Date("May 28, 2026");
-  months.forEach(m => data[m] = { miles: 0, hikingDays: 0, zeroDays: 0 });
-  RAW.forEach(d => {
-    const dt = parseDate(d.date);
-    if (!dt || dt > today) return;
-    const parts = d.date.split(', ');
-    if (parts.length < 2) return;
-    const month = parts[1].split(' ')[0];
-    if (!data[month]) return;
-    if (d.miles > 0) { data[month].miles += d.miles; data[month].hikingDays++; }
-    else if (d.day !== null) { data[month].zeroDays++; }
-  });
-  return months.map(m => ({ month: m, ...data[m], avg: data[m].hikingDays ? data[m].miles / data[m].hikingDays : 0 }));
-}
+  MONTHS.forEach(m => data[m] = { miles:0, hikingDays:0, zeroDays:0 });
 
-// ── RENDER MONTHLY TABLE ──
-function renderMonthlyTable() {
-  const monthly = getMonthlyData();
-  const maxMiles = Math.max(...monthly.map(m => m.miles));
-  const tbody = document.getElementById('monthly-tbody');
+  raw.forEach(d => {
+    if (!d.parsedDate || d.parsedDate > _realToday) return;
+    const mn = d.parsedDate.toLocaleString('en-US', { month:'long' });
+    if (!data[mn]) return;
+    if (d.miles > 0)         { data[mn].miles += d.miles; data[mn].hikingDays++; }
+    else if (d.day !== null) { data[mn].zeroDays++; }
+  });
+
+  const monthly  = MONTHS.map(m => ({ month:m, ...data[m], avg: data[m].hikingDays ? data[m].miles/data[m].hikingDays : 0 }));
+  const maxMiles = Math.max(...monthly.map(m => m.miles), 1);
+  const tbody    = document.getElementById('monthly-tbody');
   tbody.innerHTML = monthly.filter(m => m.miles > 0 || m.zeroDays > 0).map(m => `
     <tr>
       <td><strong>${m.month}</strong></td>
@@ -815,21 +995,18 @@ function renderMonthlyTable() {
   `).join('');
 }
 
-
-// ── DAILY MILES CHART ──
-function renderDailyMilesChart() {
-  const hikingDays = RAW.filter(d => d.miles > 0 && parseDate(d.date));
-  const labels = hikingDays.map(d => {
-    const dt = parseDate(d.date);
-    return dt ? `${dt.toLocaleDateString('en-US', {month:'short', day:'numeric'})}` : d.date;
-  });
-  const miles = hikingDays.map(d => d.miles);
-  const today = new Date("May 28, 2026");
+// ════════════════════════════════════════════
+//  DAILY MILES CHART
+// ════════════════════════════════════════════
+function renderDailyMilesChart(raw) {
+  const hikingDays = raw.filter(d => d.miles > 0 && d.parsedDate);
+  const labels = hikingDays.map(d =>
+    d.parsedDate.toLocaleDateString('en-US', { month:'short', day:'numeric' })
+  );
+  const miles  = hikingDays.map(d => d.miles);
   const colors = hikingDays.map(d => {
-    const dt = parseDate(d.date);
-    if (!dt) return '#ccc';
-    if (d.date === TODAY_DATE) return '#e9c46a';
-    return dt <= today ? '#52b788' : '#cce5d8';
+    if (_trailTodayEntry && d.parsedDate.toDateString() === _trailTodayEntry.parsedDate.toDateString()) return '#e9c46a';
+    return d.parsedDate <= _realToday ? '#52b788' : '#cce5d8';
   });
 
   const ctx = document.getElementById('dailyMilesChart').getContext('2d');
@@ -837,13 +1014,7 @@ function renderDailyMilesChart() {
     type: 'bar',
     data: {
       labels,
-      datasets: [{
-        label: 'Miles',
-        data: miles,
-        backgroundColor: colors,
-        borderRadius: 3,
-        borderSkipped: false
-      }]
+      datasets: [{ label:'Miles', data:miles, backgroundColor:colors, borderRadius:3, borderSkipped:false }]
     },
     options: {
       responsive: true,
@@ -851,153 +1022,223 @@ function renderDailyMilesChart() {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            title: (items) => hikingDays[items[0].dataIndex].date,
-            label: (item) => {
+            title:  (items) => hikingDays[items[0].dataIndex].date,
+            label:  (item)  => {
               const d = hikingDays[item.dataIndex];
-              return [`${d.miles} miles`, d.dest ? `→ ${d.dest}` : ''];
+              return [d.miles + ' miles', d.dest ? '→ ' + d.dest : ''];
             }
           }
         }
       },
       scales: {
         x: { display: false },
-        y: {
-          title: { display: true, text: 'Miles', color: '#555' },
-          grid: { color: '#eee' }
-        }
+        y: { title:{ display:true, text:'Miles', color:'#555' }, grid:{ color:'#eee' } }
       }
     }
   });
 }
 
+// ════════════════════════════════════════════
+//  TRAIL MAP
+// ════════════════════════════════════════════
+function renderMap(stats) {
+  try {
+    const trailMap = L.map('trail-map', {
+      zoomControl:false, dragging:false, keyboard:false,
+      scrollWheelZoom:false, doubleClickZoom:false,
+      boxZoom:false, touchZoom:false, tap:false, attributionControl:false
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:18 }).addTo(trailMap);
+    trailMap.fitBounds([[34.6,-84.2],[45.9,-68.9]], { padding:[2,2] });
 
-// ── TRAIL CALENDAR ──
-const _today = new Date("May 28, 2026");
-const CAL_MONTHS = ['March','April','May','June','July','August'];
-const CAL_YEAR = 2026;
-const MONTH_IDX = { March:2, April:3, May:4, June:5, July:6, August:7 };
+    const total = AT_COORDS.length - 1;
+    const idx1  = Math.round((MP_SKIP_START / TOTAL_AT) * total);
+    const idx2  = Math.round((MP_SKIP_END   / TOTAL_AT) * total);
+    const idx3  = Math.min(Math.round((stats.currentMP / TOTAL_AT) * total), total);
 
-// Build lookup: "Wednesday, May 28, 2026" → RAW entry
-const dataByDate = {};
-RAW.forEach(d => { dataByDate[d.date] = d; });
+    const segs = [
+      { pts: AT_COORDS.slice(0,      idx1+1), color:'#2d6a4f', weight:2.5, opacity:0.9 },
+      { pts: AT_COORDS.slice(idx1,   idx2+1), color:'#2d6a4f', weight:2.5, opacity:0.7, dashArray:'7,5' },
+      { pts: AT_COORDS.slice(idx2,   idx3+1), color:'#2d6a4f', weight:2.5, opacity:0.9 },
+      { pts: AT_COORDS.slice(idx3),           color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'6,4' },
+    ];
+    segs.forEach(s => L.polyline(s.pts, s).addTo(trailMap));
+
+    // Start / end icons
+    L.marker([34.627,-84.193], { icon: L.divIcon({ className:'', html:'<div style="font-size:18px;line-height:1">⛰️</div>', iconSize:[20,20], iconAnchor:[10,16] }) }).addTo(trailMap);
+    L.marker([45.904,-68.921], { icon: L.divIcon({ className:'', html:'<div style="font-size:18px;line-height:1">🏔️</div>', iconSize:[20,20], iconAnchor:[10,16] }) }).addTo(trailMap);
+
+    // Today marker
+    if (_trailTodayEntry) {
+      const d       = _trailTodayEntry;
+      const coord   = mpToCoord(stats.currentMP);
+      const todayIcon = L.divIcon({
+        className: '',
+        html: '<div style="width:14px;height:14px;background:#e9c46a;border:2px solid #b5800a;border-radius:50%;box-shadow:0 0 0 3px rgba(233,196,106,0.35)"></div>',
+        iconSize:[14,14], iconAnchor:[7,7]
+      });
+      const isSlackpack = /slack/i.test(d.comments || '');
+      const slackNote   = isSlackpack ? ' <span style="font-size:0.68rem;color:#888;font-style:italic">(slackpack)</span>' : '';
+      const dest        = d.dest || 'Current Location';
+
+      L.marker(coord, { icon:todayIcon })
+        .addTo(trailMap)
+        .bindPopup(
+          '<div class="tt-header">📍 ' + dest + '</div>' +
+          '<div class="tt-body">' +
+            '<div class="tt-row">Day ' + d.day + ' &nbsp;&middot;&nbsp; Mile ' + fmtNum(stats.currentMP) + '</div>' +
+            '<hr class="tt-divider">' +
+            '<div class="tt-row">Miles hiked today: &nbsp;<strong>' + d.miles + ' mi</strong>' + slackNote + '</div>' +
+            '<div class="tt-row">Total hiked: &nbsp;<strong>' + fmtNum(stats.milesHiked) + ' mi</strong></div>' +
+            '<div class="tt-row">Complete: &nbsp;<strong>' + stats.pctComplete + '%</strong></div>' +
+            '<div class="tt-row">To Katahdin: &nbsp;<strong>' + fmtNum(stats.milesAhead) + ' mi</strong></div>' +
+          '</div>',
+          { className:'today-popup', offset:[0,-7] }
+        ).openPopup();
+    }
+  } catch(e) { console.warn('Map error:', e); }
+}
+
+// ════════════════════════════════════════════
+//  TRAIL CALENDAR
+// ════════════════════════════════════════════
+const CAL_MONTHS    = ['March','April','May','June','July','August'];
+const CAL_YEAR      = 2026;
+const CAL_MONTH_IDX = { March:2, April:3, May:4, June:5, July:6, August:7 };
 
 function getDayType(entry, dt) {
   if (!entry) return null;
-  if (dt && dt > _today) return 'future';
+  if (dt && dt > _realToday)               return 'future';
   if (entry.day === null && entry.miles === 0) return 'off-trail';
-  if (entry.miles === 0) return 'zero';
+  if (entry.miles === 0)                    return 'zero';
   return 'hiking';
 }
 
 function renderCalendar(monthName) {
-  const monthIdx = MONTH_IDX[monthName];
+  const monthIdx = CAL_MONTH_IDX[monthName];
   const firstDay = new Date(CAL_YEAR, monthIdx, 1);
   const lastDay  = new Date(CAL_YEAR, monthIdx + 1, 0);
-  const startDow = firstDay.getDay(); // 0=Sun
+  const startDow = firstDay.getDay();
 
   let html = '<div class="cal-grid">';
   ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d => {
-    html += `<div class="cal-dow">${d}</div>`;
+    html += '<div class="cal-dow">' + d + '</div>';
   });
   for (let i = 0; i < startDow; i++) html += '<div class="cal-cell empty"></div>';
 
   for (let day = 1; day <= lastDay.getDate(); day++) {
-    const dt = new Date(CAL_YEAR, monthIdx, day);
+    const dt      = new Date(CAL_YEAR, monthIdx, day);
     const dateKey = dt.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-    const entry = dataByDate[dateKey];
-    const isToday = dt.toDateString() === _today.toDateString();
-    const type = getDayType(entry, dt);
+    const entry   = _dataByDate[dateKey];
+    const isToday = _realToday && dt.toDateString() === _realToday.toDateString();
+    const type    = getDayType(entry, dt);
     const hasData = !!entry;
 
     let classes = 'cal-cell';
-    if (hasData) classes += ' has-data';
-    if (isToday) classes += ' today-cell';
-    else if (type === 'hiking') classes += ' hiking';
-    else if (type === 'zero')   classes += ' zero';
-    else if (type === 'off-trail') classes += ' off-trail';
-    else if (type === 'future') classes += ' future';
+    if (hasData)                  classes += ' has-data';
+    if (isToday)                  classes += ' today-cell';
+    else if (type === 'hiking')   classes += ' hiking';
+    else if (type === 'zero')     classes += ' zero';
+    else if (type === 'off-trail')classes += ' off-trail';
+    else if (type === 'future')   classes += ' future';
 
-    const safeKey = dateKey.replace(/'/g, "\\'");
-    const clickAttr = hasData ? `onclick="openDayModal('${safeKey}')"` : '';
+    const safeKey   = dateKey.replace(/'/g, "\\'");
+    const clickAttr = hasData ? 'onclick="openDayModal(\'' + safeKey + '\')"' : '';
 
-    let inner = `<div class="cal-day-num">${day}</div>`;
+    let inner = '<div class="cal-day-num">' + day + '</div>';
     if (isToday) inner += '<div class="cal-today-badge">TODAY</div>';
 
     if (entry) {
       if (entry.miles > 0) {
-        inner += `<div class="cal-miles">${entry.miles}</div>`;
-        inner += `<div class="cal-label" style="font-size:0.6rem;color:#888">mi</div>`;
-        if (entry.dest) inner += `<div class="cal-dest">${entry.dest}</div>`;
+        inner += '<div class="cal-miles">' + entry.miles + '</div>';
+        inner += '<div class="cal-label" style="font-size:0.6rem;color:#888">mi</div>';
+        if (entry.dest) inner += '<div class="cal-dest">' + entry.dest + '</div>';
       } else if (type === 'zero') {
-        inner += `<div style="font-size:0.72rem;font-weight:800;color:#c07a0a;margin-top:4px">Zero</div>`;
+        inner += '<div style="font-size:0.72rem;font-weight:800;color:#c07a0a;margin-top:4px">Zero</div>';
         const zNote = entry.dest || entry.stay || entry.comments || '';
-        if (zNote) inner += `<div class="cal-dest">${zNote}</div>`;
+        if (zNote) inner += '<div class="cal-dest">' + zNote + '</div>';
       } else if (type === 'off-trail') {
         const note = entry.stay || entry.comments || '';
-        inner += `<div style="font-size:0.62rem;color:#bbb;margin-top:5px">${note || '—'}</div>`;
+        inner += '<div style="font-size:0.62rem;color:#bbb;margin-top:5px">' + (note || '—') + '</div>';
       } else if (type === 'future' && entry.miles > 0) {
-        inner += `<div class="cal-miles">${entry.miles}</div>`;
-        inner += `<div class="cal-label" style="font-size:0.6rem;color:#bbb">mi (planned)</div>`;
-        if (entry.dest) inner += `<div class="cal-dest">${entry.dest}</div>`;
+        inner += '<div class="cal-miles">' + entry.miles + '</div>';
+        inner += '<div class="cal-label" style="font-size:0.6rem;color:#bbb">mi (planned)</div>';
+        if (entry.dest) inner += '<div class="cal-dest">' + entry.dest + '</div>';
       }
     }
-
-    html += `<div class="${classes}" ${clickAttr}>${inner}</div>`;
+    html += '<div class="' + classes + '" ' + clickAttr + '>' + inner + '</div>';
   }
   html += '</div>';
   document.getElementById('cal-container').innerHTML = html;
 }
 
+function setCalMonth(monthName) {
+  document.querySelectorAll('.cal-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.month === monthName)
+  );
+  renderCalendar(monthName);
+}
+
+function initCalendar(raw) {
+  // Build date → entry lookup
+  _dataByDate = {};
+  raw.forEach(d => { if (d.date) _dataByDate[d.date] = d; });
+
+  const tabsEl = document.getElementById('cal-tabs');
+  tabsEl.innerHTML = CAL_MONTHS.map(m =>
+    '<button class="cal-tab" data-month="' + m + '" onclick="setCalMonth(\'' + m + '\')">' + m + '</button>'
+  ).join('');
+
+  // Default to current month (capped to hike range)
+  const curMonthName = _realToday.toLocaleString('en-US', { month:'long' });
+  const defaultMonth = CAL_MONTHS.includes(curMonthName) ? curMonthName : CAL_MONTHS[0];
+  setCalMonth(defaultMonth);
+}
+
+// ════════════════════════════════════════════
+//  DAY DETAIL MODAL
+// ════════════════════════════════════════════
 function openDayModal(dateKey) {
-  const d = dataByDate[dateKey];
+  const d = _dataByDate[dateKey];
   if (!d) return;
-  const dt = parseDate(d.date);
-  const isFuture = dt && dt > _today;
-  const isToday  = dt && dt.toDateString() === _today.toDateString();
-  const type = getDayType(d, dt);
+  const dt       = d.parsedDate;
+  const isFuture = dt && dt > _realToday;
+  const isToday  = dt && dt.toDateString() === _realToday.toDateString();
+  const type     = getDayType(d, dt);
 
   const formattedDate = dt
     ? dt.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' })
     : d.date;
 
   let badge = '';
-  if (isToday)      badge = '<span class="modal-day-badge" style="background:#fffbeb;color:#b5800a;border:1px solid #e9c46a">📍 Today</span>';
-  else if (d.day)   badge = `<span class="modal-day-badge">Hiking Day ${d.day}</span>`;
-  else if (type === 'zero')      badge = '<span class="modal-day-badge" style="background:#fff8e6;color:#c07a0a">Zero Day</span>';
+  if (isToday)               badge = '<span class="modal-day-badge" style="background:#fffbeb;color:#b5800a;border:1px solid #e9c46a">📍 Today</span>';
+  else if (d.day)            badge = '<span class="modal-day-badge">Hiking Day ' + d.day + '</span>';
+  else if (type === 'zero')  badge = '<span class="modal-day-badge" style="background:#fff8e6;color:#c07a0a">Zero Day</span>';
   else if (type === 'off-trail') badge = '<span class="modal-day-badge" style="background:#f5f5f5;color:#888">Off Trail</span>';
-  else if (isFuture) badge = '<span class="modal-day-badge" style="background:#f0f0f0;color:#888">Planned</span>';
+  else if (isFuture)         badge = '<span class="modal-day-badge" style="background:#f0f0f0;color:#888">Planned</span>';
 
-  let body = `<div class="modal-date-line">${formattedDate}</div>${badge}<hr class="modal-divider">`;
+  let body = '<div class="modal-date-line">' + formattedDate + '</div>' + badge + '<hr class="modal-divider">';
 
   if (d.miles > 0) {
     const milesLabel = isFuture ? 'Planned miles' : 'Miles hiked';
-    body += `
-      <div class="modal-miles-block">
-        <div class="modal-miles-num">${d.miles}</div>
-        <div class="modal-miles-unit">mi</div>
-      </div>
-      <div class="modal-miles-sub">${milesLabel}</div>`;
+    body += '<div class="modal-miles-block"><div class="modal-miles-num">' + d.miles + '</div><div class="modal-miles-unit">mi</div></div>' +
+            '<div class="modal-miles-sub">' + milesLabel + '</div>';
   } else if (type === 'zero') {
-    body += `<div class="modal-zero-label">Zero Day</div><div class="modal-zero-sub">Rest &amp; recovery</div>`;
+    body += '<div class="modal-zero-label">Zero Day</div><div class="modal-zero-sub">Rest &amp; recovery</div>';
   } else if (type === 'off-trail') {
-    body += `<div class="modal-zero-label" style="color:#888">Off Trail</div>`;
+    body += '<div class="modal-zero-label" style="color:#888">Off Trail</div>';
   }
 
-  if (d.milepoint && d.miles > 0) {
-    body += `<div class="modal-row"><span class="mlabel">AT Mile</span><span class="mval">${d.milepoint.toFixed(1)}</span></div>`;
-  }
-  if (d.start && d.start.trim()) {
-    body += `<div class="modal-row"><span class="mlabel">From</span><span class="mval">${d.start}</span></div>`;
-  }
-  if (d.dest && d.dest.trim()) {
-    body += `<div class="modal-row"><span class="mlabel">To</span><span class="mval">${d.dest}</span></div>`;
-  }
-  if (d.stay && d.stay.trim()) {
-    body += `<div class="modal-row"><span class="mlabel">Stay</span><span class="mval">${stayTag(d.stay)}</span></div>`;
-  }
-  if (d.comments && d.comments.trim()) {
-    body += `<div class="modal-row"><span class="mlabel">Notes</span><span class="mval" style="font-style:italic;color:var(--text-muted)">${d.comments}</span></div>`;
-  }
+  if (d.milepoint && d.miles > 0)
+    body += '<div class="modal-row"><span class="mlabel">AT Mile</span><span class="mval">' + d.milepoint.toFixed(1) + '</span></div>';
+  if (d.start && d.start.trim())
+    body += '<div class="modal-row"><span class="mlabel">From</span><span class="mval">' + d.start + '</span></div>';
+  if (d.dest && d.dest.trim())
+    body += '<div class="modal-row"><span class="mlabel">To</span><span class="mval">' + d.dest + '</span></div>';
+  if (d.stay && d.stay.trim())
+    body += '<div class="modal-row"><span class="mlabel">Stay</span><span class="mval">' + stayTag(d.stay) + '</span></div>';
+  if (d.comments && d.comments.trim())
+    body += '<div class="modal-row"><span class="mlabel">Notes</span><span class="mval" style="font-style:italic;color:var(--text-muted)">' + d.comments + '</span></div>';
 
   document.getElementById('modal-content').innerHTML = body;
   document.getElementById('day-modal-overlay').style.display = 'block';
@@ -1008,135 +1249,47 @@ function closeModal() {
   document.getElementById('day-modal-overlay').style.display = 'none';
   document.getElementById('day-modal').style.display = 'none';
 }
-
-// Close modal on Escape key
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-function setCalMonth(monthName) {
-  document.querySelectorAll('.cal-tab').forEach(t =>
-    t.classList.toggle('active', t.dataset.month === monthName)
-  );
-  renderCalendar(monthName);
-}
+// ════════════════════════════════════════════
+//  MAIN — fetch CSV and wire everything up
+// ════════════════════════════════════════════
+async function main() {
+  const loadEl  = document.getElementById('loading-msg');
+  const errorEl = document.getElementById('error-msg');
 
-function initCalendar() {
-  const tabsEl = document.getElementById('cal-tabs');
-  tabsEl.innerHTML = CAL_MONTHS.map(m =>
-    `<button class="cal-tab" data-month="${m}" onclick="setCalMonth('${m}')">${m}</button>`
-  ).join('');
-  // Default to current month (or May if current month is outside hike range)
-  const curMonthName = _today.toLocaleString('en-US', { month: 'long' });
-  const defaultMonth = CAL_MONTHS.includes(curMonthName) ? curMonthName : 'May';
-  setCalMonth(defaultMonth);
-}
-
-// ── INIT ──
-document.addEventListener('DOMContentLoaded', () => {
-  try { renderMonthlyTable(); } catch(e) { console.warn('Monthly table error:', e); }
-  try { renderDailyMilesChart(); } catch(e) { console.warn('Chart error:', e); }
-  try { initCalendar(); } catch(e) { console.warn('Calendar error:', e); }
-
-  // ── STATIC TRAIL MAP ──
+  loadEl.style.display = 'block';
   try {
-  const trailMap = L.map('trail-map', {
-    zoomControl: false,
-    dragging: false,
-    keyboard: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    touchZoom: false,
-    tap: false,
-    attributionControl: false
-  });
+    const resp = await fetch('AT Hike.csv');
+    if (!resp.ok) throw new Error('Could not load AT Hike.csv (HTTP ' + resp.status + ')');
+    const text = await resp.text();
+    const raw  = parseCSVText(text);
+    if (!raw.length) throw new Error('AT Hike.csv loaded but contained no readable rows.');
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18
-  }).addTo(trailMap);
+    loadEl.style.display = 'none';
 
-  // Fit view to full AT extent (GA to ME) with a little padding
-  trailMap.fitBounds([[34.6, -84.2], [45.9, -68.9]], { padding: [2, 2] });
+    const stats = computeStats(raw);
+    updateDOM(stats);
+    try { renderMonthlyTable(raw); }    catch(e) { console.warn('Monthly table error:', e); }
+    try { renderDailyMilesChart(raw); } catch(e) { console.warn('Chart error:', e); }
+    try { renderMap(stats); }           catch(e) { console.warn('Map error:', e); }
+    try { initCalendar(raw); }          catch(e) { console.warn('Calendar error:', e); }
 
-  const MP_SKIP_START = 471.5;
-  const MP_SKIP_END   = 787.9;
-  const MP_TODAY      = 1058.5;
-  const MP_TOTAL      = 2197.9;
+  } catch(err) {
+    loadEl.style.display = 'none';
+    errorEl.style.display = 'block';
+    errorEl.innerHTML =
+      '<strong>⚠️ Could not load trail data</strong><br>' +
+      '<span style="font-size:0.85rem">' + err.message + '</span><br>' +
+      '<span style="font-size:0.78rem;color:#666;margin-top:6px;display:block">' +
+        'Make sure <code>AT Hike.csv</code> is in the same folder as this page ' +
+        '(or committed to the GitHub repo alongside <code>index.html</code>).' +
+      '</span>';
+    console.error('Dashboard load error:', err);
+  }
+}
 
-  // AT waypoints (key landmarks, NOBO south→north)
-  const AT_COORDS = [
-    [34.627,-84.193],[34.721,-84.109],[34.741,-83.938],[34.741,-83.919],[34.836,-83.762],
-    [34.855,-83.683],[34.895,-83.616],[34.997,-83.525],[35.066,-83.490],[35.150,-83.532],
-    [35.196,-83.559],[35.328,-83.584],[35.447,-83.807],[35.563,-83.499],[35.613,-83.426],
-    [35.773,-83.103],[35.878,-82.966],[35.896,-82.832],[36.041,-82.618],[36.083,-82.468],
-    [36.105,-82.110],[36.127,-82.012],[36.167,-81.994],[36.349,-82.044],[36.440,-81.965],
-    [36.560,-81.813],[36.631,-81.775],   // Damascus — skip starts
-    [36.650,-81.524],[36.790,-81.395],[37.010,-81.148],[37.260,-80.810],
-    [37.391,-80.098],[37.383,-79.971],[37.550,-79.696],[37.681,-79.700],   // James River — skip ends
-    [37.790,-79.490],[37.820,-79.395],[37.975,-79.050],[38.069,-78.889],
-    [38.244,-78.601],[38.380,-78.487],[38.652,-78.312],[38.918,-78.196],
-    [39.060,-78.044],[39.175,-77.910],[39.259,-77.802],[39.322,-77.729],
-    [39.373,-77.667],[39.411,-77.643],[39.476,-77.534],[39.558,-77.468],[39.717,-77.508],[39.840,-77.455],   // Ensign Cowall — TODAY
-    [39.904,-77.481],[40.034,-77.307],[40.144,-77.126],[40.382,-77.022],
-    [40.414,-76.977],[40.579,-76.016],[40.775,-75.679],[40.847,-75.300],
-    [40.972,-75.134],[41.033,-75.053],[41.230,-74.775],[41.316,-74.660],
-    [41.291,-74.534],[41.190,-74.313],[41.291,-74.179],[41.301,-74.001],
-    [41.326,-73.971],[41.438,-73.889],[41.577,-73.807],[41.623,-73.698],
-    [41.730,-73.476],[41.851,-73.347],[41.985,-73.248],
-    [42.095,-73.215],[42.258,-73.137],[42.310,-73.124],[42.532,-73.100],
-    [42.638,-73.166],[42.724,-73.039],
-    [43.000,-72.963],[43.095,-72.963],[43.477,-72.797],[43.604,-72.820],
-    [43.703,-72.289],[43.840,-72.032],[43.997,-71.831],[44.160,-71.644],
-    [44.213,-71.403],[44.271,-71.303],[44.329,-71.280],[44.389,-71.171],
-    [44.521,-71.023],[44.597,-70.993],[44.614,-70.944],[44.750,-70.770],
-    [44.980,-70.330],[45.185,-69.999],[45.350,-69.735],[45.426,-69.562],
-    [45.600,-69.199],[45.720,-69.010],[45.904,-68.921]
-  ];
-
-  const total = AT_COORDS.length - 1;
-  const i1 = Math.round((MP_SKIP_START / MP_TOTAL) * total);
-  const i2 = Math.round((MP_SKIP_END    / MP_TOTAL) * total);
-  const i3 = Math.round((MP_TODAY       / MP_TOTAL) * total);
-
-  const segments = [
-    { pts: AT_COORDS.slice(0, i1+1),  color: '#2d6a4f', weight: 2.5, opacity: 0.9 },
-    { pts: AT_COORDS.slice(i1, i2+1), color: '#2d6a4f', weight: 2.5, opacity: 0.7, dashArray: '7,5' },
-    { pts: AT_COORDS.slice(i2, i3+1), color: '#2d6a4f', weight: 2.5, opacity: 0.9 },
-    { pts: AT_COORDS.slice(i3),       color: '#3a86ff', weight: 2,   opacity: 0.7, dashArray: '6,4' }
-  ];
-  segments.forEach(s => L.polyline(s.pts, s).addTo(trailMap));
-
-  // Start & end icons
-  L.marker([34.627,-84.193], { icon: L.divIcon({ className:'', html:'<div style="font-size:18px;line-height:1">⛰️</div>', iconSize:[20,20], iconAnchor:[10,16] }) }).addTo(trailMap);
-  L.marker([45.904,-68.921], { icon: L.divIcon({ className:'', html:'<div style="font-size:18px;line-height:1">🏔️</div>', iconSize:[20,20], iconAnchor:[10,16] }) }).addTo(trailMap);
-
-  // Today marker — gold pin
-  const todayIcon = L.divIcon({
-    className: '',
-    html: `<div style="width:14px;height:14px;background:#e9c46a;border:2px solid #b5800a;border-radius:50%;box-shadow:0 0 0 3px rgba(233,196,106,0.35)"></div>`,
-    iconSize: [14,14],
-    iconAnchor: [7,7]
-  });
-  const todayEntry = RAW.find(d => d.date === TODAY_DATE);
-  const isSlackpack = todayEntry && /slack/i.test(todayEntry.comments || '');
-  const slackNote = isSlackpack
-    ? ' <span style="font-size:0.68rem;color:#888;font-style:italic">(slackpack)</span>'
-    : '';
-
-  L.marker([39.717,-77.508], { icon: todayIcon })
-    .addTo(trailMap)
-    .bindPopup(`
-      <div class="tt-header">📍 Ensign Cowall Shelter, PA</div>
-      <div class="tt-body">
-        <div class="tt-row">Day 52 &nbsp;·&nbsp; Mile 1,058.5</div>
-        <hr class="tt-divider">
-        <div class="tt-row">Miles hiked today: &nbsp;<strong>20.7 mi</strong>${slackNote}</div>
-        <div class="tt-row">Total hiked: &nbsp;<strong>742.1 mi</strong></div>
-        <div class="tt-row">Complete: &nbsp;<strong>34%</strong></div>
-        <div class="tt-row">To Katahdin: &nbsp;<strong>1,139.4 mi</strong></div>
-      </div>
-    `, { className: 'today-popup', offset: [0, -7] }).openPopup();
-  } catch(e) { console.warn('Map error:', e); }
-});
+document.addEventListener('DOMContentLoaded', main);
 </script>
 </body>
 </html>
