@@ -828,7 +828,7 @@ function computeStats(raw) {
   );
 
   const milesAhead   = TOTAL_AT - currentMP;
-  const pctComplete  = Math.round(currentMP / TOTAL_AT * 100);
+  const pctComplete  = Math.round(milesHiked / TOTAL_AT * 100);
   const avgMiles     = hikedEntries.length ? milesHiked / hikedEntries.length : 0;
   const days20plus   = hikedEntries.filter(d => d.miles >= 20).length;
 
