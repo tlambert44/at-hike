@@ -757,10 +757,10 @@ function parseCSVText(text) {
   const colIdx = name => {
     const aliases = {
       date:       ['date'],
-      day:        ['day','hikingday','hikeday'],
-      miles:      ['miles','distance','mi'],
-      milepoint:  ['milepoint','milepoint','mp','atmill','atmile','atmp'],
-      start:      ['start','from','startlocation'],
+      day:        ['day','hikingday','hikeday','dayontrail'],
+      miles:      ['miles','distance','mi','mileshiked'],
+      milepoint:  ['milepoint','mp','atmill','atmile','atmp','atmilepoint'],
+      start:      ['start','from','startlocation','startingpoint'],
       dest:       ['dest','destination','to','end'],
       stay:       ['stay','lodging','overnight'],
       comments:   ['comments','notes','comment','note'],
