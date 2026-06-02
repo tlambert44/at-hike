@@ -595,7 +595,6 @@
           <th>Hiking Days</th>
           <th>Zero Days</th>
           <th>Avg Miles/Day</th>
-          <th>Visual</th>
         </tr>
       </thead>
       <tbody id="monthly-tbody"></tbody>
@@ -712,6 +711,13 @@ function parseCSVDate(str) {
   const isoMatch = str.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (isoMatch) {
     return new Date(+isoMatch[1], +isoMatch[2] - 1, +isoMatch[3]);
+  }
+  // D-Mon format: "23-Apr", "1-May" (no year — assume hike year 2026)
+  const dMonMatch = str.match(/^(\d{1,2})-([A-Za-z]{3,9})$/);
+  if (dMonMatch) {
+    const months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+    const mIdx = months[dMonMatch[2].toLowerCase().slice(0,3)];
+    if (mIdx !== undefined) return new Date(2026, mIdx, +dMonMatch[1]);
   }
   // Long format: "Thursday, May 28, 2026" or "May 28, 2026"
   const cleaned = str.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*/i, '');
@@ -990,7 +996,6 @@ function renderMonthlyTable(raw) {
       <td>${m.hikingDays}</td>
       <td>${m.zeroDays}</td>
       <td>${m.avg.toFixed(1)}</td>
-      <td><span class="bar-mini" style="width:${Math.round((m.miles/maxMiles)*180)}px"></span></td>
     </tr>
   `).join('');
 }
