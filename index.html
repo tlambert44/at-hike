@@ -595,6 +595,7 @@
           <th>Hiking Days</th>
           <th>Zero Days</th>
           <th>Avg Miles/Day</th>
+          <th>20+ Mile Days</th>
         </tr>
       </thead>
       <tbody id="monthly-tbody"></tbody>
@@ -976,13 +977,13 @@ function stayTag(stay) {
 function renderMonthlyTable(raw) {
   const MONTHS = ['March','April','May','June','July','August'];
   const data = {};
-  MONTHS.forEach(m => data[m] = { miles:0, hikingDays:0, zeroDays:0 });
+  MONTHS.forEach(m => data[m] = { miles:0, hikingDays:0, zeroDays:0, days20:0 });
 
   raw.forEach(d => {
     if (!d.parsedDate || d.parsedDate > _realToday) return;
     const mn = d.parsedDate.toLocaleString('en-US', { month:'long' });
     if (!data[mn]) return;
-    if (d.miles > 0)         { data[mn].miles += d.miles; data[mn].hikingDays++; }
+    if (d.miles > 0) { data[mn].miles += d.miles; data[mn].hikingDays++; if (d.miles >= 20) data[mn].days20++; }
     else if (d.day !== null) { data[mn].zeroDays++; }
   });
 
@@ -996,6 +997,7 @@ function renderMonthlyTable(raw) {
       <td>${m.hikingDays}</td>
       <td>${m.zeroDays}</td>
       <td>${m.avg.toFixed(1)}</td>
+      <td>${m.days20}</td>
     </tr>
   `).join('');
 }
