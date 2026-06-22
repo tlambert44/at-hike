@@ -512,10 +512,10 @@
       </div>
     </div>
     <div class="hls-item">
-      <div class="hls-swatch" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.25)"></div>
+      <div class="hls-swatch" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2)"></div>
       <div class="hls-content">
-        <div class="hls-val" style="color:#fff" id="stat-miles-to-k">—</div>
-        <div class="hls-sub">Miles to Katahdin</div>
+        <div class="hls-val" style="color:#fff" id="stat-miles-left">—</div>
+        <div class="hls-sub">Miles Left to Hike</div>
       </div>
     </div>
     <div class="hls-item">
@@ -523,6 +523,13 @@
       <div class="hls-content">
         <div class="hls-val" style="color:#e9c46a" id="stat-pct-complete">—</div>
         <div class="hls-sub">Complete</div>
+      </div>
+    </div>
+    <div class="hls-item">
+      <div class="hls-swatch" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.25)"></div>
+      <div class="hls-content">
+        <div class="hls-val" style="color:#fff" id="stat-miles-to-k">—</div>
+        <div class="hls-sub">Miles to Katahdin</div>
       </div>
     </div>
   </div>
@@ -835,6 +842,7 @@ function computeStats(raw) {
   );
 
   const milesAhead   = TOTAL_AT - currentMP;
+  const milesLeft    = TOTAL_AT - milesHiked;
   const pctComplete  = Math.round(milesHiked / TOTAL_AT * 100);
   const avgMiles     = hikedEntries.length ? milesHiked / hikedEntries.length : 0;
   const days20plus   = hikedEntries.filter(d => d.miles >= 20).length;
@@ -862,7 +870,7 @@ function computeStats(raw) {
     milesHiked, hikingDays: hikedEntries.length,
     zeroDays: zeroEntries.length,
     currentMP, statesHiked, bestEntry, bestDayDate,
-    milesAhead, pctComplete, avgMiles, days20plus,
+    milesAhead, milesLeft, pctComplete, avgMiles, days20plus,
     seg1Pct, skipPct, seg2Pct, bootPct, progressLabel,
   };
 }
@@ -896,8 +904,9 @@ function updateDOM(stats) {
   // Hero stats strip
   setText('stat-miles-hiked',  fmtNum(stats.milesHiked));
   setText('stat-skip-note',    '*' + fmtNum(MP_SKIP_END - MP_SKIP_START) + ' mi skipped section');
-  setText('stat-miles-to-k',   fmtNum(stats.milesAhead));
+  setText('stat-miles-left',   fmtNum(stats.milesLeft));
   setText('stat-pct-complete', stats.pctComplete + '%');
+  setText('stat-miles-to-k',   fmtNum(stats.milesAhead));
 
   // Map heading + legend
   if (_trailTodayEntry) {
