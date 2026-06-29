@@ -1115,7 +1115,7 @@ function renderMap(stats) {
             '<div class="tt-row">To Katahdin: &nbsp;<strong>' + fmtNum(stats.milesAhead) + ' mi</strong></div>' +
           '</div>',
           { className:'today-popup', offset:[0,-7] }
-        ).openPopup();
+        );
     }
   } catch(e) { console.warn('Map error:', e); }
 }
