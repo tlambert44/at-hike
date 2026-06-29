@@ -1070,7 +1070,12 @@ function renderMap(stats) {
     const total = AT_COORDS.length - 1;
     const idx1  = Math.round((MP_SKIP_START / TOTAL_AT) * total);
     const idx2  = Math.round((MP_SKIP_END   / TOTAL_AT) * total);
-    const idx3  = Math.min(Math.round((stats.currentMP / TOTAL_AT) * total), total);
+    // Find the AT_COORDS point closest to the actual today marker position
+    const todayCoord = mpToCoord(stats.currentMP);
+    const idx3 = AT_COORDS.reduce((best, c, i) => {
+      const d = (c[0]-todayCoord[0])**2 + (c[1]-todayCoord[1])**2;
+      return d < best.d ? {i, d} : best;
+    }, {i:0, d:Infinity}).i;
 
     const segs = [
       { pts: AT_COORDS.slice(0,      idx1+1), color:'#2d6a4f', weight:2.5, opacity:0.9 },
@@ -1270,6 +1275,25 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 // ════════════════════════════════════════════
 //  MAIN — fetch CSV and wire everything up
 // ════════════════════════════════════════════
+function loadAndRender(text) {
+  const loadEl  = document.getElementById('loading-msg');
+  const errorEl = document.getElementById('error-msg');
+  loadEl.style.display = 'none';
+  errorEl.style.display = 'none';
+  const raw = parseCSVText(text);
+  if (!raw.length) {
+    errorEl.style.display = 'block';
+    errorEl.innerHTML = '<strong>⚠️ Could not read trail data</strong><br><span style="font-size:0.85rem">The file loaded but contained no readable rows.</span>';
+    return;
+  }
+  const stats = computeStats(raw);
+  updateDOM(stats);
+  try { renderMonthlyTable(raw); }    catch(e) { console.warn('Monthly table error:', e); }
+  try { renderDailyMilesChart(raw); } catch(e) { console.warn('Chart error:', e); }
+  try { renderMap(stats); }           catch(e) { console.warn('Map error:', e); }
+  try { initCalendar(raw); }          catch(e) { console.warn('Calendar error:', e); }
+}
+
 async function main() {
   const loadEl  = document.getElementById('loading-msg');
   const errorEl = document.getElementById('error-msg');
@@ -1277,31 +1301,26 @@ async function main() {
   loadEl.style.display = 'block';
   try {
     const resp = await fetch('AT Hike.csv');
-    if (!resp.ok) throw new Error('Could not load AT Hike.csv (HTTP ' + resp.status + ')');
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const text = await resp.text();
-    const raw  = parseCSVText(text);
-    if (!raw.length) throw new Error('AT Hike.csv loaded but contained no readable rows.');
-
-    loadEl.style.display = 'none';
-
-    const stats = computeStats(raw);
-    updateDOM(stats);
-    try { renderMonthlyTable(raw); }    catch(e) { console.warn('Monthly table error:', e); }
-    try { renderDailyMilesChart(raw); } catch(e) { console.warn('Chart error:', e); }
-    try { renderMap(stats); }           catch(e) { console.warn('Map error:', e); }
-    try { initCalendar(raw); }          catch(e) { console.warn('Calendar error:', e); }
-
+    loadAndRender(text);
   } catch(err) {
+    // fetch() is blocked when opening the file directly in a browser (file:// protocol).
+    // Fall back to a file picker so it still works locally.
     loadEl.style.display = 'none';
     errorEl.style.display = 'block';
     errorEl.innerHTML =
-      '<strong>⚠️ Could not load trail data</strong><br>' +
-      '<span style="font-size:0.85rem">' + err.message + '</span><br>' +
-      '<span style="font-size:0.78rem;color:#666;margin-top:6px;display:block">' +
-        'Make sure <code>AT Hike.csv</code> is in the same folder as this page ' +
-        '(or committed to the GitHub repo alongside <code>index.html</code>).' +
-      '</span>';
-    console.error('Dashboard load error:', err);
+      '<strong>📂 Select your hike data file</strong><br>' +
+      '<span style="font-size:0.85rem;color:#555">Browser security blocks automatic file loading when opened locally. Pick <code>AT Hike.csv</code> below.</span><br><br>' +
+      '<input type="file" accept=".csv" id="csv-picker" style="font-size:0.9rem">';
+    document.getElementById('csv-picker').addEventListener('change', function() {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => { errorEl.style.display = 'none'; loadAndRender(e.target.result); };
+      reader.readAsText(file);
+    });
+    console.warn('fetch failed, using file picker fallback:', err);
   }
 }
 
