@@ -83,15 +83,11 @@
   }
   .pb-seg { height: 100%; transition: width 0.8s ease; }
   .pb-hiked    { background: linear-gradient(90deg, #52b788, #74c69d); }
-  .pb-skipped  {
-    background-color: #52b788;
-    background-image:
-      repeating-linear-gradient(45deg, rgba(0,0,0,0.18) 0, rgba(0,0,0,0.18) 1px, transparent 0, transparent 50%),
-      repeating-linear-gradient(-45deg, rgba(0,0,0,0.18) 0, rgba(0,0,0,0.18) 1px, transparent 0, transparent 50%);
-    background-size: 7px 7px;
-  }
   .pb-today    { background: #f4a261; min-width: 6px; }
-  .pb-remaining { background: rgba(255,255,255,0.35); flex: 1; }
+  .pb-remaining {
+    background: repeating-linear-gradient(90deg, #2d6a4f 0px, #2d6a4f 7px, rgba(255,255,255,0.2) 7px, rgba(255,255,255,0.2) 13px);
+    flex: 1;
+  }
   .pb-boot {
     position: absolute;
     top: -7px;
@@ -477,11 +473,8 @@
       <span>🏔️ Katahdin, ME</span>
     </div>
     <div class="progress-bar-wrap">
-      <div class="progress-bar-outer">
-        <div id="pb-seg-1"    class="pb-seg pb-hiked"   style="width:0%"></div>
-        <div id="pb-seg-skip" class="pb-seg pb-skipped" style="width:14.4%"></div>
-        <div id="pb-seg-2"    class="pb-seg pb-hiked"   style="width:0%"></div>
-        <div class="pb-seg pb-remaining"></div>
+      <div class="progress-bar-outer" id="progress-bar-inner">
+        <div class="pb-seg pb-remaining" style="flex:1"></div>
       </div>
       <div id="pb-boot" class="pb-boot" style="left:14%">🥾</div>
     </div>
@@ -525,13 +518,6 @@
         <div class="hls-sub">Complete</div>
       </div>
     </div>
-    <div class="hls-item">
-      <div class="hls-swatch" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.25)"></div>
-      <div class="hls-content">
-        <div class="hls-val" style="color:#fff" id="stat-miles-to-k">—</div>
-        <div class="hls-sub">Miles to Katahdin</div>
-      </div>
-    </div>
   </div>
 </div><!-- /hp-inner -->
 </div><!-- /hero-progress -->
@@ -551,8 +537,7 @@
         <div id="trail-map"></div>
         <div class="map-legend">
           <div class="mc-item"><div class="mc-line" style="background:#2d6a4f"></div> <span id="map-leg-hiked">Hiked</span></div>
-          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#2d6a4f 0,#2d6a4f 5px,transparent 5px,transparent 9px)"></div> Skipped section</div>
-          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#3a86ff 0,#3a86ff 5px,transparent 5px,transparent 9px)"></div> <span id="map-leg-ahead">Ahead</span></div>
+          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#2d6a4f 0,#2d6a4f 5px,transparent 5px,transparent 9px)"></div> Left to hike</div>
         </div>
       </div>
     </div>
@@ -824,7 +809,8 @@ function computeStats(raw) {
     d.parsedDate && d.parsedDate <= _realToday && d.day !== null
   );
 
-  const hikedEntries = confirmed.filter(d => d.miles > 0);
+  const todayStr     = _realToday.toDateString();
+  const hikedEntries = confirmed.filter(d => d.miles > 0 && d.parsedDate.toDateString() !== todayStr);
   const zeroEntries  = confirmed.filter(d => d.miles === 0);
   const milesHiked   = hikedEntries.reduce((s, d) => s + d.miles, 0);
 
@@ -847,11 +833,6 @@ function computeStats(raw) {
   const avgMiles     = hikedEntries.length ? milesHiked / hikedEntries.length : 0;
   const days20plus   = hikedEntries.filter(d => d.miles >= 20).length;
 
-  // Progress bar widths (as % of total trail)
-  const seg1Pct  = Math.min(currentMP, MP_SKIP_START) / TOTAL_AT * 100;
-  const skipPct  = (MP_SKIP_END - MP_SKIP_START) / TOTAL_AT * 100;
-  const seg2Pct  = currentMP > MP_SKIP_END
-    ? (currentMP - MP_SKIP_END) / TOTAL_AT * 100 : 0;
   const bootPct  = currentMP / TOTAL_AT * 100;
 
   // Progress bar label
@@ -871,7 +852,7 @@ function computeStats(raw) {
     zeroDays: zeroEntries.length,
     currentMP, statesHiked, bestEntry, bestDayDate,
     milesAhead, milesLeft, pctComplete, avgMiles, days20plus,
-    seg1Pct, skipPct, seg2Pct, bootPct, progressLabel,
+    bootPct, progressLabel,
   };
 }
 
@@ -896,9 +877,6 @@ function fmtNum(n) {
 function updateDOM(stats) {
   // Progress bar + label
   setText('progress-label', stats.progressLabel);
-  setStyle('pb-seg-1',    'width', stats.seg1Pct.toFixed(2) + '%');
-  setStyle('pb-seg-skip', 'width', stats.skipPct.toFixed(2) + '%');
-  setStyle('pb-seg-2',    'width', stats.seg2Pct.toFixed(2) + '%');
   setStyle('pb-boot',     'left',  stats.bootPct.toFixed(2) + '%');
 
   // Hero stats strip
@@ -906,7 +884,6 @@ function updateDOM(stats) {
   setText('stat-skip-note',    '*' + fmtNum(MP_SKIP_END - MP_SKIP_START) + ' mi skipped section');
   setText('stat-miles-left',   fmtNum(stats.milesLeft));
   setText('stat-pct-complete', stats.pctComplete + '%');
-  setText('stat-miles-to-k',   fmtNum(stats.milesAhead));
 
   // Map heading + legend
   if (_trailTodayEntry) {
@@ -914,7 +891,6 @@ function updateDOM(stats) {
     setText('map-heading', dest + ' · Mile ' + fmtNum(stats.currentMP));
   }
   setText('map-leg-hiked',  'Hiked (' + fmtNum(stats.milesHiked) + ' mi)');
-  setText('map-leg-ahead',  'Ahead (' + fmtNum(stats.milesAhead) + ' mi)');
 
   // Stat cards
   setText('stat-hiking-days',  stats.hikingDays);
@@ -1097,6 +1073,30 @@ function buildCoveredRanges(raw) {
 }
 
 // ════════════════════════════════════════════
+//  PROGRESS BAR
+// ════════════════════════════════════════════
+function renderProgressBar(stats, raw) {
+  const bar = document.getElementById('progress-bar-inner');
+  if (!bar) return;
+  const covered = buildCoveredRanges(raw);
+  let html = '';
+  let pointer = 0;
+  for (const [lo, hi] of covered) {
+    if (lo > pointer) {
+      const w = (lo - pointer) / TOTAL_AT * 100;
+      html += `<div class="pb-seg pb-remaining" style="width:${w.toFixed(2)}%"></div>`;
+    }
+    const w = (hi - lo) / TOTAL_AT * 100;
+    html += `<div class="pb-seg pb-hiked" style="width:${w.toFixed(2)}%"></div>`;
+    pointer = Math.max(pointer, hi);
+  }
+  if (pointer < TOTAL_AT) {
+    html += `<div class="pb-seg pb-remaining" style="flex:1"></div>`;
+  }
+  bar.innerHTML = html;
+}
+
+// ════════════════════════════════════════════
 //  TRAIL MAP
 // ════════════════════════════════════════════
 function renderMap(stats, raw) {
@@ -1113,23 +1113,21 @@ function renderMap(stats, raw) {
     const mpToIdx = mp => Math.min(Math.round((mp / TOTAL_AT) * total), total);
     const currentMP = stats.currentMP;
 
-    // Build hiked/skipped/ahead segments dynamically from CSV data
+    // Build hiked/remaining segments: hiked = sections with past dates, remaining = everything else
     const covered  = buildCoveredRanges(raw);
     const segments = [];
     let pointer = 0;
 
     for (const [lo, hi] of covered) {
-      if (lo >= currentMP) break;
       if (lo > pointer) {
-        segments.push({ type:'skipped', lo: pointer,          hi: Math.min(lo, currentMP) });
+        segments.push({ type:'remaining', lo: pointer, hi: lo });
       }
-      segments.push(  { type:'hiked',   lo: Math.max(pointer, lo), hi: Math.min(hi, currentMP) });
+      segments.push({ type:'hiked', lo, hi });
       pointer = Math.max(pointer, hi);
     }
-    if (pointer < currentMP) {
-      segments.push({ type:'skipped', lo: pointer, hi: currentMP });
+    if (pointer < TOTAL_AT) {
+      segments.push({ type:'remaining', lo: pointer, hi: TOTAL_AT });
     }
-    segments.push({ type:'ahead', lo: currentMP, hi: TOTAL_AT });
 
     // Draw each segment
     for (const seg of segments) {
@@ -1141,9 +1139,7 @@ function renderMap(stats, raw) {
       const style =
         seg.type === 'hiked'
           ? { color:'#2d6a4f', weight:2.5, opacity:0.9 }
-          : seg.type === 'skipped'
-            ? { color:'#2d6a4f', weight:2.5, opacity:0.7, dashArray:'7,5' }
-            : { color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'6,4' };
+          : { color:'#2d6a4f', weight:2,   opacity:0.7, dashArray:'6,4' };
       L.polyline(pts, style).addTo(trailMap);
     }
 
@@ -1353,7 +1349,8 @@ function loadAndRender(text) {
   updateDOM(stats);
   try { renderMonthlyTable(raw); }    catch(e) { console.warn('Monthly table error:', e); }
   try { renderDailyMilesChart(raw); } catch(e) { console.warn('Chart error:', e); }
-  try { renderMap(stats, raw); }       catch(e) { console.warn('Map error:', e); }
+  try { renderProgressBar(stats, raw); } catch(e) { console.warn('Progress bar error:', e); }
+  try { renderMap(stats, raw); }         catch(e) { console.warn('Map error:', e); }
   try { initCalendar(raw); }          catch(e) { console.warn('Calendar error:', e); }
 }
 
