@@ -501,7 +501,6 @@
       <div class="hls-content">
         <div class="hls-val" style="color:#fff" id="stat-miles-hiked">—</div>
         <div class="hls-sub">Miles Hiked</div>
-        <div class="hls-asterisk" id="stat-skip-note">*316.4 mi skipped section</div>
       </div>
     </div>
     <div class="hls-item">
@@ -881,7 +880,6 @@ function updateDOM(stats) {
 
   // Hero stats strip
   setText('stat-miles-hiked',  fmtNum(stats.milesHiked));
-  setText('stat-skip-note',    '*' + fmtNum(MP_SKIP_END - MP_SKIP_START) + ' mi skipped section');
   setText('stat-miles-left',   fmtNum(stats.milesLeft));
   setText('stat-pct-complete', stats.pctComplete + '%');
 
@@ -1033,9 +1031,10 @@ function renderDailyMilesChart(raw) {
 // ════════════════════════════════════════════
 //  BUILD COVERED MILEPOINT RANGES FROM DATA
 // ════════════════════════════════════════════
-function buildCoveredRanges(raw) {
+function buildCoveredRanges(raw, cutoff) {
+  const maxDate = cutoff || _realToday;
   const hikingDays = raw
-    .filter(d => d.parsedDate && d.parsedDate <= _realToday && d.miles > 0 && d.milepoint > 0)
+    .filter(d => d.parsedDate && d.parsedDate <= maxDate && d.miles > 0 && d.milepoint > 0)
     .sort((a, b) => a.parsedDate - b.parsedDate);
 
   const ranges = [];
@@ -1078,7 +1077,11 @@ function buildCoveredRanges(raw) {
 function renderProgressBar(stats, raw) {
   const bar = document.getElementById('progress-bar-inner');
   if (!bar) return;
-  const covered = buildCoveredRanges(raw);
+  // Exclude today so today's miles don't show as hiked — use end-of-yesterday as cutoff
+  const yesterday = new Date(_realToday);
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(23, 59, 59, 999);
+  const covered = buildCoveredRanges(raw, yesterday);
   let html = '';
   let pointer = 0;
   for (const [lo, hi] of covered) {
