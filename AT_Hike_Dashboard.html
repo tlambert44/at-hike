@@ -773,7 +773,7 @@ function parseCSVText(text) {
       date:       ['date'],
       day:        ['day','hikingday','hikeday','dayontrail'],
       miles:      ['miles','distance','mi','mileshiked'],
-      milepoint:  ['milepoint','mp','atmill','atmile','atmp','atmilepoint'],
+      milepoint:  ['milepoint','mp','atmill','atmile','atmp','atmilepoint','at milepoint'],
       start:      ['start','from','startlocation','startingpoint'],
       dest:       ['dest','destination','to','end'],
       stay:       ['stay','lodging','overnight'],
@@ -828,10 +828,12 @@ function computeStats(raw) {
   const zeroEntries  = confirmed.filter(d => d.miles === 0);
   const milesHiked   = hikedEntries.reduce((s, d) => s + d.miles, 0);
 
-  // Last confirmed entry determines current milepoint & "trail today"
+  // Last confirmed entry determines "trail today" display
   const lastConfirmed = confirmed.length ? confirmed[confirmed.length - 1] : null;
   _trailTodayEntry = lastConfirmed;
-  const currentMP = lastConfirmed ? lastConfirmed.milepoint : 0;
+  // Current milepoint = last entry with a valid milepoint (zero days may have no milepoint)
+  const lastWithMP = [...confirmed].reverse().find(d => d.milepoint > 0);
+  const currentMP = lastWithMP ? lastWithMP.milepoint : 0;
 
   // States reached
   const statesHiked = STATE_BOUNDARIES.filter(s => s.mp <= currentMP).map(s => s.state);
@@ -1067,12 +1069,10 @@ function buildCoveredRanges(raw) {
 
   hikingDays.forEach(d => {
     const gap = Math.abs(d.milepoint - prevMP);
-    const tolerance = d.miles * 1.4; // allow some slack for terrain/data variation
+    const tolerance = d.miles * 1.4;
     if (gap <= tolerance) {
-      // Continuous progress (covers from prevMP to current, direction either way)
       ranges.push([Math.min(prevMP, d.milepoint), Math.max(prevMP, d.milepoint)]);
     } else {
-      // Jump detected — infer covered range from endpoint + miles + direction
       const isSOBO = /sobo/i.test(d.comments || '');
       if (isSOBO) {
         ranges.push([d.milepoint, Math.min(d.milepoint + d.miles, TOTAL_AT)]);
@@ -1083,7 +1083,6 @@ function buildCoveredRanges(raw) {
     prevMP = d.milepoint;
   });
 
-  // Sort and merge overlapping / adjacent ranges (3-mile gap tolerance)
   ranges.sort((a, b) => a[0] - b[0]);
   const merged = [];
   for (const r of ranges) {
@@ -1113,7 +1112,6 @@ function renderMap(stats, raw) {
     const mpToIdx = mp => Math.min(Math.round((mp / TOTAL_AT) * total), total);
     const currentMP = stats.currentMP;
 
-    // Build hiked/skipped/ahead segments dynamically from CSV data
     const covered  = buildCoveredRanges(raw);
     const segments = [];
     let pointer = 0;
@@ -1121,7 +1119,7 @@ function renderMap(stats, raw) {
     for (const [lo, hi] of covered) {
       if (lo >= currentMP) break;
       if (lo > pointer) {
-        segments.push({ type:'skipped', lo: pointer,          hi: Math.min(lo, currentMP) });
+        segments.push({ type:'skipped', lo: pointer,               hi: Math.min(lo, currentMP) });
       }
       segments.push(  { type:'hiked',   lo: Math.max(pointer, lo), hi: Math.min(hi, currentMP) });
       pointer = Math.max(pointer, hi);
@@ -1131,7 +1129,6 @@ function renderMap(stats, raw) {
     }
     segments.push({ type:'ahead', lo: currentMP, hi: TOTAL_AT });
 
-    // Draw each segment
     for (const seg of segments) {
       const i1  = mpToIdx(seg.lo);
       const i2  = mpToIdx(seg.hi);
@@ -1353,7 +1350,7 @@ function loadAndRender(text) {
   updateDOM(stats);
   try { renderMonthlyTable(raw); }    catch(e) { console.warn('Monthly table error:', e); }
   try { renderDailyMilesChart(raw); } catch(e) { console.warn('Chart error:', e); }
-  try { renderMap(stats, raw); }       catch(e) { console.warn('Map error:', e); }
+  try { renderMap(stats, raw); }      catch(e) { console.warn('Map error:', e); }
   try { initCalendar(raw); }          catch(e) { console.warn('Calendar error:', e); }
 }
 
