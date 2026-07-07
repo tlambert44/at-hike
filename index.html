@@ -536,7 +536,7 @@
         <div id="trail-map"></div>
         <div class="map-legend">
           <div class="mc-item"><div class="mc-line" style="background:#2d6a4f"></div> <span id="map-leg-hiked">Hiked</span></div>
-          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#2d6a4f 0,#2d6a4f 5px,transparent 5px,transparent 9px)"></div> Left to hike</div>
+          <div class="mc-item"><div class="mc-line" style="background: repeating-linear-gradient(90deg,#3a86ff 0,#3a86ff 2px,transparent 2px,transparent 6px)"></div> Left to hike</div>
         </div>
       </div>
     </div>
@@ -962,8 +962,10 @@ function renderMonthlyTable(raw) {
   const data = {};
   MONTHS.forEach(m => data[m] = { miles:0, hikingDays:0, zeroDays:0, days20:0 });
 
+  const todayStr = _realToday.toDateString();
   raw.forEach(d => {
     if (!d.parsedDate || d.parsedDate > _realToday) return;
+    if (d.parsedDate.toDateString() === todayStr) return;
     const mn = d.parsedDate.toLocaleString('en-US', { month:'long' });
     if (!data[mn]) return;
     if (d.miles > 0) { data[mn].miles += d.miles; data[mn].hikingDays++; if (d.miles >= 20) data[mn].days20++; }
@@ -1116,8 +1118,11 @@ function renderMap(stats, raw) {
     const mpToIdx = mp => Math.min(Math.round((mp / TOTAL_AT) * total), total);
     const currentMP = stats.currentMP;
 
-    // Build hiked/remaining segments: hiked = sections with past dates, remaining = everything else
-    const covered  = buildCoveredRanges(raw);
+    // Build hiked/remaining segments — exclude today so map matches progress bar
+    const yesterday = new Date(_realToday);
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(23, 59, 59, 999);
+    const covered  = buildCoveredRanges(raw, yesterday);
     const segments = [];
     let pointer = 0;
 
@@ -1142,7 +1147,7 @@ function renderMap(stats, raw) {
       const style =
         seg.type === 'hiked'
           ? { color:'#2d6a4f', weight:2.5, opacity:0.9 }
-          : { color:'#2d6a4f', weight:2,   opacity:0.7, dashArray:'6,4' };
+          : { color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'2,4' };
       L.polyline(pts, style).addTo(trailMap);
     }
 
