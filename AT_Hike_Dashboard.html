@@ -1118,11 +1118,8 @@ function renderMap(stats, raw) {
     const mpToIdx = mp => Math.min(Math.round((mp / TOTAL_AT) * total), total);
     const currentMP = stats.currentMP;
 
-    // Exclude today so map matches progress bar
-    const yesterday = new Date(_realToday);
-    yesterday.setDate(yesterday.getDate() - 1);
-    yesterday.setHours(23, 59, 59, 999);
-    const covered  = buildCoveredRanges(raw, yesterday);
+    // Build hiked/remaining segments — map includes today's entry
+    const covered  = buildCoveredRanges(raw);
     const segments = [];
     let pointer = 0;
 
