@@ -643,7 +643,11 @@ const MP_WAYPOINTS = [
   [1058.5, 39.717,-77.508], [1076.6, 39.840,-77.455], [1086.6, 39.904,-77.481],
   [1125,   40.034,-77.307], [1200,   40.382,-77.022], [1298,   40.847,-75.300],
   [1400,   41.316,-74.660], [1447,   41.577,-73.807], [1508,   42.095,-73.215],
-  [1600,   43.000,-72.963], [1700,   43.997,-71.831],
+  [1600,   43.000,-72.963],
+  [1700,   43.610,-72.890],  // Killington/Sherburne Pass, VT
+  [1750,   43.720,-72.320],  // Norwich VT / Hanover NH area
+  [1762,   43.697,-72.199],  // Etna NH (near Hanover)
+  [1799,   43.966,-71.930],  // NH-25 / Glencliff, NH
   [1816,   44.088,-71.862],  // Kinsman Range / Eliza Brook, NH
   [1863,   44.212,-71.398],  // Crawford Notch, NH
   [1878,   44.387,-71.170],  // Gorham, NH
@@ -1130,10 +1134,28 @@ function renderMap(stats, raw) {
     };
     const currentMP = stats.currentMP;
 
-    // Draw trail: green from start → today, blue dashed from today → Katahdin
-    const idx3 = mpToIdx(currentMP);
-    L.polyline(AT_COORDS.slice(0, idx3 + 1),  { color:'#2d6a4f', weight:2.5, opacity:0.9 }).addTo(trailMap);
-    L.polyline(AT_COORDS.slice(idx3),          { color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'2,4' }).addTo(trailMap);
+    // Build segments from actual hiked ranges (shows skipped sections as blue dashed)
+    const covered  = buildCoveredRanges(raw);
+    const segments = [];
+    let pointer = 0;
+    for (const [lo, hi] of covered) {
+      if (lo > pointer) segments.push({ type:'remaining', lo: pointer, hi: lo });
+      segments.push({ type:'hiked', lo, hi });
+      pointer = Math.max(pointer, hi);
+    }
+    if (pointer < TOTAL_AT) segments.push({ type:'remaining', lo: pointer, hi: TOTAL_AT });
+
+    for (const seg of segments) {
+      const i1  = mpToIdx(seg.lo);
+      const i2  = mpToIdx(seg.hi);
+      if (i2 <= i1) continue;
+      const pts = AT_COORDS.slice(i1, i2 + 1);
+      if (pts.length < 2) continue;
+      const style = seg.type === 'hiked'
+        ? { color:'#2d6a4f', weight:2.5, opacity:0.9 }
+        : { color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'2,4' };
+      L.polyline(pts, style).addTo(trailMap);
+    }
 
     // Start / end icons
     L.marker([34.627,-84.193], { icon: L.divIcon({ className:'', html:'<div style="font-size:18px;line-height:1">⛰️</div>', iconSize:[20,20], iconAnchor:[10,16] }) }).addTo(trailMap);
