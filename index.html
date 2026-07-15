@@ -1130,35 +1130,10 @@ function renderMap(stats, raw) {
     };
     const currentMP = stats.currentMP;
 
-    // Build hiked/remaining segments — map includes today's entry
-    const covered  = buildCoveredRanges(raw);
-    const segments = [];
-    let pointer = 0;
-
-    for (const [lo, hi] of covered) {
-      if (lo > pointer) {
-        segments.push({ type:'remaining', lo: pointer, hi: lo });
-      }
-      segments.push({ type:'hiked', lo, hi });
-      pointer = Math.max(pointer, hi);
-    }
-    if (pointer < TOTAL_AT) {
-      segments.push({ type:'remaining', lo: pointer, hi: TOTAL_AT });
-    }
-
-    // Draw each segment
-    for (const seg of segments) {
-      const i1  = mpToIdx(seg.lo);
-      const i2  = mpToIdx(seg.hi);
-      if (i2 <= i1) continue;
-      const pts = AT_COORDS.slice(i1, i2 + 1);
-      if (pts.length < 2) continue;
-      const style =
-        seg.type === 'hiked'
-          ? { color:'#2d6a4f', weight:2.5, opacity:0.9 }
-          : { color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'2,4' };
-      L.polyline(pts, style).addTo(trailMap);
-    }
+    // Draw trail: green from start → today, blue dashed from today → Katahdin
+    const idx3 = mpToIdx(currentMP);
+    L.polyline(AT_COORDS.slice(0, idx3 + 1),  { color:'#2d6a4f', weight:2.5, opacity:0.9 }).addTo(trailMap);
+    L.polyline(AT_COORDS.slice(idx3),          { color:'#3a86ff', weight:2,   opacity:0.7, dashArray:'2,4' }).addTo(trailMap);
 
     // Start / end icons
     L.marker([34.627,-84.193], { icon: L.divIcon({ className:'', html:'<div style="font-size:18px;line-height:1">⛰️</div>', iconSize:[20,20], iconAnchor:[10,16] }) }).addTo(trailMap);
