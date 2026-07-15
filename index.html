@@ -1115,7 +1115,13 @@ function renderMap(stats, raw) {
     trailMap.fitBounds([[34.6,-84.2],[45.9,-68.9]], { padding:[2,2] });
 
     const total   = AT_COORDS.length - 1;
-    const mpToIdx = mp => Math.min(Math.round((mp / TOTAL_AT) * total), total);
+    const mpToIdx = mp => {
+      const [tlat, tlon] = mpToCoord(mp);
+      return AT_COORDS.reduce((best, c, i) => {
+        const d = (c[0]-tlat)**2 + (c[1]-tlon)**2;
+        return d < best.d ? {i, d} : best;
+      }, {i:0, d:Infinity}).i;
+    };
     const currentMP = stats.currentMP;
 
     // Build hiked/remaining segments — map includes today's entry
