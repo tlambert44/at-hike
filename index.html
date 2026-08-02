@@ -851,7 +851,7 @@ function computeStats(raw) {
   const milesLeft    = TOTAL_AT - milesHiked;
   const pctComplete  = Math.round(milesHiked / TOTAL_AT * 100);
   const avgMiles     = hikedEntries.length ? milesHiked / hikedEntries.length : 0;
-  const days20plus   = hikedEntries.filter(d => d.miles >= 20).length;
+  const days20plus   = hikedEntries.filter(d => d.miles >= 19.5).length;
 
   const bootPct  = currentMP / TOTAL_AT * 100;
 
@@ -992,7 +992,7 @@ function renderMonthlyTable(raw) {
     if (d.parsedDate > _realToday) return;
     const mn = d.parsedDate.toLocaleString('en-US', { month:'long' });
     if (!data[mn]) return;
-    if (d.miles > 0) { data[mn].miles += d.miles; data[mn].hikingDays++; if (d.miles >= 20) data[mn].days20++; }
+    if (d.miles > 0) { data[mn].miles += d.miles; data[mn].hikingDays++; if (d.miles >= 19.5) data[mn].days20++; }
     else { data[mn].zeroDays++; }
   });
 
@@ -1015,14 +1015,17 @@ function renderMonthlyTable(raw) {
 //  DAILY MILES CHART
 // ════════════════════════════════════════════
 function renderDailyMilesChart(raw) {
-  const hikingDays = raw.filter(d => d.miles > 0 && d.parsedDate);
+  const todayStr = _realToday.toDateString();
+  const hikingDays = raw
+    .filter(d => d.miles > 0 && d.parsedDate && d.parsedDate.toDateString() !== todayStr)
+    .sort((a, b) => a.parsedDate - b.parsedDate);
   const labels = hikingDays.map(d =>
     d.parsedDate.toLocaleDateString('en-US', { month:'short', day:'numeric' })
   );
   const miles  = hikingDays.map(d => d.miles);
   const colors = hikingDays.map(d => {
-    if (_trailTodayEntry && d.parsedDate.toDateString() === _trailTodayEntry.parsedDate.toDateString()) return '#e9c46a';
-    return d.parsedDate <= _realToday ? '#52b788' : '#cce5d8';
+    if (d.parsedDate > _realToday) return '#cce5d8';          // future planned
+    return d.miles >= 19.5 ? '#2d6a4f' : '#52b788';           // 20+ day vs regular
   });
 
   const ctx = document.getElementById('dailyMilesChart').getContext('2d');
@@ -1115,10 +1118,10 @@ function renderStateChart(raw) {
           filter: (item) => item.datasetIndex === 0,
           callbacks: {
             label: (item) => {
-              const s = hiked[item.dataIndex];
+              const s = stateOrder[item.dataIndex];
               return [
-                `${avgs[item.dataIndex]} avg mi/day`,
-                `${stateDays[s.state]} days · ${stateMiles[s.state].toFixed(0)} total mi`
+                `Avg: ${avgs[item.dataIndex]} mi/day`,
+                `Days hiked: ${stateDays[s]}`,
               ];
             }
           }
