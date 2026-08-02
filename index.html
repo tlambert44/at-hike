@@ -778,6 +778,7 @@ function parseCSVText(text) {
       dest:       ['dest','destination','to','end'],
       stay:       ['stay','lodging','overnight'],
       comments:   ['comments','notes','comment','note'],
+      state:      ['state','st'],
     };
     for (const alt of (aliases[name] || [name])) {
       const idx = headers.indexOf(alt);
@@ -794,6 +795,7 @@ function parseCSVText(text) {
     dest:      colIdx('dest'),
     stay:      colIdx('stay'),
     comments:  colIdx('comments'),
+    state:     colIdx('state'),
   };
 
   return rows.slice(1).map(r => {
@@ -811,6 +813,7 @@ function parseCSVText(text) {
       dest:       c.dest     >= 0 ? (r[c.dest]     || '') : '',
       stay:       c.stay     >= 0 ? (r[c.stay]     || '') : '',
       comments:   c.comments >= 0 ? (r[c.comments] || '') : '',
+      state:      c.state    >= 0 ? (r[c.state]    || '').trim().toUpperCase() : '',
     };
   }).filter(d => d.parsedDate !== null);
 }
@@ -819,20 +822,22 @@ function parseCSVText(text) {
 //  STATS COMPUTATION
 // ════════════════════════════════════════════
 function computeStats(raw) {
-  // Entries confirmed as actual trail days (day ≠ null, date ≤ real today)
-  const confirmed = raw.filter(d =>
-    d.parsedDate && d.parsedDate <= _realToday && d.day !== null
-  );
+  // Confirmed trail days: past entries only
+  const confirmed = raw.filter(d => d.parsedDate && d.day !== null && d.parsedDate <= _realToday);
 
   const todayStr     = _realToday.toDateString();
   const hikedEntries = confirmed.filter(d => d.miles > 0 && d.parsedDate.toDateString() !== todayStr);
   const zeroEntries  = confirmed.filter(d => d.miles === 0);
   const milesHiked   = hikedEntries.reduce((s, d) => s + d.miles, 0);
 
-  // Last confirmed entry determines current milepoint & "trail today"
-  const lastConfirmed = confirmed.length ? confirmed[confirmed.length - 1] : null;
-  _trailTodayEntry = lastConfirmed;
-  const currentMP = lastConfirmed ? lastConfirmed.milepoint : 0;
+  // Today's entry (may be a rest day with no miles)
+  _trailTodayEntry = confirmed.find(d => d.parsedDate.toDateString() === todayStr) || null;
+
+  // Current milepoint = highest milepoint reached from any past hiking day
+  const lastHikedByMP = confirmed
+    .filter(d => d.miles > 0 && d.milepoint > 0)
+    .reduce((best, d) => d.milepoint > (best ? best.milepoint : 0) ? d : best, null);
+  const currentMP = lastHikedByMP ? lastHikedByMP.milepoint : 0;
 
   // States reached
   const statesHiked = STATE_BOUNDARIES.filter(s => s.mp <= currentMP).map(s => s.state);
@@ -852,10 +857,11 @@ function computeStats(raw) {
 
   // Progress bar label
   let progressLabel = '';
-  if (lastConfirmed && lastConfirmed.parsedDate) {
-    const dateStr = lastConfirmed.parsedDate.toLocaleDateString('en-US',
+  const labelEntry = _trailTodayEntry || (confirmed.length ? confirmed[confirmed.length - 1] : null);
+  if (labelEntry && labelEntry.parsedDate) {
+    const dateStr = labelEntry.parsedDate.toLocaleDateString('en-US',
       { month:'long', day:'numeric', year:'numeric' });
-    progressLabel = `${dateStr} · Hiking Day ${lastConfirmed.day} · Mile ${fmtNum(currentMP)}`;
+    progressLabel = `${dateStr} · Day ${labelEntry.day} · Mile ${fmtNum(currentMP)}`;
   }
 
   const bestDayDate = bestEntry && bestEntry.parsedDate
@@ -899,10 +905,11 @@ function updateDOM(stats) {
   setText('stat-miles-left',   fmtNum(stats.milesLeft));
   setText('stat-pct-complete', stats.pctComplete + '%');
 
-  // Map heading + legend
-  if (_trailTodayEntry) {
-    const dest = _trailTodayEntry.dest || 'Current Location';
-    setText('map-heading', dest + ' · Mile ' + fmtNum(stats.currentMP));
+  // Map heading — always show today's date; add destination if today is a hiking day
+  {
+    const dateStr = _realToday.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+    const dest = _trailTodayEntry && _trailTodayEntry.dest ? _trailTodayEntry.dest + ' · ' : '';
+    setText('map-heading', dest + dateStr + ' · Mile ' + fmtNum(stats.currentMP));
   }
   setText('map-leg-hiked',  'Hiked (' + fmtNum(stats.milesHiked) + ' mi)');
 
@@ -980,12 +987,13 @@ function renderMonthlyTable(raw) {
 
   const todayStr = _realToday.toDateString();
   raw.forEach(d => {
-    if (!d.parsedDate || d.parsedDate > _realToday) return;
+    if (!d.parsedDate || d.day === null) return;
     if (d.parsedDate.toDateString() === todayStr) return;
+    if (d.parsedDate > _realToday) return;
     const mn = d.parsedDate.toLocaleString('en-US', { month:'long' });
     if (!data[mn]) return;
     if (d.miles > 0) { data[mn].miles += d.miles; data[mn].hikingDays++; if (d.miles >= 20) data[mn].days20++; }
-    else if (d.day !== null) { data[mn].zeroDays++; }
+    else { data[mn].zeroDays++; }
   });
 
   const monthly  = MONTHS.map(m => ({ month:m, ...data[m], avg: data[m].hikingDays ? data[m].miles/data[m].hikingDays : 0 }));
@@ -1054,28 +1062,22 @@ function renderStateChart(raw) {
   if (!canvas) return;
   const todayStr = _realToday.toDateString();
 
-  // Accumulate miles/days per state using STATE_BOUNDARIES milepoint ranges
-  const stateMiles = {}, stateDays = {};
-  STATE_BOUNDARIES.forEach(s => { stateMiles[s.state] = 0; stateDays[s.state] = 0; });
+  // Accumulate miles/days per state using the CSV State column
+  const stateMiles = {}, stateDays = {}, stateOrder = [];
 
   raw.forEach(d => {
-    if (!d.parsedDate || d.parsedDate > _realToday || d.miles <= 0 || d.milepoint <= 0) return;
+    if (!d.parsedDate || d.miles <= 0 || !d.state) return;
     if (d.parsedDate.toDateString() === todayStr) return;
-    let state = STATE_BOUNDARIES[STATE_BOUNDARIES.length - 1].state;
-    for (let i = 0; i < STATE_BOUNDARIES.length - 1; i++) {
-      if (d.milepoint >= STATE_BOUNDARIES[i].mp && d.milepoint < STATE_BOUNDARIES[i + 1].mp) {
-        state = STATE_BOUNDARIES[i].state; break;
-      }
-    }
-    stateMiles[state] += d.miles;
-    stateDays[state]++;
+    if (d.parsedDate > _realToday) return;
+    if (!stateMiles[d.state]) { stateMiles[d.state] = 0; stateDays[d.state] = 0; stateOrder.push(d.state); }
+    stateMiles[d.state] += d.miles;
+    stateDays[d.state]++;
   });
 
-  const hiked  = STATE_BOUNDARIES.filter(s => stateDays[s.state] > 0);
-  const labels = hiked.map(s => s.state);
-  const avgs   = hiked.map(s => +(stateMiles[s.state] / stateDays[s.state]).toFixed(1));
-  const totMi  = hiked.reduce((s, x) => s + stateMiles[x.state], 0);
-  const totDay = hiked.reduce((s, x) => s + stateDays[x.state], 0);
+  const labels = stateOrder;
+  const avgs   = stateOrder.map(s => +(stateMiles[s] / stateDays[s]).toFixed(1));
+  const totMi  = stateOrder.reduce((s, x) => s + stateMiles[x], 0);
+  const totDay = stateOrder.reduce((s, x) => s + stateDays[x], 0);
   const overall = totDay ? +(totMi / totDay).toFixed(1) : 0;
 
   new Chart(canvas.getContext('2d'), {
@@ -1140,7 +1142,7 @@ function renderStateChart(raw) {
 function buildCoveredRanges(raw, cutoff) {
   const maxDate = cutoff || _realToday;
   const hikingDays = raw
-    .filter(d => d.parsedDate && d.parsedDate <= maxDate && d.miles > 0 && d.milepoint > 0)
+    .filter(d => d.parsedDate && d.miles > 0 && d.milepoint > 0 && d.parsedDate <= maxDate)
     .sort((a, b) => a.parsedDate - b.parsedDate);
 
   const ranges = [];
