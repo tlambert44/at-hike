@@ -517,6 +517,13 @@
         <div class="hls-sub">Complete</div>
       </div>
     </div>
+    <div class="hls-item">
+      <div class="hls-swatch" style="background:#f4a261"></div>
+      <div class="hls-content">
+        <div class="hls-val" style="color:#f4a261" id="stat-miles-katahdin">—</div>
+        <div class="hls-sub">Miles to Katahdin</div>
+      </div>
+    </div>
   </div>
 </div><!-- /hp-inner -->
 </div><!-- /hero-progress -->
@@ -902,9 +909,10 @@ function updateDOM(stats) {
   setStyle('pb-boot',     'left',  stats.bootPct.toFixed(2) + '%');
 
   // Hero stats strip
-  setText('stat-miles-hiked',  fmtNum(stats.milesHiked));
-  setText('stat-miles-left',   fmtNum(stats.milesLeft));
-  setText('stat-pct-complete', stats.pctComplete + '%');
+  setText('stat-miles-hiked',     fmtNum(stats.milesHiked));
+  setText('stat-miles-left',      fmtNum(stats.milesLeft));
+  setText('stat-pct-complete',    stats.pctComplete + '%');
+  setText('stat-miles-katahdin',  fmtNum(stats.milesAhead));
 
   // Map heading — always show today's date; add destination if today is a hiking day
   {
