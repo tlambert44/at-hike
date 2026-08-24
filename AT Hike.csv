@@ -1,196 +1,212 @@
-﻿Date,Day on trail,miles hiked,AT milepoint,Starting point,Destination,Stay,Comments,State
-"Thursday, March 12, 2026",1,2.8,2.8,Amicalola Falls State Park,Stover Creek Shelter,shelter,plus 8.8 mile Approach Trail.,GA
-"Friday, March 13, 2026",2,12.9,15.7,Stover Creek Shelter,Gooch Mtn Shelter,shelter,,GA
-"Saturday, March 14, 2026",3,18.5,34.2,Gooch Mtn Shelter,past Neels Gap,dispersed camping-tent,,GA
-"Sunday, March 15, 2026",4,18.5,52.7,,Unicoi Gap,Hiawasse Holiday Inn,slack pack,GA
-"Monday, March 16, 2026",5,0,52.7,,,Hiawasse Holiday Inn,Zero Day (cold and snow),GA
-"Tuesday, March 17, 2026",6,16.7,69.4,Unicoi Gap,Dicks Creek Gap,Hiawasse Holiday Inn,slack pack,GA
-"Wednesday, March 18, 2026",7,21.1,90.5,Dicks Creek Gap,Beech Gap,dispersed camping-tent,,GA
-"Thursday, March 19, 2026",8,19.9,110.4,Beech Gap,Winding Stair Gap,dispersed camping-tent,,NC/TN
-"Friday, March 20, 2026",9,15,125.4,Winding Stair Gap,Cold Spring Shelter,shelter,,NC/TN
-"Saturday, March 21, 2026",10,11.7,137.1,Cold Spring Shelter,NOC,hostel,,NC/TN
-"Sunday, March 22, 2026",11,13.6,150.7,NOC,Stecoah Gap,Turkey Creek campground,,NC/TN
-"Monday, March 23, 2026",12,15.9,166.6,Stecoah Gap,Fontana Village,Fontana Village Lodge,slack pack,NC/TN
-"Tuesday, March 24, 2026",13,17.4,184,Fontana Village,Spence Field Shelter,shelter,,NC/TN
-"Wednesday, March 25, 2026",14,19.1,203.1,Spence Field Shelter,Mt. Collins Shelter,shelter,,NC/TN
-"Thursday, March 26, 2026",15,20.6,223.7,Mt. Collins Shelter,Tricorner Knob Shelter,shelter,,NC/TN
-"Friday, March 27, 2026",16,17.6,241.3,Tricorner Knob Shelter,I-40 road crossing,Hot Springs airbnb,slack pack,NC/TN
-"Saturday, March 28, 2026",17,19.5,260.8,1-40 crossing,Lemon Gap,Hot Springs airbnb,slack pack,NC/TN
-"Sunday, March 29, 2026",18,14.4,275.2,Lemon Gap,"Hot Springs, NC",Hot Springs airbnb,slack pack,NC/TN
-"Monday, March 30, 2026",19,5.9,281.1,"Hot Springs, NC",Tanyard Gap,Hot Springs airbnb,slack pack,NC/TN
-"Tuesday, March 31, 2026",20,21,302.1,Tanyard Gap,Jerrys Cabin Shelter,shelter,,NC/TN
-"Wednesday, April 1, 2026",21,9.2,311.3,Jerrys Cabin Shelter,Devils Fork Gap,Marshall Old Jail hotel,,NC/TN
-"Thursday, April 2, 2026",,0,311.3,,,Marshall Old Jail hotel,Zero Day (injury rest),
-"Friday, April 3, 2026",,0,311.3,,,Marshall Old Jail hotel,Zero Day (injury rest),
-"Saturday, April 4, 2026",22,15.7,327,Devils Fork Gap,Old Bald Road,NC Welcome Center rt. 26,slack pack,NC/TN
-"Sunday, April 5, 2026",,0,327,,,Baymont Asheville hotel,,
-"Monday, April 6, 2026",,0,327,,,VA rest area,travel,
-"Tuesday, April 7, 2026",,0,327,,,home,travel,
-"Wednesday, April 8, 2026",,0,327,,,home,,
-"Thursday, April 9, 2026",,0,327,,,home,,
-"Friday, April 10, 2026",,0,327,,,home,,
-"Saturday, April 11, 2026",,0,327,,,home,,
-"Sunday, April 12, 2026",,0,320,,,home,,
-"Monday, April 13, 2026",23,0.7,327.7,Sam's Gap,Big Bald Mtn Shelter,shelter,start from Sam's Gap - redo day 21,NC/TN
-"Tuesday, April 14, 2026",24,16.8,344.5,Big Bald Mtn Shelter,"Erwin, TN",Mountain Inn hotel,,NC/TN
-"Wednesday, April 15, 2026",25,21,365.5,"Erwin, TN",Campsite on detour,dispersed camping-tent,included 6 mile road walk detour (23 miles total?),NC/TN
-"Thursday, April 16, 2026",26,23.2,388.7,Campsite on detour,Bradley Gap,dispersed camping-tent,,NC/TN
-"Friday, April 17, 2026",27,17.3,406,Bradley Gap,Walnut Mountain,Black Bear hostel,Strava: 18 miles,NC/TN
-"Saturday, April 18, 2026",28,22.9,428.9,Walnut Mountain Gap,Rte. 321 road crossing,Braemar Castle Hostel,,NC/TN
-"Sunday, April 19, 2026",29,4.4,433.3,Rte. 321,Wilbur Dam,Braemar Castle Hostel,,NC/TN
-"Monday, April 20, 2026",30,16.2,449.5,Wilbur Dam,Rte. 91 road crossing,dispersed camping-tent,stay??,VA
-"Tuesday, April 21, 2026",31,0,449.5,,"Damascas, VA",Virgina Creeper hotel,zero day,VA
-"Wednesday, April 22, 2026",32,22,471.5,"Damascas, VA",Rte. 91 road crossing,Virgina Creeper hotel,slack-pack hiked section backwards,VA
-Skipped Section,,15.5,487,"Damascas, VA",Lost Mtn Shelter,,,VA
-Skipped Section,,12.4,499.4,,Thomas Knob Shelter,,,VA
-Skipped Section,,16,515.4,,Hurricane Mtn Shelter,,,VA
-Skipped Section,,19,534.4,,Partnership Shelter,,,VA
-Skipped Section,,11.6,546,,Atkins VA,,,VA
-Skipped Section,,24.1,570.1,,Chestnut Knob Shelter,,,VA
-Skipped Section,,24.2,594.3,,Helvey's Mill Shelter,,,VA
-Skipped Section,,18,612.3,,Camp - Dismal Falls,,,VA
-Skipped Section,,24.1,636.4,,Pearisburg VA,,,VA
-Skipped Section,,0,636.4,,"Pearisburg, VA",,,VA
-Skipped Section,,20.6,657,,Pine Swamp Br Shl,,,VA
-Skipped Section,,19,676,,Laurel Creek Shelter,,,VA
-Skipped Section,,22.7,698.7,,Pickle Branch Shelter,,,VA
-Skipped Section,,14.6,713.3,,Catawba Mtn Shelter,,,VA
-Skipped Section,,17.8,731.1,,Daleville VA,,,VA
-Skipped Section,,25,756.1,,Cove Mtn Shelter,,,VA
-Skipped Section,,17.2,773.3,,Thunder Hill Shelter,,,VA
-Skipped Section,,14.6,787.9,,Applachian Trail Parking at James River Footbridge,,,VA
-,,,,,,,316.4 mi skipped section,
-"Thursday, April 23, 2026",,,,,,home,,
-"Friday, April 24, 2026",,,,,,home,,
-"Saturday, April 25, 2026",,,,,,home,,
-"Sunday, April 26, 2026",,,,,,home,,
-"Monday, April 27, 2026",,,,,,home,,
-"Tuesday, April 28, 2026",,,,,,home,,
-"Wednesday, April 29, 2026",,,,,,home,,
-"Thursday, April 30, 2026",,,,,,home,,
-"Friday, May 1, 2026",,,,,,home,,
-"Saturday, May 2, 2026",,,,,,home,,
-"Sunday, May 3, 2026",,,,,,home,,
-"Monday, May 4, 2026",,,,,,home,,
-"Tuesday, May 5, 2026",,,,,,home,,
-"Wednesday, May 6, 2026",,,,,,home,,
-"Thursday, May 7, 2026",,,,,,home,,
-"Friday, May 8, 2026",,,,,,home,,
-"Saturday, May 9, 2026",,,,,,home,,
-"Sunday, May 10, 2026",,,865.3,,Rockfish Gap,Loft Mountain campground Shenandoah NP,,VA
-"Monday, May 11, 2026",33,14.3,851,Rockfish Gap,Dripping Rock parking area Blue Ridge Pkwy,Devils Backbone brewery campground,SOBO - slackpack,VA
-"Tuesday, May 12, 2026",34,15.5,835.5,Dripping Rock parking area Blue Ridge Pkwy,VA-56/Tye River Bridge,Devils Backbone brewery campground,SOBO - slackpack,VA
-"Wednesday, May 13, 2026",35,16.9,818.6,Salt Log Gap,VA-56/Tye River Bridge,Oronoco Campground-NFS free campground,NOBO - slackpack,VA
-"Thursday, May 14, 2026",36,19.6,799,Salt Log Gap,VA 607/Punch Bowl Mtn. Overlook/BRP,"Glen Maury campground Buena Vista, VA",SOBO - slackpack,VA
-"Friday, May 15, 2026",37,11.1,787.9,VA 607/Punch Bowl Mtn. Overlook/BRP,Applachian Trail Parking at James River Footbridge,Best Western hotel,SOBO - slackpack,VA
-"Saturday, May 16, 2026",38,0,865.3,,"Waynesboro, VA","Cracker Barrel Waynesboro, VA",zero day (meet up with P&E),VA
-"Sunday, May 17, 2026",39,21.8,887.1,Rockfish Gap,Blackrock parking area,Loft Mountain campground-Shenandoah NP,slackpack w/Peter,VA
-"Monday, May 18, 2026",40,17.5,904.6,Blackrock parking area,Powell Gap,Loft Mountain campground-Shenandoah NP,slackpack w/Peter,VA
-"Tuesday, May 19, 2026",41,14.4,919,Powell Gap,Lewis Mountain campground,Lewis Mountain campground,w/Peter,VA
-"Wednesday, May 20, 2026",42,23.2,942.2,Lewis Mountain campground,Byrd's Nest hut,shelter,w/Peter,VA
-"Thursday, May 21, 2026",43,17.5,959.7,Byrd's Nest,Gravel Springs shelter,shelter,w/Peter,VA
-"Friday, May 22, 2026",44,13.4,973.1,Gravel Springs shelter,Front Royal,Baymont Inn hotel,w/Peter,WV
-"Saturday, May 23, 2026",45,0,973.1,,Front Royal,Baymont Inn hotel,zero day (rain),WV
-"Sunday, May 24, 2026",46,23.6,996.7,Front Royal,Rod Hollow shelter,shelter,w/Peter,WV
-"Monday, May 25, 2026",47,17.9,1014.6,Rod Hollow shelter,Blackburn shelter,shelter,w/Peter,WV
-"Tuesday, May 26, 2026",48,12.8,1027.4,Blackburn shelter,Harpers Ferry WV,Quality Inn hotel,w/Peter,WV
-"Wednesday, May 27, 2026",49,10.4,1037.8,Harpers Ferry,Crampton Gap Shelter,shelter,w/Peter,WV
-"Thursday, May 28, 2026",50,20.7,1058.5,Crampton Gap Shelter,Ensign Cowall Shelter,shelter,w/Peter,PA
-"Friday, May 29, 2026",51,18.1,1076.6,Ensign Cowall Shelter,Tumbling Run Shelter,shelter,w/Peter,PA
-"Saturday, May 30, 2026",52,19.6,1096.2,Tumbling Run Shelter,Birch Run Shelter,shelter,w/Peter,PA
-"Sunday, May 31, 2026",53,18.3,1114.5,Birch Run Shelter,campsite,dispersed camping-tent,w/Peter,PA
-"Monday, June 1, 2026",54,18.8,1133.3,campsite,"Carlisle, PA",motel,zero/nero day,PA
-"Tuesday, June 2, 2026",52,28.6,1161.9,"Carlisle, PA",Peters Mtn. Shelter,shelter,,PA
-"Wednesday, June 3, 2026",53,23.9,1185.8,Peters Mtn. Shelter,Swatara Gap Shelter,shelter,,PA
-"Thursday, June 4, 2026",54,20.3,1206.1,Swatara Gap Shelter,PA Route 183,"Quality Inn motel Bethel, PA",,PA
-"Friday, June 5, 2026",61,17.9,1224,PA Route 183,campsite,tentsite,,PA
-"Saturday, June 6, 2026",62,23.5,1247.5,tentsite,Lookout Hostel,hostel,,PA
-"Sunday, June 7, 2026",63,14,1261.5,Lookout Hostel,"Palmerton, PA",AirBnB,,PA
-"Monday, June 8, 2026",64,0,1261.5,,"Palmerton, PA",AirBnB,zero day (meet up with Jack),PA
-"Tuesday, June 9, 2026",65,21.1,1282.6,"Palmerton, PA","Wind Gap, PA",Gateway Hotel,w/ Jack,PA
-"Wednesday, June 10, 2026",66,15.5,1298.1,"Wind Gap, PA","Delaware Water Gap, PA",Rodeway Inn & Suites,Jack slackpack,PA
-"Thursday, June 11, 2026",67,17.9,1316,"Delaware Water Gap, PA",Blue Mtn. Lakes Rd.,"Cobmin Ridge Motel, Frankfort Twnshp, NJ",Jack slackpack,NJ
-"Friday, June 12, 2026",68,0,1316,,home,,,NJ
-"Saturday, June 13, 2026",69,0,1316,,home,,,NJ
-"Sunday, June 14, 2026",70,0,1316,,home,,,NJ
-"Monday, June 15, 2026",71,10.6,1326.6,Blue Mtn. Lakes Rd.,"US 206, Culvers Gap, NJ","Cobmin Ridge Motel, Frankfort Twnshp, NJ",slackpack,NJ
-"Tuesday, June 16, 2026",72,21,1347.6,"US 206, Culvers Gap, NJ",Goodrich Rd.,"High Point Mountain Motel, Wantage, NJ",slackpack,NJ
-"Wednesday, June 17, 2026",73,19.5,1367.1,Goodrich Rd.,Warwick Turnpike,"Hamlet Inn, Warwick, NY",slackpack,NY
-"Thursday, June 18, 2026",74,16.7,1383.8,Warwick Turnpike,W. Mombasha Rd.,"Lake Lodging Motel Greenwood Lake, NY",slackpack,NY
-"Friday, June 19, 2026",75,18.9,1402.7,W. Mombasha Rd.,Anthony Wayne Recreation Area,"Inn on the Hudson Peekskill, NY",slackpack,NY
-"Saturday, June 20, 2026",76,13.1,1415.8,Seven Lakes Dr.,"US 9 + NY 403 Peekskill, NY (Appalachian Market)","Inn on the Hudson Peekskill, NY",slackpack: halfway finished miles hiked!,NY
-"Sunday, June 21, 2026",77,22.9,1438.7,"US 9 + NY 403 Peekskill, NY (Appalachian Market)",Hosner Mtn. Road,"Studio 6 Motel Fishkill, NY",slackpack,NY
-"Monday, June 22, 2026",78,16.4,1455.1,Hosner Mtn. Road,AT train station,"The Station Inn, Pawling, NY",slackpack,NY
-"Tuesday, June 23, 2026",79,18.5,1473.6,"AT train station Pawling, NY","Mt. Algo Lean-to Kent, CT",shelter,,NY
-"Wednesday, June 24, 2026",80,17.5,1491.1,"Mt. Algo Lean-to Kent, CT",Pine Swamp Br Shelter,shelter,,CT
-"Thursday, June 25, 2026",81,16.4,1507.5,Pine Swamp Br Shelter,"Salisbury, CT",Maria McCabe's house,,CT
-"Friday, June 26, 2026",82,21.2,1528.7,"Salisbury, CT",US 7,cousin Mike's house,,CT
-"Saturday, June 27, 2026",83,17.6,1546.3,US 7,Shaker Campsite,campsite,,MA
-"Sunday, June 28, 2026",84,11.3,1557.6,Shaker Campsite,Mass Pike 1-90,campsite,,MA
-"Monday, June 29, 2026",,0,1557.6,,,home,,
-"Tuesday, June 30, 2026",,0,1557.6,,,home,,
-"Wednesday, July 1, 2026",,0,1557.6,,,home,,
-"Thursday, July 2, 2026",,0,1557.6,,,home,,
-"Friday, July 3, 2026",,0,1557.6,,,home,,
-"Saturday, July 4, 2026",,0,1557.6,,,home,,
-"Friday, July 31, 2026",97,20.4,1578,Mass Pike 1-90,"Gulf Rd. Dalton, MA","Fernwood Forest Campground Hinsdale, MA",,MA
-"Saturday, August 1, 2026",98,22.4,1600.4,"Gulf Rd. Dalton, MA","Mass Ave/h\Hoosac Rd. North Adams, MA",,,MA
-Skipped Section,,9.2,1609.6,,Seth Warner Shelter,,Long Trail 1604.4 - 1709.9,VT
-Skipped Section,,19.2,1628.8,,Goddard Shelter,,,VT
-Skipped Section,,19.3,1648.1,,Stratton Pond Shelter,,,VT
-Skipped Section,,10.7,1658.8,,"Manchester Center, VT",,,VT
-Skipped Section,,0,1658.8,,"Manchester Center, VT",,,VT
-Skipped Section,,16.5,1675.3,,Big Branch Shelter,,,VT
-Skipped Section,,16.9,1692.2,,Clarendon Shelter,,,VT
-Skipped Section,,16.7,1708.9,,"Rutland, VT",,,VT
-"Sunday, July 5, 2026",85,19.9,1728.8,"US 4, Rutland, VT",Winturri Shelter,shelter,end of Long Trail 1709.0,VT
-"Monday, July 6, 2026",86,21.1,1749.9,Winturri Shelter,Happy Hill Shelter,campsite,,VT
-"Tuesday, July 7, 2026",87,11.7,1761.6,Happy Hill Shelter,"Etna, NH",home,,NH
-"Wednesday, July 8, 2026",,0,1761.6,,,home,White Mountains,
-"Thursday, July 9, 2026",,0,1761.6,,,home,,
-"Friday, July 10, 2026",,0,1761.6,,,home,,
-"Saturday, July 11, 2026",,0,1761.6,,,home,,
-"Sunday, July 12, 2026",,0,1761.6,,,home,,
-"Monday, July 13, 2026",88,17.5,1779.1,"Etna, NH",Fire Wardens Cabin,shelter,,NH
-"Tuesday, July 14, 2026",89,19.9,1799,Fire Wardens Cabin,NH-25,Hikers Welcome Hostel,White Mountains,NH
-"Wednesday, July 15, 2026",90,17,1816,NH-25,Eliza Brook Shelter,shelter,White Mountains,NH
-"Thursday, July 16, 2026",91,8.8,1824.8,Eliza Brook Shelter,Franconia Notch (Liberty Springs Trailhead),home,White Mountains,NH
-"Friday, July 17, 2026",,0,1824.8,,,home,,
-"Saturday, July 18, 2026",,0,1824.8,,,home,,
-"Sunday, July 19, 2026",,0,1824.8,,,home,,
-"Monday, July 20, 2026",93,13,1837.8,Franconia Notch (Liberty Springs Trailhead),Galehead Hut,hut,White Mountains,NH
-"Tuesday, July 21, 2026",94,11.8,1849.6,Galehead Hut,Crawford Notch,"Swiss Chalets Village Inn, Bartlett, NH",White Mountains,NH
-"Wednesday, July 22, 2026",95,12.5,1865,Crawford Notch,Mount Washington summit,"Swiss Chalets Village Inn, Bartlett, NH",White Mountains,NH
-"Thursday, July 23, 2026",96,13.5,1878.5,Mount Washington summit,Pinkham Notch,home,White Mountains,NH
-"Friday, July 24, 2026",,0,1878.5,,,,,
-"Saturday, July 25, 2026",,0,1878.5,,,,,
-"Sunday, July 26, 2026",,0,1878.5,,,,,
-"Monday, July 27, 2026",,0,1878.5,,,,,
-"Tuesday, July 28, 2026",,0,1878.5,,,,,
-"Wednesday, July 29, 2026",,0,1878.5,,,,,
-"Thursday, July 30, 2026",,0,1878.5,,,,,
-"Sunday, August 2, 2026",99,,,,,,,
-"Monday, August 3, 2026",100,,,,,,,
-"Tuesday, August 4, 2026",101,21.1,1899.6,Pinkham Notch,"Rt. 2 (Gorham, NH)",,,NH
-"Wednesday, August 5, 2026",102,11.8,1911.4,"Rt. 2 (Gorham, NH)",Gentian Pond Shelter,,,NH
-"Thursday, August 6, 2026",103,11.2,1922.6,,Mahoosuc Notch (South),,,ME
-"Friday, August 7, 2026",104,8.1,1930.7,,Grafton Notch,,,ME
-"Saturday, August 8, 2026",105,20.4,1951.1,,"Andover, ME",,,ME
-"Sunday, August 9, 2026",106,26.4,1977.5,,"Rangeley, ME",,,ME
-"Monday, August 10, 2026",107,18.7,1996.2,,Spaulding Mtn Lean-to,,,ME
-"Tuesday, August 11, 2026",108,13.5,2009.7,,Kingfield Rt 27,,,ME
-"Wednesday, August 12, 2026",109,16.8,2026.5,,East Flagstaff Rd,,,ME
-"Thursday, August 13, 2026",110,20.2,2046.7,,Caratunk Rt 201,,,ME
-"Friday, August 14, 2026",111,18.8,2065.5,,Moxie Bald Lean-to,,,ME
-"Saturday, August 15, 2026",112,17.9,2083.4,,"Monson, ME",,100-mile Wilderness,ME
-"Sunday, August 16, 2026",113,15.1,2098.5,,Long Pond Stream Lean-to,,100-mile Wilderness,ME
-"Monday, August 17, 2026",114,21,2119.5,,Carl Newhall Lean-to,,100-mile Wilderness,ME
-"Tuesday, August 18, 2026",115,18.9,2138.4,,Cooper Brook Falls Lean-to,,100-mile Wilderness,ME
-"Wednesday, August 19, 2026",116,15.9,2154.3,,Nahmakanta Str Campsite,,100-mile Wilderness,ME
-"Thursday, August 20, 2026",117,13.7,2168,,Rainbow Stream Campground,,100-mile Wilderness,ME
-"Friday, August 21, 2026",118,15.9,2183.9,,Abol Bridge Campground (outside Baxter),,,ME
-"Saturday, August 22, 2026",119,14.2,2198.1,,Katahdin,,,ME
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
+﻿Date,Day on trail,miles hiked,AT milepoint,Starting point,Destination,Stay,Comments,State,
+"Thursday, March 12, 2026",1,2.8,2.8,Amicalola Falls State Park,Stover Creek Shelter,shelter,plus 8.8 mile Approach Trail.,GA,
+"Friday, March 13, 2026",2,12.9,15.7,Stover Creek Shelter,Gooch Mtn Shelter,shelter,,GA,
+"Saturday, March 14, 2026",3,18.5,34.2,Gooch Mtn Shelter,past Neels Gap,dispersed camping-tent,,GA,
+"Sunday, March 15, 2026",4,18.5,52.7,,Unicoi Gap,Hiawasse Holiday Inn,slack pack,GA,
+"Monday, March 16, 2026",5,0,52.7,,,Hiawasse Holiday Inn,Zero Day (cold and snow),GA,
+"Tuesday, March 17, 2026",6,16.7,69.4,Unicoi Gap,Dicks Creek Gap,Hiawasse Holiday Inn,slack pack,GA,
+"Wednesday, March 18, 2026",7,21.1,90.5,Dicks Creek Gap,Beech Gap,dispersed camping-tent,,GA,
+"Thursday, March 19, 2026",8,19.9,110.4,Beech Gap,Winding Stair Gap,dispersed camping-tent,,NC/TN,
+"Friday, March 20, 2026",9,15,125.4,Winding Stair Gap,Cold Spring Shelter,shelter,,NC/TN,
+"Saturday, March 21, 2026",10,11.7,137.1,Cold Spring Shelter,NOC,hostel,,NC/TN,
+"Sunday, March 22, 2026",11,13.6,150.7,NOC,Stecoah Gap,Turkey Creek campground,,NC/TN,
+"Monday, March 23, 2026",12,15.9,166.6,Stecoah Gap,Fontana Village,Fontana Village Lodge,slack pack,NC/TN,
+"Tuesday, March 24, 2026",13,17.4,184,Fontana Village,Spence Field Shelter,shelter,,NC/TN,
+"Wednesday, March 25, 2026",14,19.1,203.1,Spence Field Shelter,Mt. Collins Shelter,shelter,,NC/TN,
+"Thursday, March 26, 2026",15,20.6,223.7,Mt. Collins Shelter,Tricorner Knob Shelter,shelter,,NC/TN,
+"Friday, March 27, 2026",16,17.6,241.3,Tricorner Knob Shelter,I-40 road crossing,Hot Springs airbnb,slack pack,NC/TN,
+"Saturday, March 28, 2026",17,19.5,260.8,1-40 crossing,Lemon Gap,Hot Springs airbnb,slack pack,NC/TN,
+"Sunday, March 29, 2026",18,14.4,275.2,Lemon Gap,"Hot Springs, NC",Hot Springs airbnb,slack pack,NC/TN,
+"Monday, March 30, 2026",19,5.9,281.1,"Hot Springs, NC",Tanyard Gap,Hot Springs airbnb,slack pack,NC/TN,
+"Tuesday, March 31, 2026",20,21,302.1,Tanyard Gap,Jerrys Cabin Shelter,shelter,,NC/TN,
+"Wednesday, April 1, 2026",21,9.2,311.3,Jerrys Cabin Shelter,Devils Fork Gap,Marshall Old Jail hotel,,NC/TN,
+"Thursday, April 2, 2026",,0,311.3,,,Marshall Old Jail hotel,Zero Day (injury rest),,
+"Friday, April 3, 2026",,0,311.3,,,Marshall Old Jail hotel,Zero Day (injury rest),,
+"Saturday, April 4, 2026",22,15.7,327,Devils Fork Gap,Old Bald Road,NC Welcome Center rt. 26,slack pack,NC/TN,
+"Sunday, April 5, 2026",,0,327,,,Baymont Asheville hotel,,,
+"Monday, April 6, 2026",,0,327,,,VA rest area,travel,,
+"Tuesday, April 7, 2026",,0,327,,,home,travel,,
+"Wednesday, April 8, 2026",,0,327,,,home,,,
+"Thursday, April 9, 2026",,0,327,,,home,,,
+"Friday, April 10, 2026",,0,327,,,home,,,
+"Saturday, April 11, 2026",,0,327,,,home,,,
+"Sunday, April 12, 2026",,0,320,,,home,,,
+"Monday, April 13, 2026",23,0.7,327.7,Sam's Gap,Big Bald Mtn Shelter,shelter,start from Sam's Gap - redo day 21,NC/TN,
+"Tuesday, April 14, 2026",24,16.8,344.5,Big Bald Mtn Shelter,"Erwin, TN",Mountain Inn hotel,,NC/TN,
+"Wednesday, April 15, 2026",25,21,365.5,"Erwin, TN",Campsite on detour,dispersed camping-tent,included 6 mile road walk detour (23 miles total?),NC/TN,
+"Thursday, April 16, 2026",26,23.2,388.7,Campsite on detour,Bradley Gap,dispersed camping-tent,,NC/TN,
+"Friday, April 17, 2026",27,17.3,406,Bradley Gap,Walnut Mountain,Black Bear hostel,Strava: 18 miles,NC/TN,
+"Saturday, April 18, 2026",28,22.9,428.9,Walnut Mountain Gap,Rte. 321 road crossing,Braemar Castle Hostel,,NC/TN,
+"Sunday, April 19, 2026",29,4.4,433.3,Rte. 321,Wilbur Dam,Braemar Castle Hostel,,NC/TN,
+"Monday, April 20, 2026",30,16.2,449.5,Wilbur Dam,Rte. 91 road crossing,dispersed camping-tent,stay??,VA,
+"Tuesday, April 21, 2026",31,0,449.5,,"Damascas, VA",Virgina Creeper hotel,zero day,VA,
+"Wednesday, April 22, 2026",32,22,471.5,"Damascas, VA",Rte. 91 road crossing,Virgina Creeper hotel,slack-pack hiked section backwards,VA,
+Skipped Section,,15.5,487,"Damascas, VA",Lost Mtn Shelter,,,VA,
+Skipped Section,,12.4,499.4,,Thomas Knob Shelter,,,VA,
+Skipped Section,,16,515.4,,Hurricane Mtn Shelter,,,VA,
+Skipped Section,,19,534.4,,Partnership Shelter,,,VA,
+Skipped Section,,11.6,546,,Atkins VA,,,VA,
+Skipped Section,,24.1,570.1,,Chestnut Knob Shelter,,,VA,
+Skipped Section,,24.2,594.3,,Helvey's Mill Shelter,,,VA,
+Skipped Section,,18,612.3,,Camp - Dismal Falls,,,VA,
+Skipped Section,,24.1,636.4,,Pearisburg VA,,,VA,
+Skipped Section,,0,636.4,,"Pearisburg, VA",,,VA,
+Skipped Section,,20.6,657,,Pine Swamp Br Shl,,,VA,
+Skipped Section,,19,676,,Laurel Creek Shelter,,,VA,
+Skipped Section,,22.7,698.7,,Pickle Branch Shelter,,,VA,
+Skipped Section,,14.6,713.3,,Catawba Mtn Shelter,,,VA,
+Skipped Section,,17.8,731.1,,Daleville VA,,,VA,
+Skipped Section,,25,756.1,,Cove Mtn Shelter,,,VA,
+Skipped Section,,17.2,773.3,,Thunder Hill Shelter,,,VA,
+Skipped Section,,14.6,787.9,,Applachian Trail Parking at James River Footbridge,,,VA,
+,,,,,,,316.4 mi skipped section,,
+"Thursday, April 23, 2026",,,,,,home,,,
+"Friday, April 24, 2026",,,,,,home,,,
+"Saturday, April 25, 2026",,,,,,home,,,
+"Sunday, April 26, 2026",,,,,,home,,,
+"Monday, April 27, 2026",,,,,,home,,,
+"Tuesday, April 28, 2026",,,,,,home,,,
+"Wednesday, April 29, 2026",,,,,,home,,,
+"Thursday, April 30, 2026",,,,,,home,,,
+"Friday, May 1, 2026",,,,,,home,,,
+"Saturday, May 2, 2026",,,,,,home,,,
+"Sunday, May 3, 2026",,,,,,home,,,
+"Monday, May 4, 2026",,,,,,home,,,
+"Tuesday, May 5, 2026",,,,,,home,,,
+"Wednesday, May 6, 2026",,,,,,home,,,
+"Thursday, May 7, 2026",,,,,,home,,,
+"Friday, May 8, 2026",,,,,,home,,,
+"Saturday, May 9, 2026",,,,,,home,,,
+"Sunday, May 10, 2026",,,865.3,,Rockfish Gap,Loft Mountain campground Shenandoah NP,,VA,
+"Monday, May 11, 2026",33,14.3,851,Rockfish Gap,Dripping Rock parking area Blue Ridge Pkwy,Devils Backbone brewery campground,SOBO - slackpack,VA,
+"Tuesday, May 12, 2026",34,15.5,835.5,Dripping Rock parking area Blue Ridge Pkwy,VA-56/Tye River Bridge,Devils Backbone brewery campground,SOBO - slackpack,VA,
+"Wednesday, May 13, 2026",35,16.9,818.6,Salt Log Gap,VA-56/Tye River Bridge,Oronoco Campground-NFS free campground,NOBO - slackpack,VA,
+"Thursday, May 14, 2026",36,19.6,799,Salt Log Gap,VA 607/Punch Bowl Mtn. Overlook/BRP,"Glen Maury campground Buena Vista, VA",SOBO - slackpack,VA,
+"Friday, May 15, 2026",37,11.1,787.9,VA 607/Punch Bowl Mtn. Overlook/BRP,Applachian Trail Parking at James River Footbridge,Best Western hotel,SOBO - slackpack,VA,
+"Saturday, May 16, 2026",38,0,865.3,,"Waynesboro, VA","Cracker Barrel Waynesboro, VA",zero day (meet up with P&E),VA,
+"Sunday, May 17, 2026",39,21.8,887.1,Rockfish Gap,Blackrock parking area,Loft Mountain campground-Shenandoah NP,slackpack w/Peter,VA,
+"Monday, May 18, 2026",40,17.5,904.6,Blackrock parking area,Powell Gap,Loft Mountain campground-Shenandoah NP,slackpack w/Peter,VA,
+"Tuesday, May 19, 2026",41,14.4,919,Powell Gap,Lewis Mountain campground,Lewis Mountain campground,w/Peter,VA,
+"Wednesday, May 20, 2026",42,23.2,942.2,Lewis Mountain campground,Byrd's Nest hut,shelter,w/Peter,VA,
+"Thursday, May 21, 2026",43,17.5,959.7,Byrd's Nest,Gravel Springs shelter,shelter,w/Peter,VA,
+"Friday, May 22, 2026",44,13.4,973.1,Gravel Springs shelter,Front Royal,Baymont Inn hotel,w/Peter,WV,
+"Saturday, May 23, 2026",45,0,973.1,,Front Royal,Baymont Inn hotel,zero day (rain),WV,
+"Sunday, May 24, 2026",46,23.6,996.7,Front Royal,Rod Hollow shelter,shelter,w/Peter,WV,
+"Monday, May 25, 2026",47,17.9,1014.6,Rod Hollow shelter,Blackburn shelter,shelter,w/Peter,WV,
+"Tuesday, May 26, 2026",48,12.8,1027.4,Blackburn shelter,Harpers Ferry WV,Quality Inn hotel,w/Peter,WV,
+"Wednesday, May 27, 2026",49,10.4,1037.8,Harpers Ferry,Crampton Gap Shelter,shelter,w/Peter,WV,
+"Thursday, May 28, 2026",50,20.7,1058.5,Crampton Gap Shelter,Ensign Cowall Shelter,shelter,w/Peter,PA,
+"Friday, May 29, 2026",51,18.1,1076.6,Ensign Cowall Shelter,Tumbling Run Shelter,shelter,w/Peter,PA,
+"Saturday, May 30, 2026",52,19.6,1096.2,Tumbling Run Shelter,Birch Run Shelter,shelter,w/Peter,PA,
+"Sunday, May 31, 2026",53,18.3,1114.5,Birch Run Shelter,campsite,dispersed camping-tent,w/Peter,PA,
+"Monday, June 1, 2026",54,18.8,1133.3,campsite,"Carlisle, PA",motel,zero/nero day,PA,
+"Tuesday, June 2, 2026",52,28.6,1161.9,"Carlisle, PA",Peters Mtn. Shelter,shelter,,PA,
+"Wednesday, June 3, 2026",53,23.9,1185.8,Peters Mtn. Shelter,Swatara Gap Shelter,shelter,,PA,
+"Thursday, June 4, 2026",54,20.3,1206.1,Swatara Gap Shelter,PA Route 183,"Quality Inn motel Bethel, PA",,PA,
+"Friday, June 5, 2026",61,17.9,1224,PA Route 183,campsite,tentsite,,PA,
+"Saturday, June 6, 2026",62,23.5,1247.5,tentsite,Lookout Hostel,hostel,,PA,
+"Sunday, June 7, 2026",63,14,1261.5,Lookout Hostel,"Palmerton, PA",AirBnB,,PA,
+"Monday, June 8, 2026",64,0,1261.5,,"Palmerton, PA",AirBnB,zero day (meet up with Jack),PA,
+"Tuesday, June 9, 2026",65,21.1,1282.6,"Palmerton, PA","Wind Gap, PA",Gateway Hotel,w/ Jack,PA,
+"Wednesday, June 10, 2026",66,15.5,1298.1,"Wind Gap, PA","Delaware Water Gap, PA",Rodeway Inn & Suites,Jack slackpack,PA,
+"Thursday, June 11, 2026",67,17.9,1316,"Delaware Water Gap, PA",Blue Mtn. Lakes Rd.,"Cobmin Ridge Motel, Frankfort Twnshp, NJ",Jack slackpack,NJ,
+"Friday, June 12, 2026",68,0,1316,,home,,,NJ,
+"Saturday, June 13, 2026",69,0,1316,,home,,,NJ,
+"Sunday, June 14, 2026",70,0,1316,,home,,,NJ,
+"Monday, June 15, 2026",71,10.6,1326.6,Blue Mtn. Lakes Rd.,"US 206, Culvers Gap, NJ","Cobmin Ridge Motel, Frankfort Twnshp, NJ",slackpack,NJ,
+"Tuesday, June 16, 2026",72,21,1347.6,"US 206, Culvers Gap, NJ",Goodrich Rd.,"High Point Mountain Motel, Wantage, NJ",slackpack,NJ,
+"Wednesday, June 17, 2026",73,19.5,1367.1,Goodrich Rd.,Warwick Turnpike,"Hamlet Inn, Warwick, NY",slackpack,NY,
+"Thursday, June 18, 2026",74,16.7,1383.8,Warwick Turnpike,W. Mombasha Rd.,"Lake Lodging Motel Greenwood Lake, NY",slackpack,NY,
+"Friday, June 19, 2026",75,18.9,1402.7,W. Mombasha Rd.,Anthony Wayne Recreation Area,"Inn on the Hudson Peekskill, NY",slackpack,NY,
+"Saturday, June 20, 2026",76,13.1,1415.8,Seven Lakes Dr.,"US 9 + NY 403 Peekskill, NY (Appalachian Market)","Inn on the Hudson Peekskill, NY",slackpack: halfway finished miles hiked!,NY,
+"Sunday, June 21, 2026",77,22.9,1438.7,"US 9 + NY 403 Peekskill, NY (Appalachian Market)",Hosner Mtn. Road,"Studio 6 Motel Fishkill, NY",slackpack,NY,
+"Monday, June 22, 2026",78,16.4,1455.1,Hosner Mtn. Road,AT train station,"The Station Inn, Pawling, NY",slackpack,NY,
+"Tuesday, June 23, 2026",79,18.5,1473.6,"AT train station Pawling, NY","Mt. Algo Lean-to Kent, CT",shelter,,NY,
+"Wednesday, June 24, 2026",80,17.5,1491.1,"Mt. Algo Lean-to Kent, CT",Pine Swamp Br Shelter,shelter,,CT,
+"Thursday, June 25, 2026",81,16.4,1507.5,Pine Swamp Br Shelter,"Salisbury, CT",Maria McCabe's house,,CT,
+"Friday, June 26, 2026",82,21.2,1528.7,"Salisbury, CT",US 7,cousin Mike's house,,CT,
+"Saturday, June 27, 2026",83,17.6,1546.3,US 7,Shaker Campsite,campsite,,MA,
+"Sunday, June 28, 2026",84,11.3,1557.6,Shaker Campsite,Mass Pike 1-90,campsite,,MA,
+"Monday, June 29, 2026",,0,1557.6,,,home,,,
+"Tuesday, June 30, 2026",,0,1557.6,,,home,,,
+"Wednesday, July 1, 2026",,0,1557.6,,,home,,,
+"Thursday, July 2, 2026",,0,1557.6,,,home,,,
+"Friday, July 3, 2026",,0,1557.6,,,home,,,
+"Saturday, July 4, 2026",,0,1557.6,,,home,,,
+"Friday, July 31, 2026",97,20.4,1578,Mass Pike 1-90,"Gulf Rd. Dalton, MA","Fernwood Forest Campground Hinsdale, MA",,MA,
+"Saturday, August 1, 2026",98,22.4,1600.4,"Gulf Rd. Dalton, MA","Mass Ave/h\Hoosac Rd. North Adams, MA",,,MA,
+Skipped Section,,9.2,1609.6,,Seth Warner Shelter,,Long Trail 1604.4 - 1709.9,VT,
+Skipped Section,,19.2,1628.8,,Goddard Shelter,,,VT,
+Skipped Section,,19.3,1648.1,,Stratton Pond Shelter,,,VT,
+Skipped Section,,10.7,1658.8,,"Manchester Center, VT",,,VT,
+Skipped Section,,0,1658.8,,"Manchester Center, VT",,,VT,
+Skipped Section,,16.5,1675.3,,Big Branch Shelter,,,VT,
+Skipped Section,,16.9,1692.2,,Clarendon Shelter,,,VT,
+Skipped Section,,16.7,1708.9,,"Rutland, VT",,,VT,
+"Sunday, July 5, 2026",85,19.9,1728.8,"US 4, Rutland, VT",Winturri Shelter,shelter,end of Long Trail 1709.0,VT,
+"Monday, July 6, 2026",86,21.1,1749.9,Winturri Shelter,Happy Hill Shelter,campsite,,VT,
+"Tuesday, July 7, 2026",87,11.7,1761.6,Happy Hill Shelter,"Etna, NH",home,,NH,
+"Wednesday, July 8, 2026",,0,1761.6,,,home,White Mountains,,
+"Thursday, July 9, 2026",,0,1761.6,,,home,,,
+"Friday, July 10, 2026",,0,1761.6,,,home,,,
+"Saturday, July 11, 2026",,0,1761.6,,,home,,,
+"Sunday, July 12, 2026",,0,1761.6,,,home,,,
+"Monday, July 13, 2026",88,17.5,1779.1,"Etna, NH",Fire Wardens Cabin,shelter,,NH,
+"Tuesday, July 14, 2026",89,19.9,1799,Fire Wardens Cabin,NH-25,Hikers Welcome Hostel,White Mountains,NH,
+"Wednesday, July 15, 2026",90,17,1816,NH-25,Eliza Brook Shelter,shelter,White Mountains,NH,
+"Thursday, July 16, 2026",91,8.8,1824.8,Eliza Brook Shelter,Franconia Notch (Liberty Springs Trailhead),home,White Mountains,NH,
+"Friday, July 17, 2026",,0,1824.8,,,home,,,
+"Saturday, July 18, 2026",,0,1824.8,,,home,,,
+"Sunday, July 19, 2026",,0,1824.8,,,home,,,
+"Monday, July 20, 2026",93,13,1837.8,Franconia Notch (Liberty Springs Trailhead),Galehead Hut,hut,White Mountains,NH,
+"Tuesday, July 21, 2026",94,11.8,1849.6,Galehead Hut,Crawford Notch,"Swiss Chalets Village Inn, Bartlett, NH",White Mountains,NH,
+"Wednesday, July 22, 2026",95,12.5,1865,Crawford Notch,Mount Washington summit,"Swiss Chalets Village Inn, Bartlett, NH",White Mountains,NH,
+"Thursday, July 23, 2026",96,13.5,1878.5,Mount Washington summit,Pinkham Notch,home,White Mountains,NH,
+"Friday, July 24, 2026",,0,1878.5,,,,,,
+"Saturday, July 25, 2026",,0,1878.5,,,,,,
+"Sunday, July 26, 2026",,0,1878.5,,,,,,
+"Monday, July 27, 2026",,0,1878.5,,,,,,
+"Tuesday, July 28, 2026",,0,1878.5,,,,,,
+"Wednesday, July 29, 2026",,0,1878.5,,,,,,
+"Thursday, July 30, 2026",,0,1878.5,,,,,,
+"Sunday, August 2, 2026",,0,1878.5,,,,,,
+"Monday, August 3, 2026",,0,1878.5,,,,,,
+"Tuesday, August 4, 2026",,0,1878.5,,,,,,
+"Wednesday, August 5, 2026",,0,1878.5,,,,,,
+"Thursday, August 6, 2026",,0,1878.5,,,,,,
+"Friday, August 7, 2026",,0,1878.5,,,,,,
+"Saturday, August 8, 2026",,0,1878.5,,,,,,
+"Sunday, August 9, 2026",,0,1878.5,,,,,,
+"Monday, August 10, 2026",,0,1878.5,,,,,,
+"Tuesday, August 11, 2026",,0,1878.5,,,,,,
+"Wednesday, August 12, 2026",,0,1878.5,,,,,,
+"Thursday, August 13, 2026",,0,1878.5,,,,,,
+"Friday, August 14, 2026",,0,1878.5,,,,,,
+"Saturday, August 15, 2026",,0,1878.5,,,,,,
+"Sunday, August 16, 2026",,0,1878.5,,,,,,
+"Monday, August 17, 2026",,0,1878.5,,,,,,
+"Tuesday, August 18, 2026",,0,1878.5,,,,,,
+"Wednesday, August 19, 2026",,0,1878.5,,,,,,
+"Thursday, August 20, 2026",,0,1878.5,,,,,,
+"Friday, August 21, 2026",,0,1878.5,,,,,,
+"Saturday, August 22, 2026",,0,1878.5,,,,,,
+"Sunday, August 23, 2026",,0,1878.5,,,,,,
+"Monday, August 24, 2026",99,21.1,1899.6,Pinkham Notch,"Rt. 2 (Gorham, NH)",,,w/Terri,NH
+"Tuesday, August 25, 2026",100,11.8,1911.4,"Rt. 2 (Gorham, NH)",Gentian Pond Shelter,,,w/Terri,NH
+"Wednesday, August 26, 2026",101,11.2,1922.6,,Mahoosuc Notch (South),,,w/Terri,ME
+"Thursday, August 27, 2026",102,8.1,1930.7,,Grafton Notch,,,w/Terri,ME
+"Friday, August 28, 2026",103,20.4,1951.1,,"Andover, ME",,,w/Terri,ME
+"Saturday, August 29, 2026",104,26.4,1977.5,,"Rangeley, ME",,,w/Terri,ME
+"Sunday, August 30, 2026",105,18.7,1996.2,,Spaulding Mtn Lean-to,,,w/Terri,ME
+"Monday, August 31, 2026",106,13.5,2009.7,,Kingfield Rt 27,,,w/Terri,ME
+"Tuesday, September 1, 2026",107,16.8,2026.5,,East Flagstaff Rd,,,,ME
+"Wednesday, September 2, 2026",108,20.2,2046.7,,Caratunk Rt 201,,,,ME
+"Thursday, September 3, 2026",109,18.8,2065.5,,Moxie Bald Lean-to,,,,ME
+"Friday, September 4, 2026",110,17.9,2083.4,,"Monson, ME",,100-mile Wilderness,,ME
+"Saturday, September 5, 2026",111,15.1,2098.5,,Long Pond Stream Lean-to,,100-mile Wilderness,,ME
+"Sunday, September 6, 2026",112,21,2119.5,,Carl Newhall Lean-to,,100-mile Wilderness,,ME
+"Monday, September 7, 2026",113,18.9,2138.4,,Cooper Brook Falls Lean-to,,100-mile Wilderness,,ME
+"Tuesday, September 8, 2026",114,15.9,2154.3,,Nahmakanta Str Campsite,,100-mile Wilderness,,ME
+"Wednesday, September 9, 2026",115,13.7,2168,,Rainbow Stream Campground,,100-mile Wilderness,,ME
+"Thursday, September 10, 2026",116,15.9,2183.9,,Abol Bridge Campground (outside Baxter),,,,ME
+"Friday, September 11, 2026",117,14.2,2198.1,,Katahdin,,,,ME
