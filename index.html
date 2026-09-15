@@ -517,6 +517,13 @@
         <div class="hls-sub">Complete</div>
       </div>
     </div>
+    <div class="hls-item">
+      <div class="hls-swatch" style="background:#f4a261"></div>
+      <div class="hls-content">
+        <div class="hls-val" style="color:#f4a261" id="stat-miles-katahdin">—</div>
+        <div class="hls-sub">Miles to Katahdin</div>
+      </div>
+    </div>
   </div>
 </div><!-- /hp-inner -->
 </div><!-- /hero-progress -->
@@ -901,9 +908,10 @@ function updateDOM(stats) {
   setStyle('pb-boot',     'left',  stats.bootPct.toFixed(2) + '%');
 
   // Hero stats strip
-  setText('stat-miles-hiked',  fmtNum(stats.milesHiked));
-  setText('stat-miles-left',   fmtNum(stats.milesLeft));
-  setText('stat-pct-complete', stats.pctComplete + '%');
+  setText('stat-miles-hiked',     fmtNum(stats.milesHiked));
+  setText('stat-miles-left',      fmtNum(stats.milesLeft));
+  setText('stat-pct-complete',    stats.pctComplete + '%');
+  setText('stat-miles-katahdin',  fmtNum(stats.milesAhead));
 
   // Map heading — always show today's date; add destination if today is a hiking day
   {
@@ -981,7 +989,7 @@ function stayTag(stay) {
 //  MONTHLY SUMMARY TABLE
 // ════════════════════════════════════════════
 function renderMonthlyTable(raw) {
-  const MONTHS = ['March','April','May','June','July','August'];
+  const MONTHS = ['March','April','May','June','July','August','September'];
   const data = {};
   MONTHS.forEach(m => data[m] = { miles:0, hikingDays:0, zeroDays:0, days20:0 });
 
@@ -1294,9 +1302,9 @@ function renderMap(stats, raw) {
 // ════════════════════════════════════════════
 //  TRAIL CALENDAR
 // ════════════════════════════════════════════
-const CAL_MONTHS    = ['March','April','May','June','July','August'];
+const CAL_MONTHS    = ['March','April','May','June','July','August','September'];
 const CAL_YEAR      = 2026;
-const CAL_MONTH_IDX = { March:2, April:3, May:4, June:5, July:6, August:7 };
+const CAL_MONTH_IDX = { March:2, April:3, May:4, June:5, July:6, August:7, September:8 };
 
 function getDayType(entry, dt) {
   if (!entry) return null;
