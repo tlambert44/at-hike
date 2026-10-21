@@ -175,14 +175,14 @@ Skipped Section,,16.7,1708.9,,"Rutland, VT",,,VT,
 "Wednesday, August 5, 2026",,0,1878.5,,,,,,
 "Thursday, August 6, 2026",,0,1878.5,,,,,,
 "Friday, August 7, 2026",,0,1878.5,,,,,,
-"Saturday, August 8, 2026",,0,1878.5,,,Castine,,,
-"Sunday, August 9, 2026",,0,1878.5,,,Castine,,,
-"Monday, August 10, 2026",,0,1878.5,,,Castine,,,
+"Saturday, August 8, 2026",,0,1878.5,,,,,,
+"Sunday, August 9, 2026",,0,1878.5,,,,,,
+"Monday, August 10, 2026",,0,1878.5,,,,,,
 "Tuesday, August 11, 2026",,0,1878.5,,,,,,
 "Wednesday, August 12, 2026",,0,1878.5,,,,,,
 "Thursday, August 13, 2026",,0,1878.5,,,,,,
 "Friday, August 14, 2026",,0,1878.5,,,,,,
-"Saturday, August 15, 2026",,0,1878.5,,,50/50 ride,,,
+"Saturday, August 15, 2026",,0,1878.5,,,,,,
 "Sunday, August 16, 2026",,0,1878.5,,,,,,
 "Monday, August 17, 2026",,0,1878.5,,,,,,
 "Tuesday, August 18, 2026",,0,1878.5,,,,,,
@@ -191,45 +191,23 @@ Skipped Section,,16.7,1708.9,,"Rutland, VT",,,VT,
 "Friday, August 21, 2026",,0,1878.5,,,,,,
 "Saturday, August 22, 2026",,0,1878.5,,,,,,
 "Sunday, August 23, 2026",,0,1878.5,,,,,,
-"Monday, August 24, 2026",99,21.1,1899.6,Pinkham Notch,"Rt. 2 (Gorham, NH)",,w/Terri,NH,
-"Tuesday, August 25, 2026",,0,1899.6,,,,,,
-"Wednesday, August 26, 2026",,0,1899.6,,,,,,
-"Thursday, August 27, 2026",,0,1899.6,,,,,,
-"Thursday, August 27, 2026",,0,1899.6,,,,,,
-"Friday, August 28, 2026",,0,1899.6,,,,,,
-"Saturday, August 29, 2026",,0,1899.6,,,,,,
-"Sunday, August 30, 2026",,0,1899.6,,,,,,
-"Monday, August 31, 2026",,0,1899.6,,,,,,
-"Tuesday, September 1, 2026",,0,1899.6,,,,,,
-"Wednesday, September 2, 2026",,0,1899.6,,,,,,
-"Thursday, September 3, 2026",,0,1899.6,,,,,,
-"Friday, September 4, 2026",,0,1899.6,,,,,,
-"Saturday, September 5, 2026",,0,1899.6,,,,,,
-"Sunday, September 6, 2026",,0,1899.6,,,,,,
-"Monday, September 7, 2026",,0,1899.6,,,,,,
-"Tuesday, September 8, 2026",,0,1899.6,,,,,,
-"Tuesday, September 8, 2026",,0,1899.6,,,,,,
-"Wednesday, September 9, 2026",,0,1899.6,,,,,,
-"Thursday, September 10, 2026",,0,1899.6,,,,,,
-"Friday, September 11, 2026",,0,1899.6,,,,,,
-"Saturday, September 12, 2026",,0,1899.6,,,,,,
-"Sunday, September 13, 2026",,0,1899.6,,,,,,
-,,11.8,1911.4,"Rattle River (Rt. 2 Gorham, NH)",Gentian Pond Shelter,,w/Terri,NH,
-,,11.2,1922.6,Gentian Pond Shelter,Mahoosuc Notch (South),,w/Terri,ME,
-,,8.1,1930.7,,Grafton Notch,,w/Terri,ME,
-14-Sep,100,16.3,1947,Grafton Notch,Hall Mountain Shelter,(On Sun - Overnight camp in van at Piazza TH Parking) Monday AM mt shuttle to Grafton Notch.,,ME,
-15-Sep,101,21.1,1968.1,Hall Mountain Shelter,Sabbath Day Pond Lean-to,,,ME,
-16-Sep,102,9.4,1977.5,Sabbath Day Pond Lean-to,"Rangeley, ME",,,ME,Meet van and drive to J&C's?
-,,18.7,1996.2,,Spaulding Mtn Lean-to,,,ME,Climb the Saddleback peaks
-,,13.5,2009.7,,Kingfield Rt 27,,,ME,Pass Sugarloaf. Stay at J&C's?
-,,16.8,2026.5,,East Flagstaff Rd,,,ME,Stay at J&C's?
-,,20.2,2046.7,,Caratunk Rt 201,,,ME,Cross the Kennebec just before Rt 201 - Jack to pick me up across the river??
-,,18.8,2065.5,,Moxie Bald Lean-to,,,ME,Tent on trail.
-,,17.9,2083.4,,"Monson, ME",,,ME,Last town before 100 Mile Wild.
-,,15.1,2098.5,,Long Pond Stream Lean-to,,100-mile Wilderness,ME,
-,,21,2119.5,,Carl Newhall Lean-to,,100-mile Wilderness,ME,
-,,18.9,2138.4,,Cooper Brook Falls Lean-to,,100-mile Wilderness,ME,
-,,15.9,2154.3,,Nahmakanta Str Campsite,,100-mile Wilderness,ME,
-,,13.7,2168,,Rainbow Stream Campground,,100-mile Wilderness,ME,
-,,15.9,2183.9,,Abol Bridge Campground (outside Baxter),,,ME,
-,,14.2,2198.1,,Katahdin,,,ME,
+"Monday, August 24, 2026",99,21.1,1899.6,Pinkham Notch,"Rt. 2 (Gorham, NH)",,slack pack,w/Terri,NH
+,,11.8,1911.4,"Rt. 2 (Gorham, NH)",Gentian Pond Shelter,,,w/Terri,NH
+,,11.2,1922.6,,Mahoosuc Notch (South),,,w/Terri,ME
+,,8.1,1930.7,,Grafton Notch,,,w/Terri,ME
+"Thursday, September 17, 2026",100,16.3,1947,Grafton Notch,Hall Mountain Shelter,,shelter,,ME
+"Friday, September 18, 2026",101,21.1,1968.1,Hall Mountain Shelter,Sabbath Day Pond Lean-to,,shelter,,ME
+"Saturday, September 19, 2026",102,9.4,1977.5,Sabbath Day Pond Lean-to,Rangely Rt 4/AT Crossing (Piazza TH),,Jack-Carrabassatt,drive to Jack's,ME
+"Wednesday, October 21, 2026",103,18.7,1996.2,Rangely Rt 4/AT Crossing (Piazza TH),Spaulding Mtn Lean-to,,shelter,,ME
+"Thursday, October 22, 2026",104,13.5,2009.7,Spaulding Mtn Lean-to,Kingfield Rt 27,,Jack-Carrabassatt,Jack pick up,ME
+,,16.8,2026.5,,East Flagstaff Rd,,,,ME
+,,20.2,2046.7,,Caratunk Rt 201,,,,ME
+,,18.8,2065.5,,Moxie Bald Lean-to,,100-mile Wilderness,,ME
+,,17.9,2083.4,,"Monson, ME",,100-mile Wilderness,,ME
+,,15.1,2098.5,,Long Pond Stream Lean-to,,100-mile Wilderness,,ME
+,,21,2119.5,,Carl Newhall Lean-to,,100-mile Wilderness,,ME
+,,18.9,2138.4,,Cooper Brook Falls Lean-to,,100-mile Wilderness,,ME
+,,15.9,2154.3,,Nahmakanta Str Campsite,,100-mile Wilderness,,ME
+,,13.7,2168,,Rainbow Stream Campground,,,,ME
+,,15.9,2183.9,,Abol Bridge Campground (outside Baxter),,,,ME
+,,14.2,2198.1,,Katahdin,,,,
